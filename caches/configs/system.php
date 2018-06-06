@@ -21,13 +21,13 @@ return array(
 
 //附件相关配置
 'upload_path' => PHPCMS_PATH.'uploadfile/',
-'upload_url' => 'http://cp.com/uploadfile/', //附件路径
-'attachment_stat' => '1',//是否记录附件使用状态 0 统计 1 统计， 注意: 本功能会加重服务器负担
+'upload_url' => '/uploadfile/', //附件路径
+'attachment_stat' => '0',//是否记录附件使用状态 0 统计 1 统计， 注意: 本功能会加重服务器负担
 
-'js_path' => 'http://cp.com/statics/js/', //CDN JS
-'css_path' => 'http://cp.com/statics/css/', //CDN CSS
-'img_path' => 'http://cp.com/statics/images/', //CDN img
-'app_path' => 'http://cp.com/',//动态域名配置地址
+'js_path' => '/statics/js/', //CDN JS
+'css_path' => '/statics/css/', //CDN CSS
+'img_path' => '/statics/images/', //CDN img
+'app_path' => '/',//动态域名配置地址
 
 'charset' => 'utf-8', //网站字符集
 'timezone' => 'Etc/GMT-8', //网站时区（只对php 5.1以上版本有效），Etc/GMT-8 实际表示的是 GMT+8
@@ -42,9 +42,9 @@ return array(
 'admin_founders' => '1', //网站创始人ID，多个ID逗号分隔
 'execution_sql' => 0, //EXECUTION_SQL
 
-'phpsso' => '1',	//是否使用phpsso
+'phpsso' => '0',	//是否使用phpsso
 'phpsso_appid' => '1',	//应用id	
-'phpsso_api_url' => 'http://cp.com/phpsso_server',	//接口地址
+'phpsso_api_url' => '/phpsso_server',	//接口地址
 'phpsso_auth_key' => 'yCpwKgckYIyLHClQ8yUzgfMMHkbq9Gzg', //加密密钥
 'phpsso_version' => '1', //phpsso版本
 

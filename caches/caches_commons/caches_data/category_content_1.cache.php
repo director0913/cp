@@ -16,7 +16,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'about',
-    'url' => '/html/about/',
+    'url' => 'http://cp.com/html/about/',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -59,7 +59,7 @@ return array (
     'description' => '',
     'parentdir' => 'about/',
     'catdir' => 'aboutus',
-    'url' => '/html/about/aboutus/',
+    'url' => 'http://cp.com/html/about/aboutus/',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -102,7 +102,7 @@ return array (
     'description' => '',
     'parentdir' => 'about/',
     'catdir' => 'contactus',
-    'url' => '/html/about/contactus/',
+    'url' => 'http://cp.com/html/about/contactus/',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -188,7 +188,7 @@ return array (
     'description' => '',
     'parentdir' => 'about/',
     'catdir' => 'hr',
-    'url' => '/html/about/hr/',
+    'url' => 'http://cp.com/html/about/hr/',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (

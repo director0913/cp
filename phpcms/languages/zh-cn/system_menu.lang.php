@@ -455,4 +455,5 @@ $LANG['complete_info'] = '填写资料';
 $LANG['clear_data'] = '一键清理';
 $LANG['player_manage'] = '播放器管理';
 $LANG['video_upload'] = '视频上传'; 
+$LANG['release_point_management'] = '发布点管理';
 ?>
