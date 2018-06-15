@@ -1,0 +1,43 @@
+{template "content","header"}
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}mycss.css"/>
+<!-- main -->
+<div class="wrap-bg" style="min-height: 244px;">
+				<div class="wrapper">
+					{pc:content  action="lists" catid="21" order="listorder ASC"  moreinfo="1"}
+                    {loop $data $val}
+                       {$val['content']}
+                    {/loop}
+                {/pc}
+                </div>
+			</div>
+<!-- footer -->
+<script type="text/javascript">
+      //根据参数名获得该参数  pname等于想要的参数名
+    function getParam(pname) {
+        var params = location.search.substr(1); //  获取参数 平且去掉？
+        var ArrParam = params.split('&');
+        if (ArrParam.length == 1) {
+            //只有一个参数的情况
+            return params.split('=')[1];
+        }
+        else {
+            //多个参数参数的情况
+            for (var i = 0; i < ArrParam.length; i++) {
+                if (ArrParam[i].split('=')[0] == pname) {
+                    return ArrParam[i].split('=')[1];
+                }
+            }
+        }
+
+    }
+
+    $(function() {
+        var mao = $("#" + getParam("paramName")); //获得锚点
+        if (mao.length > 0) {//判断对象是否存在
+            var pos = mao.offset().top-50;          //页面跳转后距离顶部50px;
+            $("html,body").animate({ scrollTop: pos  + 'px'}, 500);
+        }
+    });
+
+</script>
+{template "content","footer"}

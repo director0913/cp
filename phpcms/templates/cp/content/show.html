@@ -1,0 +1,31 @@
+{template "content","header"}
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}mycss.css"/>
+<!-- main -->
+<div class="wrap-bg" style="min-height: 244px;">
+				<div class="wrapper">
+					<div class="main">
+						<div>
+							<div class="content_box">
+						    	<div class="content_main clearfix">
+						        <h1 class="title_top">{$title}</h1>
+						        <div class="author clearfix">
+						        	<div class="article_info"><span>来源：转载</span></div>
+						        </div>
+						        <div class="top_links"> 
+						        {if $description}{$description}{/if}
+				                </div>
+						        
+						        <div class="content">
+						        <p >{$content}</p>
+								<p>
+						        </p></div>
+						      </div>
+						    </div>
+						</div>
+						
+				        <div class="clear"></div>
+					</div>
+                </div>
+			</div>
+<!-- footer -->
+{template "content","footer"}

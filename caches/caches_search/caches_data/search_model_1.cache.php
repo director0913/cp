@@ -1,5 +1,23 @@
 <?php
 return array (
+  12 => 
+  array (
+    'typeid' => '53',
+    'name' => '轮播图',
+    'sort' => '0',
+  ),
+  13 => 
+  array (
+    'typeid' => '54',
+    'name' => '活动专区',
+    'sort' => '0',
+  ),
+  14 => 
+  array (
+    'typeid' => '55',
+    'name' => '中奖',
+    'sort' => '0',
+  ),
   1 => 
   array (
     'typeid' => '1',

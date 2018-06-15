@@ -1,0 +1,52 @@
+{template "content","header"}
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}mycss.css"/>
+<!-- main -->
+<div class="wap-app-ma">
+            <div class="wap-bg">
+            <img src="{pc:get sql="SELECT * FROM cp_picture WHERE id='6'"  return="data"}
+                                {loop $data $val}
+                                    {$val[img]}
+                                {/loop}
+                            {/pc}" class="wap-bgpic">
+                  <div class="app-ma" style="display: block;">
+                      <div class="wap-wrapper">
+                                                 <div class="app-right">
+                              <!-- <div class="app-tit"> <img width="482" height="244" src="{pc:get sql="SELECT * FROM cp_picture WHERE id='6'"  return="data"}
+                                {loop $data $val}
+                                    {$val[img]}
+                                {/loop}
+                            {/pc}"></div> -->
+                       <!--        <div class="txt500">{$_SERVER['HTTP_HOST']}</div>
+                              <div class="app-two" style="margin-top: 30px">
+                                  <div class="app-two-left">
+                                      <div class="app-btn1">
+                                          <a href="javascript:;"><img src="{IMG_PATH}ios_down.png"></a>
+                                      </div>
+                                      <div class="app-btn2">
+                                          <a href="javascript:;"><img src="{IMG_PATH}android_down.png"></a>
+                                      </div>
+                                  </div>
+                                  <div id="app-phone" class="wap-two-left">
+                                      <div class="wap-two-bg"><img src="{pc:get sql="SELECT * FROM cp_picture WHERE id='2'" cache="3600" return="data"}
+                                {loop $data $val}
+                                    {$val[img]}
+                                {/loop}
+                            {/pc}"></div>
+                                      <p>扫一扫二维码下载Iphone版</p>
+                                  </div>
+                                  <div id="app-android" class="wap-two-right">
+                                      <div class="wap-two-bg"><img src="{pc:get sql="SELECT * FROM cp_picture WHERE id='1'" cache="3600" return="data"}
+                                {loop $data $val}
+                                    {$val[img]}
+                                {/loop}
+                            {/pc}"></div>
+                                      <p>扫一扫二维码下载Android版</p>
+                                  </div>
+                              </div> -->
+                          </div>
+                      </div>
+                  </div>
+               </div>
+           </div>
+<!-- footer -->
+{template "content","footer"}

@@ -1,0 +1,32 @@
+{template "content","header"}
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}mycss.css"/>
+<div class="wrap-bg">
+    <div class="wrapper">
+          <div class="activities">
+                <h1 class="activetitle"><img src="{IMG_PATH}/activity-tit.png"></h1>
+                {pc:content  action="lists" catid="$catid" order="listorder ASC"  moreinfo="1"}
+                    {loop $data $val}
+                        <div class="active-listbox ">
+                         <dl class="active-pic">
+                            <dt>
+                            <img src="{$val['thumb']}" width="640" height="121">
+                            </dt>
+                            <dd>
+                                <h1>{$val['title']}</h1>
+                                <ul>
+                                    <li>活动对象：{$val['description']}</li>
+                                    <li>活动内容：{$val['info']}</li>
+                                </ul>
+                            </dd>
+                         </dl>
+                         <div class="active-word">
+                            <p>{$val['content']}</p>
+                         </div>
+                    </div>
+                    {/loop}
+                {/pc}
+          </div>
+    </div>
+</div>
+                            
+{template "content","footer"}
