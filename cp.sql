@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : V赛事
-Source Server Version : 50095
-Source Host           : 47.104.77.121:3306
+Source Server         : 103.56.17.135
+Source Server Version : 50553
+Source Host           : 103.56.17.135:3306
 Source Database       : cp
 
 Target Server Type    : MYSQL
-Target Server Version : 50095
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-06-15 09:48:47
+Date: 2018-06-21 10:49:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,81 +20,83 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_activity`;
 CREATE TABLE `cp_activity` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typeid` smallint(5) unsigned NOT NULL,
-  `title` char(80) NOT NULL default '',
-  `style` char(24) NOT NULL default '',
-  `thumb` char(100) NOT NULL default '',
-  `keywords` char(40) NOT NULL default '',
+  `title` char(80) NOT NULL DEFAULT '',
+  `style` char(24) NOT NULL DEFAULT '',
+  `thumb` char(100) NOT NULL DEFAULT '',
+  `keywords` char(40) NOT NULL DEFAULT '',
   `description` mediumtext NOT NULL,
-  `posids` tinyint(1) unsigned NOT NULL default '0',
+  `posids` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(100) NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `status` tinyint(2) unsigned NOT NULL default '1',
-  `sysadd` tinyint(1) unsigned NOT NULL default '0',
-  `islink` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sysadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  `info` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`id`),
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `info` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
   KEY `status` (`status`,`listorder`,`id`),
   KEY `listorder` (`catid`,`status`,`listorder`,`id`),
   KEY `catid` (`catid`,`status`,`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_activity
 -- ----------------------------
-INSERT INTO `cp_activity` VALUES ('1', '17', '0', '欢迎您', '', '/uploadfile/2018/0607/20180607111129229.png', '', '全部会员1', '0', '/index.php?m=content&c=index&a=show&catid=17&id=1', '1', '99', '1', '0', 'any', '1528706015', '1528706036', '');
-INSERT INTO `cp_activity` VALUES ('2', '17', '0', '安德森', '', '/uploadfile/2018/0607/20180607111136451.png', '', '阿萨德', '0', '/index.php?m=content&c=index&a=show&catid=17&id=2', '0', '99', '1', '0', 'any', '1528708294', '1528708302', '1111111');
+INSERT INTO `cp_activity` VALUES ('1', '17', '0', '推荐会员得佣金', '', '/uploadfile/2018/0614/20180614073854886.png', '', '所有会员', '0', '/index.php?m=content&c=index&a=show&catid=17&id=1', '1', '99', '1', '0', 'any', '1528706015', '1528985469', '推荐会员得佣金');
+INSERT INTO `cp_activity` VALUES ('2', '17', '0', '银行存款充值有优惠', '', '/uploadfile/2018/0614/20180614073908598.png', '', '所有会员', '0', '/index.php?m=content&c=index&a=show&catid=17&id=2', '0', '99', '1', '0', 'any', '1528708294', '1528985595', '银行卡充值有优惠');
+INSERT INTO `cp_activity` VALUES ('3', '17', '0', '签到送彩金', '', '/uploadfile/2018/0614/20180614073918770.png', '', '所有会员', '0', '/index.php?m=content&c=index&a=show&catid=17&id=3', '0', '99', '1', '0', 'admin', '1528985603', '1528985683', '签到送彩金');
 
 -- ----------------------------
 -- Table structure for `cp_activity_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_activity_data`;
 CREATE TABLE `cp_activity_data` (
-  `id` mediumint(8) unsigned default '0',
+  `id` mediumint(8) unsigned DEFAULT '0',
   `content` mediumtext NOT NULL,
   `paginationtype` tinyint(1) NOT NULL,
   `maxcharperpage` mediumint(6) NOT NULL,
   `template` varchar(30) NOT NULL,
-  `paytype` tinyint(1) unsigned NOT NULL default '0',
-  `relation` varchar(255) NOT NULL default '',
+  `paytype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `relation` varchar(255) NOT NULL DEFAULT '',
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_activity_data
 -- ----------------------------
-INSERT INTO `cp_activity_data` VALUES ('1', '阿萨德发射点发', '0', '0', '', '0', '');
-INSERT INTO `cp_activity_data` VALUES ('2', '撒旦', '0', '0', '', '0', '');
+INSERT INTO `cp_activity_data` VALUES ('1', '会员推荐会员注册购彩，按推荐的会员的流水返0.2%给推荐人。', '0', '0', '', '0', '');
+INSERT INTO `cp_activity_data` VALUES ('2', '会员充值选择银行卡转帐可享有1%的优惠。', '0', '0', '', '0', '');
+INSERT INTO `cp_activity_data` VALUES ('3', '会员每天签到送相应的彩金，签越多送越多！', '0', '0', '', '0', '');
 
 -- ----------------------------
 -- Table structure for `cp_admin`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_admin`;
 CREATE TABLE `cp_admin` (
-  `userid` mediumint(6) unsigned NOT NULL auto_increment,
-  `username` varchar(20) default NULL,
-  `password` varchar(32) default NULL,
-  `roleid` smallint(5) default '0',
-  `encrypt` varchar(6) default NULL,
-  `lastloginip` varchar(15) default NULL,
-  `lastlogintime` int(10) unsigned default '0',
-  `email` varchar(40) default NULL,
-  `realname` varchar(50) NOT NULL default '',
+  `userid` mediumint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  `roleid` smallint(5) DEFAULT '0',
+  `encrypt` varchar(6) DEFAULT NULL,
+  `lastloginip` varchar(15) DEFAULT NULL,
+  `lastlogintime` int(10) unsigned DEFAULT '0',
+  `email` varchar(40) DEFAULT NULL,
+  `realname` varchar(50) NOT NULL DEFAULT '',
   `card` varchar(255) NOT NULL,
   `lang` varchar(6) NOT NULL,
-  PRIMARY KEY  (`userid`),
+  PRIMARY KEY (`userid`),
   KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_admin
 -- ----------------------------
-INSERT INTO `cp_admin` VALUES ('1', 'admin', 'b4f07670fb295c1eea8ec8ffb020f00a', '1', 'J722pP', '114.243.112.4', '1528982195', 'any@qqq.com', '', '', '');
+INSERT INTO `cp_admin` VALUES ('1', 'admin', 'b4f07670fb295c1eea8ec8ffb020f00a', '1', 'J722pP', '61.148.243.34', '1529069431', 'any@qqq.com', '', '', '');
 
 -- ----------------------------
 -- Table structure for `cp_admin_panel`
@@ -102,10 +104,10 @@ INSERT INTO `cp_admin` VALUES ('1', 'admin', 'b4f07670fb295c1eea8ec8ffb020f00a',
 DROP TABLE IF EXISTS `cp_admin_panel`;
 CREATE TABLE `cp_admin_panel` (
   `menuid` mediumint(8) unsigned NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL default '0',
-  `name` char(32) default NULL,
-  `url` char(255) default NULL,
-  `datetime` int(10) unsigned default '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `name` char(32) DEFAULT NULL,
+  `url` char(255) DEFAULT NULL,
+  `datetime` int(10) unsigned DEFAULT '0',
   UNIQUE KEY `userid` (`menuid`,`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -118,12 +120,12 @@ CREATE TABLE `cp_admin_panel` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_admin_role`;
 CREATE TABLE `cp_admin_role` (
-  `roleid` tinyint(3) unsigned NOT NULL auto_increment,
+  `roleid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `rolename` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`roleid`),
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`roleid`),
   KEY `listorder` (`listorder`),
   KEY `disabled` (`disabled`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
@@ -143,12 +145,12 @@ INSERT INTO `cp_admin_role` VALUES ('7', '发布人员', '发布人员', '0', '0
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_admin_role_priv`;
 CREATE TABLE `cp_admin_role_priv` (
-  `roleid` tinyint(3) unsigned NOT NULL default '0',
+  `roleid` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `m` char(20) NOT NULL,
   `c` char(20) NOT NULL,
   `a` char(20) NOT NULL,
-  `data` char(30) NOT NULL default '',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `data` char(30) NOT NULL DEFAULT '',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   KEY `roleid` (`roleid`,`m`,`c`,`a`,`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -161,19 +163,19 @@ CREATE TABLE `cp_admin_role_priv` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_announce`;
 CREATE TABLE `cp_announce` (
-  `aid` smallint(4) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `aid` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `title` char(80) NOT NULL,
   `content` text NOT NULL,
-  `starttime` date NOT NULL default '0000-00-00',
-  `endtime` date NOT NULL default '0000-00-00',
+  `starttime` date NOT NULL DEFAULT '0000-00-00',
+  `endtime` date NOT NULL DEFAULT '0000-00-00',
   `username` varchar(40) NOT NULL,
-  `addtime` int(10) unsigned NOT NULL default '0',
-  `hits` smallint(5) unsigned NOT NULL default '0',
-  `passed` tinyint(1) unsigned NOT NULL default '0',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `hits` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `passed` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `style` char(15) NOT NULL,
   `show_template` char(30) NOT NULL,
-  PRIMARY KEY  (`aid`),
+  PRIMARY KEY (`aid`),
   KEY `siteid` (`siteid`,`passed`,`endtime`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -186,25 +188,25 @@ CREATE TABLE `cp_announce` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_attachment`;
 CREATE TABLE `cp_attachment` (
-  `aid` int(10) unsigned NOT NULL auto_increment,
+  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `module` char(15) NOT NULL,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `filename` char(50) NOT NULL,
   `filepath` char(200) NOT NULL,
-  `filesize` int(10) unsigned NOT NULL default '0',
+  `filesize` int(10) unsigned NOT NULL DEFAULT '0',
   `fileext` char(10) NOT NULL,
-  `isimage` tinyint(1) unsigned NOT NULL default '0',
-  `isthumb` tinyint(1) unsigned NOT NULL default '0',
-  `downloads` mediumint(8) unsigned NOT NULL default '0',
-  `userid` mediumint(8) unsigned NOT NULL default '0',
-  `uploadtime` int(10) unsigned NOT NULL default '0',
+  `isimage` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isthumb` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `downloads` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `uploadtime` int(10) unsigned NOT NULL DEFAULT '0',
   `uploadip` char(15) NOT NULL,
-  `status` tinyint(1) NOT NULL default '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `authcode` char(32) NOT NULL,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`aid`),
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`aid`),
   KEY `authcode` (`authcode`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_attachment
@@ -226,6 +228,42 @@ INSERT INTO `cp_attachment` VALUES ('16', 'content', '23', '1528946468(1).jpg', 
 INSERT INTO `cp_attachment` VALUES ('17', 'content', '23', '1528946494(1).jpg', '2018/0614/20180614112145613.jpg', '3185', 'jpg', '1', '0', '0', '1', '1528946505', '127.0.0.1', '1', '9b2541c918633f36a622a8872e9a8552', '1');
 INSERT INTO `cp_attachment` VALUES ('18', 'content', '0', '20180614093034991.jpg', '2018/0614/20180614093034991.jpg', '20433', 'jpg', '1', '0', '0', '0', '1528983034', '114.243.112.4', '1', '0192fff69d459954d9c62535d2355a78', '1');
 INSERT INTO `cp_attachment` VALUES ('19', 'content', '0', '20180614093035494.jpg', '2018/0614/20180614093035494.jpg', '20433', 'jpg', '1', '0', '0', '0', '1528983034', '114.243.112.4', '1', 'e97de1cd611b78c3a39ca6720c335919', '1');
+INSERT INTO `cp_attachment` VALUES ('20', 'content', '0', '20180614094502116.png', '2018/0614/20180614094502116.png', '183419', 'png', '1', '0', '0', '0', '1528983901', '114.243.112.4', '1', '77207ca0612c6a0316acd739fb5acd35', '1');
+INSERT INTO `cp_attachment` VALUES ('21', 'content', '0', '20180614094503414.png', '2018/0614/20180614094503414.png', '183419', 'png', '1', '0', '0', '0', '1528983901', '114.243.112.4', '1', 'f62289818ea92b0d25328a2fd73c2eda', '1');
+INSERT INTO `cp_attachment` VALUES ('22', 'content', '0', '20180614094508769.png', '2018/0614/20180614094508769.png', '211552', 'png', '1', '0', '0', '0', '1528983901', '114.243.112.4', '1', '8110933495a315ef5efa5dfa30eb811b', '1');
+INSERT INTO `cp_attachment` VALUES ('23', 'content', '0', '20180614094511710.png', '2018/0614/20180614094511710.png', '211552', 'png', '1', '0', '0', '0', '1528983901', '114.243.112.4', '1', '56b4fb0e3d27c50d4f1d077cf6597406', '1');
+INSERT INTO `cp_attachment` VALUES ('24', 'content', '0', '20180614094512249.png', '2018/0614/20180614094512249.png', '188205', 'png', '1', '0', '0', '0', '1528983901', '114.243.112.4', '1', 'ce4a42f5317d2f3921a9c58f2b5bd890', '1');
+INSERT INTO `cp_attachment` VALUES ('25', 'content', '0', '20180614094513455.png', '2018/0614/20180614094513455.png', '188205', 'png', '1', '0', '0', '0', '1528983901', '114.243.112.4', '1', '278717427ff3a1133145b806b4a59718', '1');
+INSERT INTO `cp_attachment` VALUES ('26', 'content', '0', '20180614094557497.png', '2018/0614/20180614094557497.png', '306104', 'png', '1', '0', '0', '0', '1528983956', '114.243.112.4', '1', '193c3251f2ee59990a36b17883dc62ca', '1');
+INSERT INTO `cp_attachment` VALUES ('27', 'content', '0', '20180614094558242.png', '2018/0614/20180614094558242.png', '314345', 'png', '1', '0', '0', '0', '1528983956', '114.243.112.4', '1', '7e0dc9b3f383bac4df341360eb09f758', '1');
+INSERT INTO `cp_attachment` VALUES ('28', 'content', '0', '20180614095128803.jpg', '2018/0614/20180614095128803.jpg', '404655', 'jpg', '1', '0', '0', '0', '1528984286', '114.243.112.4', '1', '930fc5be69827063f9c91947560c4696', '1');
+INSERT INTO `cp_attachment` VALUES ('29', 'content', '0', '20180614095129285.jpg', '2018/0614/20180614095129285.jpg', '188473', 'jpg', '1', '0', '0', '0', '1528984286', '114.243.112.4', '1', '1acbde81dee4b3f6d4e89081482c39f7', '1');
+INSERT INTO `cp_attachment` VALUES ('30', 'content', '0', '20180614095129517.jpg', '2018/0614/20180614095129517.jpg', '108880', 'jpg', '1', '0', '0', '0', '1528984286', '114.243.112.4', '1', '377ed3e8857f189b834faa1612c45b16', '1');
+INSERT INTO `cp_attachment` VALUES ('31', 'content', '0', '20180614095130960.jpg', '2018/0614/20180614095130960.jpg', '106646', 'jpg', '1', '0', '0', '0', '1528984286', '114.243.112.4', '1', 'b685b3afba8cf6a44133d34c7af6f2f7', '1');
+INSERT INTO `cp_attachment` VALUES ('32', 'content', '0', '20180614095213990.jpg', '2018/0614/20180614095213990.jpg', '80341', 'jpg', '1', '0', '0', '0', '1528984332', '114.243.112.4', '1', 'e050b16721b003deb4b102885cc6096f', '1');
+INSERT INTO `cp_attachment` VALUES ('33', 'content', '0', '手机购彩.png', '2018/0614/20180614103811884.png', '734827', 'png', '1', '0', '0', '1', '1528987090', '114.243.112.4', '1', 'c3f5d4d7fe52c88ac4d9b0dedd3edf29', '1');
+INSERT INTO `cp_attachment` VALUES ('34', 'content', '30', '20180614103811884.png', '2018/0615/20180615041956470.png', '761564', 'png', '1', '0', '0', '1', '1529050795', '114.243.112.4', '1', '3ec1ec9c87d78d453f8bde91ce2f458b', '1');
+INSERT INTO `cp_attachment` VALUES ('35', 'content', '28', '11选五.png', '2018/0615/20180615043541650.png', '23632', 'png', '1', '0', '0', '1', '1529051740', '114.243.112.4', '1', 'e9f19e7e9d91951754859dfb86cd127d', '1');
+INSERT INTO `cp_attachment` VALUES ('36', 'content', '28', '115.png', '2018/0615/20180615044028641.png', '6119', 'png', '1', '0', '0', '1', '1529052027', '114.243.112.4', '1', '6b18661b26b4f659f7206c1e46071bf3', '1');
+INSERT INTO `cp_attachment` VALUES ('37', 'content', '0', '20180615045048829.jpg', '2018/0615/20180615045048829.jpg', '96456', 'jpg', '1', '0', '0', '0', '1529052647', '114.243.112.4', '1', '125a2c3461185e8804d0ed8751a7183f', '1');
+INSERT INTO `cp_attachment` VALUES ('38', 'content', '0', '20180615045049473.jpg', '2018/0615/20180615045049473.jpg', '318662', 'jpg', '1', '0', '0', '0', '1529052647', '114.243.112.4', '1', '24a76ccf509bbed0b59b5cff60bb8913', '1');
+INSERT INTO `cp_attachment` VALUES ('39', 'content', '20', '前背景.png', '2018/0615/20180615054028425.png', '576896', 'png', '1', '0', '0', '1', '1529055627', '114.243.112.4', '1', '1b2b2d1d94e2f6b426e48a3e45c91a2a', '1');
+INSERT INTO `cp_attachment` VALUES ('40', 'content', '20', '前背景1.png', '2018/0615/20180615055147535.png', '1084492', 'png', '1', '0', '0', '1', '1529056306', '114.243.112.4', '1', 'a5122230a158d6ab38957b3e12b831df', '1');
+INSERT INTO `cp_attachment` VALUES ('41', 'content', '23', '认证1.png', '2018/0615/20180615065914676.png', '19903', 'png', '1', '0', '0', '1', '1529060353', '114.243.112.4', '1', '99e780d952b85a531f0d8d680aabc831', '1');
+INSERT INTO `cp_attachment` VALUES ('42', 'content', '23', '认证2.png', '2018/0615/20180615065916669.png', '39254', 'png', '1', '0', '0', '1', '1529060355', '114.243.112.4', '1', '0e8a5b6ade0007f62653edffc623f842', '1');
+INSERT INTO `cp_attachment` VALUES ('43', 'content', '23', '认证3.png', '2018/0615/20180615065918891.png', '24853', 'png', '1', '0', '0', '1', '1529060357', '114.243.112.4', '1', '93e8056b6002c27916c0b89437da4f6b', '1');
+INSERT INTO `cp_attachment` VALUES ('44', 'content', '23', '认证4.png', '2018/0615/20180615065921141.png', '27775', 'png', '1', '0', '0', '1', '1529060360', '114.243.112.4', '1', '2e4cce0ac553034c200639c4e139e6bc', '1');
+INSERT INTO `cp_attachment` VALUES ('45', 'content', '23', '认证5.png', '2018/0615/20180615065923973.png', '14151', 'png', '1', '0', '0', '1', '1529060362', '114.243.112.4', '1', '153291597506a18b0c9a1d341c78df62', '1');
+INSERT INTO `cp_attachment` VALUES ('46', 'content', '23', '认证1.png', '2018/0615/20180615071311491.png', '20621', 'png', '1', '0', '0', '1', '1529061190', '114.243.112.4', '1', 'b134160005520aada2add23687e3bdce', '1');
+INSERT INTO `cp_attachment` VALUES ('47', 'content', '23', '认证2.png', '2018/0615/20180615071315788.png', '35384', 'png', '1', '0', '0', '1', '1529061194', '114.243.112.4', '1', '42d6bd1c780c3faa667d4ec76b2e161f', '1');
+INSERT INTO `cp_attachment` VALUES ('48', 'content', '23', '认证3.png', '2018/0615/20180615071317902.png', '21236', 'png', '1', '0', '0', '1', '1529061196', '114.243.112.4', '1', '893ad01d797f490e5f4d0f1d7fc7da10', '1');
+INSERT INTO `cp_attachment` VALUES ('49', 'content', '23', '认证4.png', '2018/0615/20180615071320290.png', '13871', 'png', '1', '0', '0', '1', '1529061198', '114.243.112.4', '1', 'cbe2cc55535b09f94bfb9b88a43ebe4b', '1');
+INSERT INTO `cp_attachment` VALUES ('50', 'content', '23', '认证5.png', '2018/0615/20180615071322725.png', '28425', 'png', '1', '0', '0', '1', '1529061201', '114.243.112.4', '1', '77b1b7555617a640f9aab3d0b6d97779', '1');
+INSERT INTO `cp_attachment` VALUES ('51', 'content', '23', '认证1.png', '2018/0615/20180615072033106.png', '15990', 'png', '1', '0', '0', '1', '1529061632', '114.243.112.4', '1', '576db815aa048bff232c9f68ed5f140b', '1');
+INSERT INTO `cp_attachment` VALUES ('52', 'content', '23', '认证2.png', '2018/0615/20180615072037329.png', '24360', 'png', '1', '0', '0', '1', '1529061636', '114.243.112.4', '1', '142d62625b139feb1e8221324f6a20f0', '1');
+INSERT INTO `cp_attachment` VALUES ('53', 'content', '23', '认证3.png', '2018/0615/20180615072039457.png', '15696', 'png', '1', '0', '0', '1', '1529061638', '114.243.112.4', '1', '6d77a950eb21f7cfffbd88259d64a031', '1');
+INSERT INTO `cp_attachment` VALUES ('54', 'content', '23', '认证4.png', '2018/0615/20180615072042951.png', '11075', 'png', '1', '0', '0', '1', '1529061640', '114.243.112.4', '1', 'ebd66b4545daab7a278a7a40bba1ca0d', '1');
+INSERT INTO `cp_attachment` VALUES ('55', 'content', '23', '认证5.png', '2018/0615/20180615072044197.png', '17563', 'png', '1', '0', '0', '1', '1529061643', '114.243.112.4', '1', '8186c30262713b35632ecf84b5f3ff35', '1');
 
 -- ----------------------------
 -- Table structure for `cp_attachment_index`
@@ -247,13 +285,13 @@ CREATE TABLE `cp_attachment_index` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_badword`;
 CREATE TABLE `cp_badword` (
-  `badid` smallint(5) unsigned NOT NULL auto_increment,
+  `badid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `badword` char(20) NOT NULL,
-  `level` tinyint(5) NOT NULL default '1',
-  `replaceword` char(20) NOT NULL default '0',
-  `lastusetime` int(10) unsigned NOT NULL default '0',
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`badid`),
+  `level` tinyint(5) NOT NULL DEFAULT '1',
+  `replaceword` char(20) NOT NULL DEFAULT '0',
+  `lastusetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`badid`),
   UNIQUE KEY `badword` (`badword`),
   KEY `usetimes` (`replaceword`,`listorder`),
   KEY `hits` (`listorder`)
@@ -268,14 +306,14 @@ CREATE TABLE `cp_badword` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_block`;
 CREATE TABLE `cp_block` (
-  `id` int(10) NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned default '0',
-  `name` char(50) default NULL,
-  `pos` char(30) default NULL,
-  `type` tinyint(1) default '0',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned DEFAULT '0',
+  `name` char(50) DEFAULT NULL,
+  `pos` char(30) DEFAULT NULL,
+  `type` tinyint(1) DEFAULT '0',
   `data` text,
   `template` text,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `pos` (`pos`),
   KEY `type` (`type`),
   KEY `siteid` (`siteid`)
@@ -290,13 +328,13 @@ CREATE TABLE `cp_block` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_block_history`;
 CREATE TABLE `cp_block_history` (
-  `id` int(10) NOT NULL auto_increment,
-  `blockid` int(10) unsigned default '0',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `blockid` int(10) unsigned DEFAULT '0',
   `data` text,
-  `creat_at` int(10) unsigned default '0',
-  `userid` mediumint(8) unsigned default '0',
-  `username` char(20) default NULL,
-  PRIMARY KEY  (`id`)
+  `creat_at` int(10) unsigned DEFAULT '0',
+  `userid` mediumint(8) unsigned DEFAULT '0',
+  `username` char(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -308,11 +346,11 @@ CREATE TABLE `cp_block_history` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_block_priv`;
 CREATE TABLE `cp_block_priv` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `roleid` tinyint(3) unsigned default '0',
-  `siteid` smallint(5) unsigned default '0',
-  `blockid` int(10) unsigned default '0',
-  PRIMARY KEY  (`id`),
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `roleid` tinyint(3) unsigned DEFAULT '0',
+  `siteid` smallint(5) unsigned DEFAULT '0',
+  `blockid` int(10) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `blockid` (`blockid`),
   KEY `roleid` (`roleid`,`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -329,15 +367,15 @@ CREATE TABLE `cp_cache` (
   `filename` char(50) NOT NULL,
   `path` char(50) NOT NULL,
   `data` mediumtext NOT NULL,
-  PRIMARY KEY  (`filename`,`path`)
+  PRIMARY KEY (`filename`,`path`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_cache
 -- ----------------------------
-INSERT INTO `cp_cache` VALUES ('category_content.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  8 => \'1\',\n  27 => \'1\',\n  26 => \'1\',\n  18 => \'1\',\n  17 => \'1\',\n  14 => \'1\',\n  7 => \'1\',\n  10 => \'1\',\n  11 => \'1\',\n  15 => \'1\',\n  16 => \'1\',\n  19 => \'1\',\n  20 => \'1\',\n  21 => \'1\',\n  22 => \'1\',\n  23 => \'1\',\n  24 => \'1\',\n  25 => \'1\',\n  28 => \'1\',\n  29 => \'1\',\n  30 => \'1\',\n);\n?>');
-INSERT INTO `cp_cache` VALUES ('category_content_1.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  8 => \n  array (\n    \'catid\' => \'8\',\n    \'siteid\' => \'1\',\n    \'type\' => \'2\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'\',\n    \'catname\' => \'购彩大厅\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'\',\n    \'url\' => \'http://ag.tt17168.com:81/\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'0\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => NULL,\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => NULL,\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  26 => \n  array (\n    \'catid\' => \'26\',\n    \'siteid\' => \'1\',\n    \'type\' => \'2\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'\',\n    \'catname\' => \'免费试玩URL\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'\',\n    \'url\' => \'http://ag.tt17168.com:81/\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'0\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => NULL,\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => NULL,\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  27 => \n  array (\n    \'catid\' => \'27\',\n    \'siteid\' => \'1\',\n    \'type\' => \'2\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'\',\n    \'catname\' => \'加入代理URL\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'\',\n    \'url\' => \'http://ag.tt17168.com:81/\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'0\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => NULL,\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => NULL,\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  18 => \n  array (\n    \'catid\' => \'18\',\n    \'siteid\' => \'1\',\n    \'type\' => \'1\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'18\',\n    \'catname\' => \'手机购彩\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'phone\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=18\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_phone\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'1\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shoujigoucai\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  17 => \n  array (\n    \'catid\' => \'17\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'13\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'17\',\n    \'catname\' => \'优惠活动\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'huodong\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=17\',\n    \'items\' => \'2\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'3\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'youhuihuodong\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  14 => \n  array (\n    \'catid\' => \'14\',\n    \'siteid\' => \'1\',\n    \'type\' => \'2\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'\',\n    \'catname\' => \'开奖公告\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'\',\n    \'url\' => \'http://ag.tt17168.com:81/\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'4\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => NULL,\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => NULL,\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  7 => \n  array (\n    \'catid\' => \'7\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'7\',\n    \'catname\' => \'二维码\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'erweima\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=7\',\n    \'items\' => \'2\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category_picture\",\"list_template\":\"list_picture\",\"show_template\":\"show_picture\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'7\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'erweima\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  10 => \n  array (\n    \'catid\' => \'10\',\n    \'siteid\' => \'1\',\n    \'type\' => \'1\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'1\',\n    \'arrchildid\' => \'10,26,27,7,11,15,19,20,23,24,29,30\',\n    \'catname\' => \'系统设置\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'xitongshezhi\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=10\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'10\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'xitongshezhi\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  11 => \n  array (\n    \'catid\' => \'11\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'11\',\n    \'catname\' => \'首页顶部滚动内容\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'shouyedingbugundongneirong\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=11\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'11\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyedingbugundongneirong\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  15 => \n  array (\n    \'catid\' => \'15\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'12\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'15\',\n    \'catname\' => \'首页轮播图\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'lunbotu\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=15\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'15\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyelunbotu\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  16 => \n  array (\n    \'catid\' => \'16\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'16\',\n    \'catname\' => \'新闻\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'xinwen\',\n    \'url\' => \'http://www.5117188.com/html/xinwen/\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"1\",\"content_ishtml\":\"1\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"1\",\"show_ruleid\":\"11\"}\',\n    \'listorder\' => \'16\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'xinwen\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'1\',\n    \'content_ishtml\' => \'1\',\n    \'category_ruleid\' => \'1\',\n    \'show_ruleid\' => \'11\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  19 => \n  array (\n    \'catid\' => \'19\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'19\',\n    \'catname\' => \'首页LOGO\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'logo\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=19\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'19\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyelogo\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  20 => \n  array (\n    \'catid\' => \'20\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'20\',\n    \'catname\' => \'首页背景图\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'background\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=20\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'20\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyebeijingtu\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  21 => \n  array (\n    \'catid\' => \'21\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'21\',\n    \'catname\' => \'帮助中心\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'help\',\n    \'url\' => \'http://www.5117188.com/help/\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"1\",\"content_ishtml\":\"1\",\"create_to_html_root\":\"1\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show_help\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"1\",\"show_ruleid\":\"11\"}\',\n    \'listorder\' => \'21\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'1\',\n    \'letter\' => \'bangzhuzhongxin\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'1\',\n    \'ishtml\' => \'1\',\n    \'content_ishtml\' => \'1\',\n    \'category_ruleid\' => \'1\',\n    \'show_ruleid\' => \'11\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  22 => \n  array (\n    \'catid\' => \'22\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'22\',\n    \'catname\' => \'网站公告\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'wzgg\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=22\',\n    \'items\' => \'4\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'22\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'wangzhangonggao\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  23 => \n  array (\n    \'catid\' => \'23\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'12\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'23\',\n    \'catname\' => \'底部认证图片\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'dbrztp\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=23\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'23\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'diburenzhengtupian\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  24 => \n  array (\n    \'catid\' => \'24\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'24\',\n    \'catname\' => \'底部友情提示\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'dbyqts\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=24\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'24\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'dibuyouqingtishi\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  25 => \n  array (\n    \'catid\' => \'25\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'14\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'25\',\n    \'catname\' => \'中奖排行榜\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'zjphb\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=25\',\n    \'items\' => \'3\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'25\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'zhongjiangpaixingbang\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  28 => \n  array (\n    \'catid\' => \'28\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'28\',\n    \'catname\' => \'玩法\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'wanfa\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=28\',\n    \'items\' => \'3\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'28\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'wanfa\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  29 => \n  array (\n    \'catid\' => \'29\',\n    \'siteid\' => \'1\',\n    \'type\' => \'1\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'29\',\n    \'catname\' => \'联系我们\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'lxwm\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=29\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_linkme\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'29\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'lianxiwomen\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  30 => \n  array (\n    \'catid\' => \'30\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'30\',\n    \'catname\' => \'手机购彩页面图片\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'sjgct\',\n    \'url\' => \'http://www.5117188.com/index.php?m=content&c=index&a=lists&catid=30\',\n    \'items\' => \'2\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'30\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shoujigoucaiyemiantupian\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n);\n?>');
-INSERT INTO `cp_cache` VALUES ('sitelist.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  1 => \n  array (\n    \'siteid\' => \'1\',\n    \'name\' => \'皇家娱乐\',\n    \'dirname\' => \'\',\n    \'domain\' => \'http://www.5117188.com/\',\n    \'site_title\' => \'\',\n    \'keywords\' => \'\',\n    \'description\' => \'\',\n    \'release_point\' => \'\',\n    \'default_style\' => \'cp\',\n    \'template\' => \'cp\',\n    \'setting\' => \'{\"upload_maxsize\":\"20480\",\"upload_allowext\":\"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf\",\"watermark_enable\":\"0\",\"watermark_minwidth\":\"300\",\"watermark_minheight\":\"300\",\"watermark_img\":\"statics\\\\/images\\\\/water\\\\/\\\\/mark.png\",\"watermark_pct\":\"85\",\"watermark_quality\":\"80\",\"watermark_pos\":\"9\"}\',\n    \'uuid\' => \'c5ac8b3f-695d-11e8-b5ae-deb0d92f5d47\',\n    \'url\' => \'http://www.5117188.com/\',\n  ),\n);\n?>');
+INSERT INTO `cp_cache` VALUES ('category_content.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  8 => \'1\',\n  27 => \'1\',\n  26 => \'1\',\n  18 => \'1\',\n  17 => \'1\',\n  7 => \'1\',\n  10 => \'1\',\n  11 => \'1\',\n  15 => \'1\',\n  16 => \'1\',\n  19 => \'1\',\n  20 => \'1\',\n  21 => \'1\',\n  22 => \'1\',\n  23 => \'1\',\n  24 => \'1\',\n  25 => \'1\',\n  28 => \'1\',\n  29 => \'1\',\n  30 => \'1\',\n  31 => \'1\',\n);\n?>');
+INSERT INTO `cp_cache` VALUES ('category_content_1.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  8 => \n  array (\n    \'catid\' => \'8\',\n    \'siteid\' => \'1\',\n    \'type\' => \'2\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'\',\n    \'catname\' => \'购彩大厅\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'\',\n    \'url\' => \'http://ag.tt17168.com:81/Member/Login/\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'0\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => NULL,\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => NULL,\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  26 => \n  array (\n    \'catid\' => \'26\',\n    \'siteid\' => \'1\',\n    \'type\' => \'2\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'\',\n    \'catname\' => \'免费试玩URL\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'\',\n    \'url\' => \'http://ag.tt17168.com:81/Member/Login/\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'0\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => NULL,\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => NULL,\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  27 => \n  array (\n    \'catid\' => \'27\',\n    \'siteid\' => \'1\',\n    \'type\' => \'2\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'\',\n    \'catname\' => \'加入代理URL\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'\',\n    \'url\' => \'http://ag.tt17168.com:81/Member/Login/\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'0\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => NULL,\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => NULL,\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  18 => \n  array (\n    \'catid\' => \'18\',\n    \'siteid\' => \'1\',\n    \'type\' => \'1\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'18\',\n    \'catname\' => \'手机购彩\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'phone\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=18\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_phone\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'1\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shoujigoucai\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  17 => \n  array (\n    \'catid\' => \'17\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'13\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'17\',\n    \'catname\' => \'优惠活动\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'huodong\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=17\',\n    \'items\' => \'3\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'3\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'youhuihuodong\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  7 => \n  array (\n    \'catid\' => \'7\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'7\',\n    \'catname\' => \'二维码\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'erweima\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=7\',\n    \'items\' => \'2\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category_picture\",\"list_template\":\"list_picture\",\"show_template\":\"show_picture\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'7\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'erweima\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  10 => \n  array (\n    \'catid\' => \'10\',\n    \'siteid\' => \'1\',\n    \'type\' => \'1\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'1\',\n    \'arrchildid\' => \'10,26,27,7,11,15,19,20,23,24,29,30\',\n    \'catname\' => \'系统设置\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'xitongshezhi\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=10\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'10\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'xitongshezhi\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  11 => \n  array (\n    \'catid\' => \'11\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'11\',\n    \'catname\' => \'首页顶部滚动内容\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'shouyedingbugundongneirong\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=11\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'11\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyedingbugundongneirong\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  15 => \n  array (\n    \'catid\' => \'15\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'12\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'15\',\n    \'catname\' => \'首页轮播图\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'lunbotu\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=15\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'15\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyelunbotu\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  16 => \n  array (\n    \'catid\' => \'16\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'16\',\n    \'catname\' => \'新闻\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'xinwen\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=16\',\n    \'items\' => \'16\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'16\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'xinwen\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  19 => \n  array (\n    \'catid\' => \'19\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'19\',\n    \'catname\' => \'首页LOGO\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'logo\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=19\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'19\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyelogo\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  20 => \n  array (\n    \'catid\' => \'20\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'20\',\n    \'catname\' => \'首页背景图\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'background\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=20\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'20\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shouyebeijingtu\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  21 => \n  array (\n    \'catid\' => \'21\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'21\',\n    \'catname\' => \'帮助中心\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'help\',\n    \'url\' => \'/help/\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"1\",\"content_ishtml\":\"1\",\"create_to_html_root\":\"1\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show_help\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"1\",\"show_ruleid\":\"11\"}\',\n    \'listorder\' => \'21\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'1\',\n    \'letter\' => \'bangzhuzhongxin\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'1\',\n    \'ishtml\' => \'1\',\n    \'content_ishtml\' => \'1\',\n    \'category_ruleid\' => \'1\',\n    \'show_ruleid\' => \'11\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  22 => \n  array (\n    \'catid\' => \'22\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'22\',\n    \'catname\' => \'网站公告\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'wzgg\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=22\',\n    \'items\' => \'4\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'22\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'wangzhangonggao\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  23 => \n  array (\n    \'catid\' => \'23\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'12\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'23\',\n    \'catname\' => \'底部认证图片\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'dbrztp\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=23\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'23\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'diburenzhengtupian\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  24 => \n  array (\n    \'catid\' => \'24\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'24\',\n    \'catname\' => \'底部友情提示\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'dbyqts\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=24\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'24\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'dibuyouqingtishi\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  25 => \n  array (\n    \'catid\' => \'25\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'14\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'25\',\n    \'catname\' => \'中奖排行榜\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'zjphb\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=25\',\n    \'items\' => \'13\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'25\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'zhongjiangpaixingbang\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  28 => \n  array (\n    \'catid\' => \'28\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'1\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'28\',\n    \'catname\' => \'玩法\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'wanfa\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=28\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'28\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'wanfa\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  29 => \n  array (\n    \'catid\' => \'29\',\n    \'siteid\' => \'1\',\n    \'type\' => \'1\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'29\',\n    \'catname\' => \'联系我们\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'lxwm\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=29\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_linkme\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'29\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'lianxiwomen\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n  30 => \n  array (\n    \'catid\' => \'30\',\n    \'siteid\' => \'1\',\n    \'type\' => \'0\',\n    \'modelid\' => \'3\',\n    \'parentid\' => \'10\',\n    \'arrparentid\' => \'0,10\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'30\',\n    \'catname\' => \'手机购彩页面图片\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'xitongshezhi/\',\n    \'catdir\' => \'sjgct\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=30\',\n    \'items\' => \'1\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}\',\n    \'listorder\' => \'30\',\n    \'ismenu\' => \'0\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'shoujigoucaiyemiantupian\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => \'0\',\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => \'0\',\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'16\',\n    \'workflowid\' => \'\',\n    \'isdomain\' => \'0\',\n  ),\n  31 => \n  array (\n    \'catid\' => \'31\',\n    \'siteid\' => \'1\',\n    \'type\' => \'1\',\n    \'modelid\' => \'0\',\n    \'parentid\' => \'0\',\n    \'arrparentid\' => \'0\',\n    \'child\' => \'0\',\n    \'arrchildid\' => \'31\',\n    \'catname\' => \'开奖公告\',\n    \'style\' => \'\',\n    \'image\' => \'\',\n    \'description\' => \'\',\n    \'parentdir\' => \'\',\n    \'catdir\' => \'kjgg\',\n    \'url\' => \'/index.php?m=content&c=index&a=lists&catid=31\',\n    \'items\' => \'0\',\n    \'hits\' => \'0\',\n    \'setting\' => \'{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_linkme\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}\',\n    \'listorder\' => \'31\',\n    \'ismenu\' => \'1\',\n    \'sethtml\' => \'0\',\n    \'letter\' => \'kaijianggonggao\',\n    \'usable_type\' => \'\',\n    \'create_to_html_root\' => NULL,\n    \'ishtml\' => \'0\',\n    \'content_ishtml\' => NULL,\n    \'category_ruleid\' => \'6\',\n    \'show_ruleid\' => \'\',\n    \'workflowid\' => NULL,\n    \'isdomain\' => \'0\',\n  ),\n);\n?>');
+INSERT INTO `cp_cache` VALUES ('sitelist.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  1 => \n  array (\n    \'siteid\' => \'1\',\n    \'name\' => \'皇家娱乐\',\n    \'dirname\' => \'\',\n    \'domain\' => \'/\',\n    \'site_title\' => \'\',\n    \'keywords\' => \'\',\n    \'description\' => \'\',\n    \'release_point\' => \'\',\n    \'default_style\' => \'cp\',\n    \'template\' => \'cp\',\n    \'setting\' => \'{\"upload_maxsize\":\"20480\",\"upload_allowext\":\"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf\",\"watermark_enable\":\"0\",\"watermark_minwidth\":\"300\",\"watermark_minheight\":\"300\",\"watermark_img\":\"statics\\\\/images\\\\/water\\\\/\\\\/mark.png\",\"watermark_pct\":\"85\",\"watermark_quality\":\"80\",\"watermark_pos\":\"9\"}\',\n    \'uuid\' => \'c5ac8b3f-695d-11e8-b5ae-deb0d92f5d47\',\n    \'url\' => \'/\',\n  ),\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('type_content_1.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('downservers.cache.php', 'caches_commons/caches_data/', '<?php\nreturn NULL;\n?>');
 INSERT INTO `cp_cache` VALUES ('badword.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
@@ -349,36 +387,36 @@ INSERT INTO `cp_cache` VALUES ('role.cache.php', 'caches_commons/caches_data/', 
 INSERT INTO `cp_cache` VALUES ('urlrules_detail.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  1 => \n  array (\n    \'urlruleid\' => \'1\',\n    \'module\' => \'content\',\n    \'file\' => \'category\',\n    \'ishtml\' => \'1\',\n    \'urlrule\' => \'{$categorydir}{$catdir}/index.html|{$categorydir}{$catdir}/{$page}.html\',\n    \'example\' => \'news/china/1000.html\',\n  ),\n  6 => \n  array (\n    \'urlruleid\' => \'6\',\n    \'module\' => \'content\',\n    \'file\' => \'category\',\n    \'ishtml\' => \'0\',\n    \'urlrule\' => \'index.php?m=content&c=index&a=lists&catid={$catid}|index.php?m=content&c=index&a=lists&catid={$catid}&page={$page}\',\n    \'example\' => \'index.php?m=content&c=index&a=lists&catid=1&page=1\',\n  ),\n  11 => \n  array (\n    \'urlruleid\' => \'11\',\n    \'module\' => \'content\',\n    \'file\' => \'show\',\n    \'ishtml\' => \'1\',\n    \'urlrule\' => \'{$year}/{$catdir}_{$month}{$day}/{$id}.html|{$year}/{$catdir}_{$month}{$day}/{$id}_{$page}.html\',\n    \'example\' => \'2010/catdir_0720/1_2.html\',\n  ),\n  12 => \n  array (\n    \'urlruleid\' => \'12\',\n    \'module\' => \'content\',\n    \'file\' => \'show\',\n    \'ishtml\' => \'1\',\n    \'urlrule\' => \'{$categorydir}{$catdir}/{$year}/{$month}{$day}/{$id}.html|{$categorydir}{$catdir}/{$year}/{$month}{$day}/{$id}_{$page}.html\',\n    \'example\' => \'it/product/2010/0720/1_2.html\',\n  ),\n  16 => \n  array (\n    \'urlruleid\' => \'16\',\n    \'module\' => \'content\',\n    \'file\' => \'show\',\n    \'ishtml\' => \'0\',\n    \'urlrule\' => \'index.php?m=content&c=index&a=show&catid={$catid}&id={$id}|index.php?m=content&c=index&a=show&catid={$catid}&id={$id}&page={$page}\',\n    \'example\' => \'index.php?m=content&c=index&a=show&catid=1&id=1\',\n  ),\n  17 => \n  array (\n    \'urlruleid\' => \'17\',\n    \'module\' => \'content\',\n    \'file\' => \'show\',\n    \'ishtml\' => \'0\',\n    \'urlrule\' => \'show-{$catid}-{$id}-{$page}.html\',\n    \'example\' => \'show-1-2-1.html\',\n  ),\n  18 => \n  array (\n    \'urlruleid\' => \'18\',\n    \'module\' => \'content\',\n    \'file\' => \'show\',\n    \'ishtml\' => \'0\',\n    \'urlrule\' => \'content-{$catid}-{$id}-{$page}.html\',\n    \'example\' => \'content-1-2-1.html\',\n  ),\n  30 => \n  array (\n    \'urlruleid\' => \'30\',\n    \'module\' => \'content\',\n    \'file\' => \'category\',\n    \'ishtml\' => \'0\',\n    \'urlrule\' => \'list-{$catid}-{$page}.html\',\n    \'example\' => \'list-1-1.html\',\n  ),\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('urlrules.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  1 => \'{$categorydir}{$catdir}/index.html|{$categorydir}{$catdir}/{$page}.html\',\n  6 => \'index.php?m=content&c=index&a=lists&catid={$catid}|index.php?m=content&c=index&a=lists&catid={$catid}&page={$page}\',\n  11 => \'{$year}/{$catdir}_{$month}{$day}/{$id}.html|{$year}/{$catdir}_{$month}{$day}/{$id}_{$page}.html\',\n  12 => \'{$categorydir}{$catdir}/{$year}/{$month}{$day}/{$id}.html|{$categorydir}{$catdir}/{$year}/{$month}{$day}/{$id}_{$page}.html\',\n  16 => \'index.php?m=content&c=index&a=show&catid={$catid}&id={$id}|index.php?m=content&c=index&a=show&catid={$catid}&id={$id}&page={$page}\',\n  17 => \'show-{$catid}-{$id}-{$page}.html\',\n  18 => \'content-{$catid}-{$id}-{$page}.html\',\n  30 => \'list-{$catid}-{$page}.html\',\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('modules.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  \'admin\' => \n  array (\n    \'module\' => \'admin\',\n    \'name\' => \'admin\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'{\"admin_email\":\"phpcms@phpcms.cn\",\"maxloginfailedtimes\":\"8\",\"minrefreshtime\":\"2\",\"mail_type\":\"1\",\"mail_server\":\"smtp.qq.com\",\"mail_port\":\"25\",\"category_ajax\":\"0\",\"mail_user\":\"phpcms.cn@foxmail.com\",\"mail_auth\":\"1\",\"mail_from\":\"phpcms.cn@foxmail.com\",\"mail_password\":\"\",\"errorlog_size\":\"20\"}\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-10-18\',\n    \'updatedate\' => \'2010-10-18\',\n  ),\n  \'member\' => \n  array (\n    \'module\' => \'member\',\n    \'name\' => \'会员\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'array (\n  \\\'allowregister\\\' => \\\'1\\\',\n  \\\'choosemodel\\\' => \\\'1\\\',\n  \\\'enablemailcheck\\\' => \\\'0\\\',\n  \\\'registerverify\\\' => \\\'0\\\',\n  \\\'showapppoint\\\' => \\\'0\\\',\n  \\\'rmb_point_rate\\\' => \\\'10\\\',\n  \\\'defualtpoint\\\' => \\\'0\\\',\n  \\\'defualtamount\\\' => \\\'0\\\',\n  \\\'showregprotocol\\\' => \\\'0\\\',\n  \\\'regprotocol\\\' => \\\'		 欢迎您注册成为phpcms用户\r\n请仔细阅读下面的协议，只有接受协议才能继续进行注册。 \r\n1．服务条款的确认和接纳\r\n　　phpcms用户服务的所有权和运作权归phpcms拥有。phpcms所提供的服务将按照有关章程、服务条款和操作规则严格执行。用户通过注册程序点击“我同意” 按钮，即表示用户与phpcms达成协议并接受所有的服务条款。\r\n2． phpcms服务简介\r\n　　phpcms通过国际互联网为用户提供新闻及文章浏览、图片浏览、软件下载、网上留言和BBS论坛等服务。\r\n　　用户必须： \r\n　　1)购置设备，包括个人电脑一台、调制解调器一个及配备上网装置。 \r\n　　2)个人上网和支付与此服务有关的电话费用、网络费用。\r\n　　用户同意： \r\n　　1)提供及时、详尽及准确的个人资料。 \r\n　　2)不断更新注册资料，符合及时、详尽、准确的要求。所有原始键入的资料将引用为注册资料。 \r\n　　3)用户同意遵守《中华人民共和国保守国家秘密法》、《中华人民共和国计算机信息系统安全保护条例》、《计算机软件保护条例》等有关计算机及互联网规定的法律和法规、实施办法。在任何情况下，phpcms合理地认为用户的行为可能违反上述法律、法规，phpcms可以在任何时候，不经事先通知终止向该用户提供服务。用户应了解国际互联网的无国界性，应特别注意遵守当地所有有关的法律和法规。\r\n3． 服务条款的修改\r\n　　phpcms会不定时地修改服务条款，服务条款一旦发生变动，将会在相关页面上提示修改内容。如果您同意改动，则再一次点击“我同意”按钮。 如果您不接受，则及时取消您的用户使用服务资格。\r\n4． 服务修订\r\n　　phpcms保留随时修改或中断服务而不需知照用户的权利。phpcms行使修改或中断服务的权利，不需对用户或第三方负责。\r\n5． 用户隐私制度\r\n　　尊重用户个人隐私是phpcms的 基本政策。phpcms不会公开、编辑或透露用户的注册信息，除非有法律许可要求，或phpcms在诚信的基础上认为透露这些信息在以下三种情况是必要的： \r\n　　1)遵守有关法律规定，遵从合法服务程序。 \r\n　　2)保持维护phpcms的商标所有权。 \r\n　　3)在紧急情况下竭力维护用户个人和社会大众的隐私安全。 \r\n　　4)符合其他相关的要求。 \r\n6．用户的帐号，密码和安全性\r\n　　一旦注册成功成为phpcms用户，您将得到一个密码和帐号。如果您不保管好自己的帐号和密码安全，将对因此产生的后果负全部责任。另外，每个用户都要对其帐户中的所有活动和事件负全责。您可随时根据指示改变您的密码，也可以结束旧的帐户重开一个新帐户。用户同意若发现任何非法使用用户帐号或安全漏洞的情况，立即通知phpcms。\r\n7． 免责条款\r\n　　用户明确同意网站服务的使用由用户个人承担风险。 　　 \r\n　　phpcms不作任何类型的担保，不担保服务一定能满足用户的要求，也不担保服务不会受中断，对服务的及时性，安全性，出错发生都不作担保。用户理解并接受：任何通过phpcms服务取得的信息资料的可靠性取决于用户自己，用户自己承担所有风险和责任。 \r\n8．有限责任\r\n　　phpcms对任何直接、间接、偶然、特殊及继起的损害不负责任。\r\n9． 不提供零售和商业性服务 \r\n　　用户使用网站服务的权利是个人的。用户只能是一个单独的个体而不能是一个公司或实体商业性组织。用户承诺不经phpcms同意，不能利用网站服务进行销售或其他商业用途。\r\n10．用户责任 \r\n　　用户单独承担传输内容的责任。用户必须遵循： \r\n　　1)从中国境内向外传输技术性资料时必须符合中国有关法规。 \r\n　　2)使用网站服务不作非法用途。 \r\n　　3)不干扰或混乱网络服务。 \r\n　　4)不在论坛BBS或留言簿发表任何与政治相关的信息。 \r\n　　5)遵守所有使用网站服务的网络协议、规定、程序和惯例。\r\n　　6)不得利用本站危害国家安全、泄露国家秘密，不得侵犯国家社会集体的和公民的合法权益。\r\n　　7)不得利用本站制作、复制和传播下列信息： \r\n　　　1、煽动抗拒、破坏宪法和法律、行政法规实施的；\r\n　　　2、煽动颠覆国家政权，推翻社会主义制度的；\r\n　　　3、煽动分裂国家、破坏国家统一的；\r\n　　　4、煽动民族仇恨、民族歧视，破坏民族团结的；\r\n　　　5、捏造或者歪曲事实，散布谣言，扰乱社会秩序的；\r\n　　　6、宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；\r\n　　　7、公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；\r\n　　　8、损害国家机关信誉的；\r\n　　　9、其他违反宪法和法律行政法规的；\r\n　　　10、进行商业广告行为的。\r\n　　用户不能传输任何教唆他人构成犯罪行为的资料；不能传输长国内不利条件和涉及国家安全的资料；不能传输任何不符合当地法规、国家法律和国际法 律的资料。未经许可而非法进入其它电脑系统是禁止的。若用户的行为不符合以上的条款，phpcms将取消用户服务帐号。\r\n11．网站内容的所有权\r\n　　phpcms定义的内容包括：文字、软件、声音、相片、录象、图表；在广告中全部内容；电子邮件的全部内容；phpcms为用户提供的商业信息。所有这些内容受版权、商标、标签和其它财产所有权法律的保护。所以，用户只能在phpcms和广告商授权下才能使用这些内容，而不能擅自复制、篡改这些内容、或创造与内容有关的派生产品。\r\n12．附加信息服务\r\n　　用户在享用phpcms提供的免费服务的同时，同意接受phpcms提供的各类附加信息服务。\r\n13．解释权\r\n　　本注册协议的解释权归phpcms所有。如果其中有任何条款与国家的有关法律相抵触，则以国家法律的明文规定为准。 \\\',\n  \\\'registerverifymessage\\\' => \\\' 欢迎您注册成为phpcms用户，您的账号需要邮箱认证，点击下面链接进行认证：{click}\r\n或者将网址复制到浏览器：{url}\\\',\n  \\\'forgetpassword\\\' => \\\' phpcms密码找回，请在一小时内点击下面链接进行操作：{click}\r\n或者将网址复制到浏览器：{url}\\\',\n)\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-06\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'pay\' => \n  array (\n    \'module\' => \'pay\',\n    \'name\' => \'支付\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-06\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'digg\' => \n  array (\n    \'module\' => \'digg\',\n    \'name\' => \'顶一下\',\n    \'url\' => \'\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-06\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'special\' => \n  array (\n    \'module\' => \'special\',\n    \'name\' => \'专题\',\n    \'url\' => \'\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-06\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'content\' => \n  array (\n    \'module\' => \'content\',\n    \'name\' => \'内容模块\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-06\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'search\' => \n  array (\n    \'module\' => \'search\',\n    \'name\' => \'全站搜索\',\n    \'url\' => \'\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'array (\n  \\\'fulltextenble\\\' => \\\'1\\\',\n  \\\'relationenble\\\' => \\\'1\\\',\n  \\\'suggestenable\\\' => \\\'1\\\',\n  \\\'sphinxenable\\\' => \\\'0\\\',\n  \\\'sphinxhost\\\' => \\\'10.228.134.102\\\',\n  \\\'sphinxport\\\' => \\\'9312\\\',\n)\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-06\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'scan\' => \n  array (\n    \'module\' => \'scan\',\n    \'name\' => \'木马扫描\',\n    \'url\' => \'scan\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-01\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'attachment\' => \n  array (\n    \'module\' => \'attachment\',\n    \'name\' => \'附件\',\n    \'url\' => \'attachment\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-01\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'block\' => \n  array (\n    \'module\' => \'block\',\n    \'name\' => \'碎片\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-01\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'collection\' => \n  array (\n    \'module\' => \'collection\',\n    \'name\' => \'采集模块\',\n    \'url\' => \'collection\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-01\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'dbsource\' => \n  array (\n    \'module\' => \'dbsource\',\n    \'name\' => \'数据源\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-01\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'template\' => \n  array (\n    \'module\' => \'template\',\n    \'name\' => \'模板风格\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-01\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'release\' => \n  array (\n    \'module\' => \'release\',\n    \'name\' => \'发布点\',\n    \'url\' => \'\',\n    \'iscore\' => \'1\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-01\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'video\' => \n  array (\n    \'module\' => \'video\',\n    \'name\' => \'视频库\',\n    \'url\' => \'\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2012-09-28\',\n    \'updatedate\' => \'2012-09-28\',\n  ),\n  \'announce\' => \n  array (\n    \'module\' => \'announce\',\n    \'name\' => \'公告\',\n    \'url\' => \'announce/\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'公告\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2018-06-06\',\n    \'updatedate\' => \'2018-06-06\',\n  ),\n  \'link\' => \n  array (\n    \'module\' => \'link\',\n    \'name\' => \'友情链接\',\n    \'url\' => \'\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'array (\n  1 => \n  array (\n    \\\'is_post\\\' => \\\'1\\\',\n    \\\'enablecheckcode\\\' => \\\'0\\\',\n  ),\n)\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2010-09-06\',\n    \'updatedate\' => \'2010-09-06\',\n  ),\n  \'poster\' => \n  array (\n    \'module\' => \'poster\',\n    \'name\' => \'广告模块\',\n    \'url\' => \'poster/\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'广告模块\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2018-06-06\',\n    \'updatedate\' => \'2018-06-06\',\n  ),\n  \'upgrade\' => \n  array (\n    \'module\' => \'upgrade\',\n    \'name\' => \'在线升级\',\n    \'url\' => \'\',\n    \'iscore\' => \'0\',\n    \'version\' => \'1.0\',\n    \'description\' => \'\',\n    \'setting\' => \'\',\n    \'listorder\' => \'0\',\n    \'disabled\' => \'0\',\n    \'installdate\' => \'2011-05-18\',\n    \'updatedate\' => \'2011-05-18\',\n  ),\n);\n?>');
-INSERT INTO `cp_cache` VALUES ('category_items_1.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  16 => \'3\',\n  21 => \'1\',\n  11 => \'1\',\n  22 => \'1\',\n  24 => \'1\',\n  28 => \'3\',\n);\n?>');
+INSERT INTO `cp_cache` VALUES ('category_items_1.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  16 => \'16\',\n  21 => \'1\',\n  11 => \'1\',\n  22 => \'4\',\n  24 => \'1\',\n  28 => \'1\',\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('category_items_2.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('model.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  1 => \n  array (\n    \'modelid\' => \'1\',\n    \'siteid\' => \'1\',\n    \'name\' => \'文章模型\',\n    \'description\' => \'\',\n    \'tablename\' => \'news\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'default\',\n    \'category_template\' => \'category\',\n    \'list_template\' => \'list\',\n    \'show_template\' => \'show\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'0\',\n  ),\n  2 => \n  array (\n    \'modelid\' => \'2\',\n    \'siteid\' => \'1\',\n    \'name\' => \'下载模型\',\n    \'description\' => \'\',\n    \'tablename\' => \'download\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'default\',\n    \'category_template\' => \'category_download\',\n    \'list_template\' => \'list_download\',\n    \'show_template\' => \'show_download\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'0\',\n  ),\n  3 => \n  array (\n    \'modelid\' => \'3\',\n    \'siteid\' => \'1\',\n    \'name\' => \'图片模型\',\n    \'description\' => \'\',\n    \'tablename\' => \'picture\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'default\',\n    \'category_template\' => \'category_picture\',\n    \'list_template\' => \'list_picture\',\n    \'show_template\' => \'show_picture\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'0\',\n  ),\n  11 => \n  array (\n    \'modelid\' => \'11\',\n    \'siteid\' => \'1\',\n    \'name\' => \'视频模型\',\n    \'description\' => \'\',\n    \'tablename\' => \'video\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'default\',\n    \'category_template\' => \'category_video\',\n    \'list_template\' => \'list_video\',\n    \'show_template\' => \'show_video\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'0\',\n  ),\n  12 => \n  array (\n    \'modelid\' => \'12\',\n    \'siteid\' => \'1\',\n    \'name\' => \'轮播图\',\n    \'description\' => \'首页轮播图\',\n    \'tablename\' => \'round\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'cp\',\n    \'category_template\' => \'category\',\n    \'list_template\' => \'list\',\n    \'show_template\' => \'show\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'content_list\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'0\',\n  ),\n  13 => \n  array (\n    \'modelid\' => \'13\',\n    \'siteid\' => \'1\',\n    \'name\' => \'活动专区\',\n    \'description\' => \'活动专区\',\n    \'tablename\' => \'activity\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'\',\n    \'category_template\' => \'\',\n    \'list_template\' => \'\',\n    \'show_template\' => \'\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'0\',\n  ),\n  14 => \n  array (\n    \'modelid\' => \'14\',\n    \'siteid\' => \'1\',\n    \'name\' => \'中奖\',\n    \'description\' => \'\',\n    \'tablename\' => \'price\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'\',\n    \'category_template\' => \'\',\n    \'list_template\' => \'\',\n    \'show_template\' => \'\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'0\',\n  ),\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('workflow_1.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  1 => \n  array (\n    \'workflowid\' => \'1\',\n    \'siteid\' => \'1\',\n    \'steps\' => \'1\',\n    \'workname\' => \'一级审核\',\n    \'description\' => \'审核一次\',\n    \'setting\' => \'\',\n    \'flag\' => \'0\',\n  ),\n  2 => \n  array (\n    \'workflowid\' => \'2\',\n    \'siteid\' => \'1\',\n    \'steps\' => \'2\',\n    \'workname\' => \'二级审核\',\n    \'description\' => \'审核两次\',\n    \'setting\' => \'\',\n    \'flag\' => \'0\',\n  ),\n  3 => \n  array (\n    \'workflowid\' => \'3\',\n    \'siteid\' => \'1\',\n    \'steps\' => \'3\',\n    \'workname\' => \'三级审核\',\n    \'description\' => \'审核三次\',\n    \'setting\' => \'\',\n    \'flag\' => \'0\',\n  ),\n  4 => \n  array (\n    \'workflowid\' => \'4\',\n    \'siteid\' => \'1\',\n    \'steps\' => \'4\',\n    \'workname\' => \'四级审核\',\n    \'description\' => \'四级审核\',\n    \'setting\' => \'\',\n    \'flag\' => \'0\',\n  ),\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('member_model.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  10 => \n  array (\n    \'modelid\' => \'10\',\n    \'siteid\' => \'1\',\n    \'name\' => \'普通会员\',\n    \'description\' => \'普通会员\',\n    \'tablename\' => \'member_detail\',\n    \'setting\' => \'\',\n    \'addtime\' => \'0\',\n    \'items\' => \'0\',\n    \'enablesearch\' => \'1\',\n    \'disabled\' => \'0\',\n    \'default_style\' => \'\',\n    \'category_template\' => \'\',\n    \'list_template\' => \'\',\n    \'show_template\' => \'\',\n    \'js_template\' => \'\',\n    \'admin_list_template\' => \'\',\n    \'member_add_template\' => \'\',\n    \'member_list_template\' => \'\',\n    \'sort\' => \'0\',\n    \'type\' => \'2\',\n  ),\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('special.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('common.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  \'admin_email\' => \'phpcms@phpcms.cn\',\n  \'maxloginfailedtimes\' => \'8\',\n  \'minrefreshtime\' => \'2\',\n  \'mail_type\' => \'1\',\n  \'mail_server\' => \'smtp.qq.com\',\n  \'mail_port\' => \'25\',\n  \'category_ajax\' => \'0\',\n  \'mail_user\' => \'phpcms.cn@foxmail.com\',\n  \'mail_auth\' => \'1\',\n  \'mail_from\' => \'phpcms.cn@foxmail.com\',\n  \'mail_password\' => \'\',\n  \'errorlog_size\' => \'20\',\n);\n?>');
-INSERT INTO `cp_cache` VALUES ('category_items_3.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  19 => \'1\',\n  7 => \'2\',\n  20 => \'1\',\n  30 => \'2\',\n);\n?>');
+INSERT INTO `cp_cache` VALUES ('category_items_3.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  19 => \'1\',\n  7 => \'2\',\n  20 => \'1\',\n  30 => \'1\',\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('category_items_11.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('type_.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('category_items_12.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  15 => \'1\',\n  23 => \'1\',\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('type_content.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('vote.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n);\n?>');
 INSERT INTO `cp_cache` VALUES ('link.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  1 => \n  array (\n    \'is_post\' => \'1\',\n    \'enablecheckcode\' => \'0\',\n  ),\n);\n?>');
-INSERT INTO `cp_cache` VALUES ('category_items_13.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  17 => \'2\',\n);\n?>');
-INSERT INTO `cp_cache` VALUES ('category_items_14.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  25 => \'5\',\n);\n?>');
+INSERT INTO `cp_cache` VALUES ('category_items_13.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  17 => \'3\',\n);\n?>');
+INSERT INTO `cp_cache` VALUES ('category_items_14.cache.php', 'caches_commons/caches_data/', '<?php\nreturn array (\n  25 => \'13\',\n);\n?>');
 
 -- ----------------------------
 -- Table structure for `cp_category`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_category`;
 CREATE TABLE `cp_category` (
-  `catid` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `catid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `module` varchar(15) NOT NULL,
-  `type` tinyint(1) unsigned NOT NULL default '0',
-  `modelid` smallint(5) unsigned NOT NULL default '0',
-  `parentid` smallint(5) unsigned NOT NULL default '0',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `modelid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `parentid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `arrparentid` varchar(255) NOT NULL,
-  `child` tinyint(1) unsigned NOT NULL default '0',
+  `child` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `arrchildid` mediumtext NOT NULL,
   `catname` varchar(30) NOT NULL,
   `style` varchar(5) NOT NULL,
@@ -387,53 +425,53 @@ CREATE TABLE `cp_category` (
   `parentdir` varchar(100) NOT NULL,
   `catdir` varchar(30) NOT NULL,
   `url` varchar(100) NOT NULL,
-  `items` mediumint(8) unsigned NOT NULL default '0',
-  `hits` int(10) unsigned NOT NULL default '0',
+  `items` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `hits` int(10) unsigned NOT NULL DEFAULT '0',
   `setting` mediumtext NOT NULL,
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  `ismenu` tinyint(1) unsigned NOT NULL default '1',
-  `sethtml` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `ismenu` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `sethtml` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `letter` varchar(30) NOT NULL,
   `usable_type` varchar(255) NOT NULL,
-  PRIMARY KEY  (`catid`),
+  PRIMARY KEY (`catid`),
   KEY `module` (`module`,`parentid`,`listorder`,`catid`),
   KEY `siteid` (`siteid`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_category
 -- ----------------------------
 INSERT INTO `cp_category` VALUES ('15', '1', 'content', '0', '12', '10', '0,10', '0', '15', '首页轮播图', '', '', '', 'xitongshezhi/', 'lunbotu', '/index.php?m=content&c=index&a=lists&catid=15', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '15', '0', '0', 'shouyelunbotu', '');
-INSERT INTO `cp_category` VALUES ('16', '1', 'content', '0', '1', '0', '0', '0', '16', '新闻', '', '', '', '', 'xinwen', '/html/xinwen/', '3', '0', '{\"workflowid\":\"\",\"ishtml\":\"1\",\"content_ishtml\":\"1\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"1\",\"show_ruleid\":\"11\"}', '16', '0', '0', 'xinwen', '');
-INSERT INTO `cp_category` VALUES ('17', '1', 'content', '0', '13', '0', '0', '0', '17', '优惠活动', '', '', '', '', 'huodong', '/index.php?m=content&c=index&a=lists&catid=17', '2', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '3', '1', '0', 'youhuihuodong', '');
+INSERT INTO `cp_category` VALUES ('16', '1', 'content', '0', '1', '0', '0', '0', '16', '新闻', '', '', '', '', 'xinwen', '/index.php?m=content&c=index&a=lists&catid=16', '16', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '16', '0', '0', 'xinwen', '');
+INSERT INTO `cp_category` VALUES ('17', '1', 'content', '0', '13', '0', '0', '0', '17', '优惠活动', '', '', '', '', 'huodong', '/index.php?m=content&c=index&a=lists&catid=17', '3', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '3', '1', '0', 'youhuihuodong', '');
 INSERT INTO `cp_category` VALUES ('18', '1', 'content', '1', '0', '0', '0', '0', '18', '手机购彩', '', '', '', '', 'phone', '/index.php?m=content&c=index&a=lists&catid=18', '0', '0', '{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_phone\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '1', '1', '0', 'shoujigoucai', '');
 INSERT INTO `cp_category` VALUES ('19', '1', 'content', '0', '3', '10', '0,10', '0', '19', '首页LOGO', '', '', '', 'xitongshezhi/', 'logo', '/index.php?m=content&c=index&a=lists&catid=19', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '19', '0', '0', 'shouyelogo', '');
 INSERT INTO `cp_category` VALUES ('7', '1', 'content', '0', '3', '10', '0,10', '0', '7', '二维码', '', '', '', 'xitongshezhi/', 'erweima', '/index.php?m=content&c=index&a=lists&catid=7', '2', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category_picture\",\"list_template\":\"list_picture\",\"show_template\":\"show_picture\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '7', '0', '0', 'erweima', '');
-INSERT INTO `cp_category` VALUES ('8', '1', 'content', '2', '0', '0', '', '0', '', '购彩大厅', '', '', '', '', '', 'http://ag.tt17168.com:81/', '0', '0', '{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '0', '1', '0', '', '');
+INSERT INTO `cp_category` VALUES ('8', '1', 'content', '2', '0', '0', '', '0', '', '购彩大厅', '', '', '', '', '', 'http://ag.tt17168.com:81/Member/Login/', '0', '0', '{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '0', '1', '0', '', '');
 INSERT INTO `cp_category` VALUES ('21', '1', 'content', '0', '1', '0', '0', '0', '21', '帮助中心', '', '', '', '', 'help', '/help/', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"1\",\"content_ishtml\":\"1\",\"create_to_html_root\":\"1\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show_help\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"1\",\"show_ruleid\":\"11\"}', '21', '0', '1', 'bangzhuzhongxin', '');
 INSERT INTO `cp_category` VALUES ('10', '1', 'content', '1', '0', '0', '0', '1', '10,26,27,7,11,15,19,20,23,24,29,30', '系统设置', '', '', '', '', 'xitongshezhi', '/index.php?m=content&c=index&a=lists&catid=10', '0', '0', '{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '10', '0', '0', 'xitongshezhi', '');
 INSERT INTO `cp_category` VALUES ('11', '1', 'content', '0', '1', '10', '0,10', '0', '11', '首页顶部滚动内容', '', '', '', 'xitongshezhi/', 'shouyedingbugundongneirong', '/index.php?m=content&c=index&a=lists&catid=11', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '11', '0', '0', 'shouyedingbugundongneirong', '');
 INSERT INTO `cp_category` VALUES ('20', '1', 'content', '0', '3', '10', '0,10', '0', '20', '首页背景图', '', '', '', 'xitongshezhi/', 'background', '/index.php?m=content&c=index&a=lists&catid=20', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '20', '0', '0', 'shouyebeijingtu', '');
-INSERT INTO `cp_category` VALUES ('14', '1', 'content', '2', '0', '0', '', '0', '', '开奖公告', '', '', '', '', '', 'http://ag.tt17168.com:81/', '0', '0', '{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '4', '1', '0', '', '');
-INSERT INTO `cp_category` VALUES ('22', '1', 'content', '0', '1', '0', '0', '0', '22', '网站公告', '', '', '', '', 'wzgg', '/index.php?m=content&c=index&a=lists&catid=22', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '22', '0', '0', 'wangzhangonggao', '');
+INSERT INTO `cp_category` VALUES ('31', '1', 'content', '1', '0', '0', '0', '0', '31', '开奖公告', '', '', '', '', 'kjgg', '/index.php?m=content&c=index&a=lists&catid=31', '0', '0', '{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_linkme\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '31', '1', '0', 'kaijianggonggao', '');
+INSERT INTO `cp_category` VALUES ('22', '1', 'content', '0', '1', '0', '0', '0', '22', '网站公告', '', '', '', '', 'wzgg', '/index.php?m=content&c=index&a=lists&catid=22', '4', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '22', '0', '0', 'wangzhangonggao', '');
 INSERT INTO `cp_category` VALUES ('23', '1', 'content', '0', '12', '10', '0,10', '0', '23', '底部认证图片', '', '', '', 'xitongshezhi/', 'dbrztp', '/index.php?m=content&c=index&a=lists&catid=23', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '23', '0', '0', 'diburenzhengtupian', '');
 INSERT INTO `cp_category` VALUES ('24', '1', 'content', '0', '1', '10', '0,10', '0', '24', '底部友情提示', '', '', '', 'xitongshezhi/', 'dbyqts', '/index.php?m=content&c=index&a=lists&catid=24', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '24', '0', '0', 'dibuyouqingtishi', '');
-INSERT INTO `cp_category` VALUES ('25', '1', 'content', '0', '14', '0', '0', '0', '25', '中奖排行榜', '', '', '', '', 'zjphb', '/index.php?m=content&c=index&a=lists&catid=25', '5', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '25', '0', '0', 'zhongjiangpaixingbang', '');
-INSERT INTO `cp_category` VALUES ('26', '1', 'content', '2', '0', '10', '', '0', '', '免费试玩URL', '', '', '', '', '', 'http://ag.tt17168.com:81/', '0', '0', '{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '0', '1', '0', '', '');
-INSERT INTO `cp_category` VALUES ('27', '1', 'content', '2', '0', '10', '', '0', '', '加入代理URL', '', '', '', '', '', 'http://ag.tt17168.com:81/', '0', '0', '{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '0', '1', '0', '', '');
-INSERT INTO `cp_category` VALUES ('28', '1', 'content', '0', '1', '0', '0', '0', '28', '玩法', '', '', '', '', 'wanfa', '/index.php?m=content&c=index&a=lists&catid=28', '3', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '28', '0', '0', 'wanfa', '');
+INSERT INTO `cp_category` VALUES ('25', '1', 'content', '0', '14', '0', '0', '0', '25', '中奖排行榜', '', '', '', '', 'zjphb', '/index.php?m=content&c=index&a=lists&catid=25', '13', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '25', '0', '0', 'zhongjiangpaixingbang', '');
+INSERT INTO `cp_category` VALUES ('26', '1', 'content', '2', '0', '10', '', '0', '', '免费试玩URL', '', '', '', '', '', 'http://ag.tt17168.com:81/Member/Login/', '0', '0', '{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '0', '1', '0', '', '');
+INSERT INTO `cp_category` VALUES ('27', '1', 'content', '2', '0', '10', '', '0', '', '加入代理URL', '', '', '', '', '', 'http://ag.tt17168.com:81/Member/Login/', '0', '0', '{\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '0', '1', '0', '', '');
+INSERT INTO `cp_category` VALUES ('28', '1', 'content', '0', '1', '0', '0', '0', '28', '玩法', '', '', '', '', 'wanfa', '/index.php?m=content&c=index&a=lists&catid=28', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"list_activity\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '28', '0', '0', 'wanfa', '');
 INSERT INTO `cp_category` VALUES ('29', '1', 'content', '1', '0', '10', '0,10', '0', '29', '联系我们', '', '', '', 'xitongshezhi/', 'lxwm', '/index.php?m=content&c=index&a=lists&catid=29', '0', '0', '{\"ishtml\":\"0\",\"template_list\":\"cp\",\"page_template\":\"page_linkme\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"category_ruleid\":\"6\",\"show_ruleid\":\"\",\"repeatchargedays\":\"1\"}', '29', '0', '0', 'lianxiwomen', '');
-INSERT INTO `cp_category` VALUES ('30', '1', 'content', '0', '3', '10', '0,10', '0', '30', '手机购彩页面图片', '', '', '', 'xitongshezhi/', 'sjgct', '/index.php?m=content&c=index&a=lists&catid=30', '2', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '30', '0', '0', 'shoujigoucaiyemiantupian', '');
+INSERT INTO `cp_category` VALUES ('30', '1', 'content', '0', '3', '10', '0,10', '0', '30', '手机购彩页面图片', '', '', '', 'xitongshezhi/', 'sjgct', '/index.php?m=content&c=index&a=lists&catid=30', '1', '0', '{\"workflowid\":\"\",\"ishtml\":\"0\",\"content_ishtml\":\"0\",\"create_to_html_root\":\"0\",\"template_list\":\"cp\",\"category_template\":\"category\",\"list_template\":\"\",\"show_template\":\"show\",\"meta_title\":\"\",\"meta_keywords\":\"\",\"meta_description\":\"\",\"presentpoint\":\"1\",\"defaultchargepoint\":\"0\",\"paytype\":\"0\",\"repeatchargedays\":\"1\",\"category_ruleid\":\"6\",\"show_ruleid\":\"16\"}', '30', '0', '0', 'shoujigoucaiyemiantupian', '');
 
 -- ----------------------------
 -- Table structure for `cp_category_priv`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_category_priv`;
 CREATE TABLE `cp_category_priv` (
-  `catid` smallint(5) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  `roleid` smallint(5) unsigned NOT NULL default '0',
-  `is_admin` tinyint(1) unsigned NOT NULL default '0',
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `roleid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `action` char(30) NOT NULL,
   KEY `catid` (`catid`,`roleid`,`is_admin`,`action`),
   KEY `siteid` (`siteid`)
@@ -448,14 +486,14 @@ CREATE TABLE `cp_category_priv` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_collection_content`;
 CREATE TABLE `cp_collection_content` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `nodeid` int(10) unsigned NOT NULL default '0',
-  `siteid` mediumint(5) unsigned NOT NULL default '0',
-  `status` tinyint(1) unsigned NOT NULL default '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nodeid` int(10) unsigned NOT NULL DEFAULT '0',
+  `siteid` mediumint(5) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(255) NOT NULL,
   `title` char(100) NOT NULL,
   `data` text NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `nodeid` (`nodeid`,`siteid`),
   KEY `status` (`status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -470,8 +508,8 @@ CREATE TABLE `cp_collection_content` (
 DROP TABLE IF EXISTS `cp_collection_history`;
 CREATE TABLE `cp_collection_history` (
   `md5` char(32) NOT NULL,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`md5`,`siteid`)
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`md5`,`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -483,21 +521,21 @@ CREATE TABLE `cp_collection_history` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_collection_node`;
 CREATE TABLE `cp_collection_node` (
-  `nodeid` smallint(6) unsigned NOT NULL auto_increment,
+  `nodeid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
-  `lastdate` int(10) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `lastdate` int(10) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `sourcecharset` varchar(8) NOT NULL,
-  `sourcetype` tinyint(1) unsigned NOT NULL default '0',
+  `sourcetype` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `urlpage` text NOT NULL,
-  `pagesize_start` tinyint(3) unsigned NOT NULL default '0',
-  `pagesize_end` mediumint(8) unsigned NOT NULL default '0',
+  `pagesize_start` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `pagesize_end` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `page_base` char(255) NOT NULL,
-  `par_num` tinyint(3) unsigned NOT NULL default '1',
+  `par_num` tinyint(3) unsigned NOT NULL DEFAULT '1',
   `url_contain` char(100) NOT NULL,
   `url_except` char(100) NOT NULL,
-  `url_start` char(100) NOT NULL default '',
-  `url_end` char(100) NOT NULL default '',
+  `url_start` char(100) NOT NULL DEFAULT '',
+  `url_end` char(100) NOT NULL DEFAULT '',
   `title_rule` char(100) NOT NULL,
   `title_html_rule` text NOT NULL,
   `author_rule` char(100) NOT NULL,
@@ -510,14 +548,14 @@ CREATE TABLE `cp_collection_node` (
   `content_html_rule` text NOT NULL,
   `content_page_start` char(100) NOT NULL,
   `content_page_end` char(100) NOT NULL,
-  `content_page_rule` tinyint(1) unsigned NOT NULL default '0',
-  `content_page` tinyint(1) unsigned NOT NULL default '0',
+  `content_page_rule` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `content_page` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `content_nextpage` char(100) NOT NULL,
-  `down_attachment` tinyint(1) unsigned NOT NULL default '0',
-  `watermark` tinyint(1) unsigned NOT NULL default '0',
-  `coll_order` tinyint(3) unsigned NOT NULL default '0',
+  `down_attachment` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `watermark` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `coll_order` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `customize_config` text NOT NULL,
-  PRIMARY KEY  (`nodeid`),
+  PRIMARY KEY (`nodeid`),
   KEY `siteid` (`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -530,13 +568,13 @@ CREATE TABLE `cp_collection_node` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_collection_program`;
 CREATE TABLE `cp_collection_program` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  `nodeid` int(10) unsigned NOT NULL default '0',
-  `modelid` mediumint(6) unsigned NOT NULL default '0',
-  `catid` int(10) unsigned NOT NULL default '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `nodeid` int(10) unsigned NOT NULL DEFAULT '0',
+  `modelid` mediumint(6) unsigned NOT NULL DEFAULT '0',
+  `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `config` text NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `siteid` (`siteid`),
   KEY `nodeid` (`nodeid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -551,12 +589,12 @@ CREATE TABLE `cp_collection_program` (
 DROP TABLE IF EXISTS `cp_content_check`;
 CREATE TABLE `cp_content_check` (
   `checkid` char(15) NOT NULL,
-  `catid` smallint(5) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `title` char(80) NOT NULL,
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `status` tinyint(1) unsigned NOT NULL default '0',
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   KEY `username` (`username`),
   KEY `checkid` (`checkid`),
   KEY `status` (`status`,`inputtime`)
@@ -571,13 +609,13 @@ CREATE TABLE `cp_content_check` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_copyfrom`;
 CREATE TABLE `cp_copyfrom` (
-  `id` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `sitename` varchar(30) NOT NULL,
   `siteurl` varchar(100) NOT NULL,
   `thumb` varchar(100) NOT NULL,
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`)
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -589,17 +627,17 @@ CREATE TABLE `cp_copyfrom` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_datacall`;
 CREATE TABLE `cp_datacall` (
-  `id` int(10) NOT NULL auto_increment,
-  `name` char(40) default NULL,
-  `dis_type` tinyint(1) unsigned default '0',
-  `type` tinyint(1) default '0',
-  `module` char(20) default NULL,
-  `action` char(20) default NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` char(40) DEFAULT NULL,
+  `dis_type` tinyint(1) unsigned DEFAULT '0',
+  `type` tinyint(1) DEFAULT '0',
+  `module` char(20) DEFAULT NULL,
+  `action` char(20) DEFAULT NULL,
   `data` text,
   `template` text,
-  `cache` mediumint(8) default NULL,
-  `num` smallint(6) unsigned default NULL,
-  PRIMARY KEY  (`id`),
+  `cache` mediumint(8) DEFAULT NULL,
+  `num` smallint(6) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `type` (`type`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -612,17 +650,17 @@ CREATE TABLE `cp_datacall` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_dbsource`;
 CREATE TABLE `cp_dbsource` (
-  `id` int(10) NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL,
   `host` varchar(20) NOT NULL,
-  `port` int(5) NOT NULL default '3306',
+  `port` int(5) NOT NULL DEFAULT '3306',
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `dbname` varchar(50) NOT NULL,
   `dbtablepre` varchar(30) NOT NULL,
   `charset` varchar(10) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `siteid` (`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -635,31 +673,31 @@ CREATE TABLE `cp_dbsource` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_download`;
 CREATE TABLE `cp_download` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typeid` smallint(5) unsigned NOT NULL,
-  `title` char(80) NOT NULL default '',
-  `style` char(24) NOT NULL default '',
-  `thumb` varchar(100) NOT NULL default '',
-  `keywords` char(40) NOT NULL default '',
-  `description` char(255) NOT NULL default '',
-  `posids` tinyint(1) unsigned NOT NULL default '0',
+  `title` char(80) NOT NULL DEFAULT '',
+  `style` char(24) NOT NULL DEFAULT '',
+  `thumb` varchar(100) NOT NULL DEFAULT '',
+  `keywords` char(40) NOT NULL DEFAULT '',
+  `description` char(255) NOT NULL DEFAULT '',
+  `posids` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(100) NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `status` tinyint(2) unsigned NOT NULL default '1',
-  `sysadd` tinyint(1) unsigned NOT NULL default '0',
-  `islink` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sysadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  `systems` varchar(100) NOT NULL default 'Win2000/WinXP/Win2003',
-  `copytype` varchar(15) NOT NULL default '',
-  `language` varchar(10) NOT NULL default '',
-  `classtype` varchar(20) NOT NULL default '',
-  `version` varchar(20) NOT NULL default '',
-  `filesize` varchar(10) NOT NULL default 'Unkown',
-  `stars` varchar(20) NOT NULL default '',
-  PRIMARY KEY  (`id`),
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `systems` varchar(100) NOT NULL DEFAULT 'Win2000/WinXP/Win2003',
+  `copytype` varchar(15) NOT NULL DEFAULT '',
+  `language` varchar(10) NOT NULL DEFAULT '',
+  `classtype` varchar(20) NOT NULL DEFAULT '',
+  `version` varchar(20) NOT NULL DEFAULT '',
+  `filesize` varchar(10) NOT NULL DEFAULT 'Unkown',
+  `stars` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
   KEY `status` (`status`,`listorder`,`id`),
   KEY `listorder` (`catid`,`status`,`listorder`,`id`),
   KEY `catid` (`catid`,`status`,`id`)
@@ -674,18 +712,18 @@ CREATE TABLE `cp_download` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_download_data`;
 CREATE TABLE `cp_download_data` (
-  `id` mediumint(8) unsigned default '0',
+  `id` mediumint(8) unsigned DEFAULT '0',
   `content` text NOT NULL,
-  `readpoint` smallint(5) unsigned NOT NULL default '0',
+  `readpoint` smallint(5) unsigned NOT NULL DEFAULT '0',
   `groupids_view` varchar(100) NOT NULL,
   `paginationtype` tinyint(1) NOT NULL,
   `maxcharperpage` mediumint(6) NOT NULL,
   `template` varchar(30) NOT NULL,
-  `paytype` tinyint(1) unsigned NOT NULL default '0',
-  `relation` varchar(255) NOT NULL default '',
-  `allow_comment` tinyint(1) unsigned NOT NULL default '1',
+  `paytype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `relation` varchar(255) NOT NULL DEFAULT '',
+  `allow_comment` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `downfiles` mediumtext NOT NULL,
-  `downfile` varchar(255) NOT NULL default '',
+  `downfile` varchar(255) NOT NULL DEFAULT '',
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -698,12 +736,12 @@ CREATE TABLE `cp_download_data` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_downservers`;
 CREATE TABLE `cp_downservers` (
-  `id` mediumint(8) NOT NULL auto_increment,
-  `sitename` varchar(100) default NULL,
-  `siteurl` varchar(255) default NULL,
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`)
+  `id` mediumint(8) NOT NULL AUTO_INCREMENT,
+  `sitename` varchar(100) DEFAULT NULL,
+  `siteurl` varchar(255) DEFAULT NULL,
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -715,10 +753,10 @@ CREATE TABLE `cp_downservers` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_extend_setting`;
 CREATE TABLE `cp_extend_setting` (
-  `id` smallint(5) unsigned NOT NULL auto_increment,
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `key` char(30) NOT NULL,
   `data` mediumtext,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `key` (`key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -731,12 +769,12 @@ CREATE TABLE `cp_extend_setting` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_favorite`;
 CREATE TABLE `cp_favorite` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `userid` mediumint(8) unsigned NOT NULL default '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `title` char(100) NOT NULL,
   `url` char(100) NOT NULL,
-  `adddate` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `adddate` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `userid` (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -750,14 +788,14 @@ CREATE TABLE `cp_favorite` (
 DROP TABLE IF EXISTS `cp_hits`;
 CREATE TABLE `cp_hits` (
   `hitsid` char(30) NOT NULL,
-  `catid` smallint(5) unsigned NOT NULL default '0',
-  `views` int(10) unsigned NOT NULL default '0',
-  `yesterdayviews` int(10) unsigned NOT NULL default '0',
-  `dayviews` int(10) unsigned NOT NULL default '0',
-  `weekviews` int(10) unsigned NOT NULL default '0',
-  `monthviews` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`hitsid`)
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `views` int(10) unsigned NOT NULL DEFAULT '0',
+  `yesterdayviews` int(10) unsigned NOT NULL DEFAULT '0',
+  `dayviews` int(10) unsigned NOT NULL DEFAULT '0',
+  `weekviews` int(10) unsigned NOT NULL DEFAULT '0',
+  `monthviews` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`hitsid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -783,21 +821,43 @@ INSERT INTO `cp_hits` VALUES ('c-14-1', '25', '0', '0', '0', '0', '0', '15289544
 INSERT INTO `cp_hits` VALUES ('c-14-2', '25', '0', '0', '0', '0', '0', '1528954433');
 INSERT INTO `cp_hits` VALUES ('c-14-3', '25', '0', '0', '0', '0', '0', '1528954448');
 INSERT INTO `cp_hits` VALUES ('c-1-9', '28', '0', '0', '0', '0', '0', '1528955299');
-INSERT INTO `cp_hits` VALUES ('c-1-10', '28', '0', '0', '0', '0', '0', '1528955309');
-INSERT INTO `cp_hits` VALUES ('c-1-11', '28', '0', '0', '0', '0', '0', '1528955318');
-INSERT INTO `cp_hits` VALUES ('c-3-5', '30', '0', '0', '0', '0', '0', '1528960643');
-INSERT INTO `cp_hits` VALUES ('c-3-6', '30', '0', '0', '0', '0', '0', '1528960662');
+INSERT INTO `cp_hits` VALUES ('c-1-30', '16', '0', '0', '0', '0', '0', '1529052647');
+INSERT INTO `cp_hits` VALUES ('c-3-7', '30', '0', '0', '0', '0', '0', '1528987164');
+INSERT INTO `cp_hits` VALUES ('c-1-27', '22', '0', '0', '0', '0', '0', '1529031181');
 INSERT INTO `cp_hits` VALUES ('c-1-14', '16', '0', '0', '0', '0', '0', '1528983034');
+INSERT INTO `cp_hits` VALUES ('c-14-6', '25', '0', '0', '0', '0', '0', '1528983485');
+INSERT INTO `cp_hits` VALUES ('c-14-7', '25', '0', '0', '0', '0', '0', '1528983514');
+INSERT INTO `cp_hits` VALUES ('c-14-8', '25', '0', '0', '0', '0', '0', '1528983643');
+INSERT INTO `cp_hits` VALUES ('c-14-9', '25', '0', '0', '0', '0', '0', '1528983698');
+INSERT INTO `cp_hits` VALUES ('c-14-10', '25', '0', '0', '0', '0', '0', '1528983728');
+INSERT INTO `cp_hits` VALUES ('c-14-11', '25', '0', '0', '0', '0', '0', '1528983767');
+INSERT INTO `cp_hits` VALUES ('c-14-12', '25', '0', '0', '0', '0', '0', '1528983800');
+INSERT INTO `cp_hits` VALUES ('c-14-13', '25', '0', '0', '0', '0', '0', '1528983839');
+INSERT INTO `cp_hits` VALUES ('c-1-15', '16', '0', '0', '0', '0', '0', '1528983901');
+INSERT INTO `cp_hits` VALUES ('c-1-16', '16', '0', '0', '0', '0', '0', '1528983956');
+INSERT INTO `cp_hits` VALUES ('c-1-17', '16', '0', '0', '0', '0', '0', '1528983996');
+INSERT INTO `cp_hits` VALUES ('c-1-18', '16', '0', '0', '0', '0', '0', '1528984030');
+INSERT INTO `cp_hits` VALUES ('c-1-19', '16', '0', '0', '0', '0', '0', '1528984164');
+INSERT INTO `cp_hits` VALUES ('c-1-20', '16', '0', '0', '0', '0', '0', '1528984229');
+INSERT INTO `cp_hits` VALUES ('c-1-21', '16', '0', '0', '0', '0', '0', '1528984286');
+INSERT INTO `cp_hits` VALUES ('c-1-22', '16', '0', '0', '0', '0', '0', '1528984332');
+INSERT INTO `cp_hits` VALUES ('c-1-23', '16', '0', '0', '0', '0', '0', '1528984393');
+INSERT INTO `cp_hits` VALUES ('c-1-24', '16', '0', '0', '0', '0', '0', '1528984461');
+INSERT INTO `cp_hits` VALUES ('c-1-25', '16', '0', '0', '0', '0', '0', '1528984536');
+INSERT INTO `cp_hits` VALUES ('c-1-26', '16', '0', '0', '0', '0', '0', '1528984644');
+INSERT INTO `cp_hits` VALUES ('c-13-3', '17', '0', '0', '0', '0', '0', '1528985683');
+INSERT INTO `cp_hits` VALUES ('c-1-28', '22', '0', '0', '0', '0', '0', '1529031260');
+INSERT INTO `cp_hits` VALUES ('c-1-29', '22', '0', '0', '0', '0', '0', '1529031320');
 
 -- ----------------------------
 -- Table structure for `cp_ipbanned`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_ipbanned`;
 CREATE TABLE `cp_ipbanned` (
-  `ipbannedid` smallint(5) NOT NULL auto_increment,
+  `ipbannedid` smallint(5) NOT NULL AUTO_INCREMENT,
   `ip` char(15) NOT NULL,
-  `expires` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`ipbannedid`)
+  `expires` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ipbannedid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -809,10 +869,10 @@ CREATE TABLE `cp_ipbanned` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_keylink`;
 CREATE TABLE `cp_keylink` (
-  `keylinkid` smallint(5) unsigned NOT NULL auto_increment,
+  `keylinkid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `word` char(40) NOT NULL,
   `url` char(100) NOT NULL,
-  PRIMARY KEY  (`keylinkid`)
+  PRIMARY KEY (`keylinkid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -824,13 +884,13 @@ CREATE TABLE `cp_keylink` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_keyword`;
 CREATE TABLE `cp_keyword` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `keyword` char(100) NOT NULL,
   `pinyin` char(100) NOT NULL,
-  `videonum` int(11) NOT NULL default '0',
-  `searchnums` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `videonum` int(11) NOT NULL DEFAULT '0',
+  `searchnums` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `keyword` (`keyword`,`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -843,11 +903,11 @@ CREATE TABLE `cp_keyword` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_keyword_data`;
 CREATE TABLE `cp_keyword_data` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `tagid` int(10) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tagid` int(10) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `contentid` char(30) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `tagid` (`tagid`,`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -860,20 +920,20 @@ CREATE TABLE `cp_keyword_data` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_link`;
 CREATE TABLE `cp_link` (
-  `linkid` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned default '0',
-  `typeid` smallint(5) unsigned NOT NULL default '0',
-  `linktype` tinyint(1) unsigned NOT NULL default '0',
-  `name` varchar(50) NOT NULL default '',
-  `url` varchar(255) NOT NULL default '',
-  `logo` varchar(255) NOT NULL default '',
+  `linkid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned DEFAULT '0',
+  `typeid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `linktype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `logo` varchar(255) NOT NULL DEFAULT '',
   `introduce` text NOT NULL,
-  `username` varchar(30) NOT NULL default '',
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  `elite` tinyint(1) unsigned NOT NULL default '0',
-  `passed` tinyint(1) unsigned NOT NULL default '0',
-  `addtime` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`linkid`),
+  `username` varchar(30) NOT NULL DEFAULT '',
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `elite` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `passed` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`linkid`),
   KEY `typeid` (`typeid`,`passed`,`listorder`,`linkid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -888,18 +948,18 @@ INSERT INTO `cp_link` VALUES ('2', '1', '0', '1', '盛大在线', 'http://www.sd
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_linkage`;
 CREATE TABLE `cp_linkage` (
-  `linkageid` smallint(5) unsigned NOT NULL auto_increment,
+  `linkageid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `style` varchar(35) NOT NULL,
-  `parentid` smallint(5) unsigned NOT NULL default '0',
+  `parentid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `child` tinyint(1) NOT NULL,
   `arrchildid` mediumtext NOT NULL,
-  `keyid` smallint(5) unsigned NOT NULL default '0',
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  `description` varchar(255) default NULL,
-  `setting` varchar(255) default NULL,
-  `siteid` smallint(5) NOT NULL default '0',
-  PRIMARY KEY  (`linkageid`,`keyid`),
+  `keyid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `description` varchar(255) DEFAULT NULL,
+  `setting` varchar(255) DEFAULT NULL,
+  `siteid` smallint(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`linkageid`,`keyid`),
   KEY `parentid` (`parentid`,`listorder`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3360 DEFAULT CHARSET=utf8;
 
@@ -4196,22 +4256,22 @@ INSERT INTO `cp_linkage` VALUES ('3359', '钓鱼岛', '', '3358', '0', '', '1', 
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_log`;
 CREATE TABLE `cp_log` (
-  `logid` int(10) unsigned NOT NULL auto_increment,
+  `logid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `field` varchar(15) NOT NULL,
-  `value` int(10) unsigned NOT NULL default '0',
+  `value` int(10) unsigned NOT NULL DEFAULT '0',
   `module` varchar(15) NOT NULL,
   `file` varchar(20) NOT NULL,
   `action` varchar(20) NOT NULL,
   `querystring` varchar(255) NOT NULL,
   `data` mediumtext NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL default '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `username` varchar(20) NOT NULL,
   `ip` varchar(15) NOT NULL,
-  `time` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`logid`),
+  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`logid`),
   KEY `module` (`module`,`file`,`action`),
   KEY `username` (`username`,`action`)
-) ENGINE=MyISAM AUTO_INCREMENT=928 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1108 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_log
@@ -5143,38 +5203,218 @@ INSERT INTO `cp_log` VALUES ('924', '', '0', 'content', '', 'content', '?m=conte
 INSERT INTO `cp_log` VALUES ('925', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:27:40');
 INSERT INTO `cp_log` VALUES ('926', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:29:42');
 INSERT INTO `cp_log` VALUES ('927', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:30:34');
+INSERT INTO `cp_log` VALUES ('928', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:36:10');
+INSERT INTO `cp_log` VALUES ('929', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:36:47');
+INSERT INTO `cp_log` VALUES ('930', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:37:25');
+INSERT INTO `cp_log` VALUES ('931', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:38:05');
+INSERT INTO `cp_log` VALUES ('932', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:38:14');
+INSERT INTO `cp_log` VALUES ('933', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:38:34');
+INSERT INTO `cp_log` VALUES ('934', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:39:03');
+INSERT INTO `cp_log` VALUES ('935', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:39:32');
+INSERT INTO `cp_log` VALUES ('936', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:40:05');
+INSERT INTO `cp_log` VALUES ('937', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:40:43');
+INSERT INTO `cp_log` VALUES ('938', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:40:57');
+INSERT INTO `cp_log` VALUES ('939', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:41:38');
+INSERT INTO `cp_log` VALUES ('940', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:41:47');
+INSERT INTO `cp_log` VALUES ('941', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:42:08');
+INSERT INTO `cp_log` VALUES ('942', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:42:24');
+INSERT INTO `cp_log` VALUES ('943', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:42:47');
+INSERT INTO `cp_log` VALUES ('944', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:42:56');
+INSERT INTO `cp_log` VALUES ('945', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:43:20');
+INSERT INTO `cp_log` VALUES ('946', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:43:29');
+INSERT INTO `cp_log` VALUES ('947', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:43:59');
+INSERT INTO `cp_log` VALUES ('948', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:44:35');
+INSERT INTO `cp_log` VALUES ('949', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:45:01');
+INSERT INTO `cp_log` VALUES ('950', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:45:20');
+INSERT INTO `cp_log` VALUES ('951', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:45:56');
+INSERT INTO `cp_log` VALUES ('952', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:46:12');
+INSERT INTO `cp_log` VALUES ('953', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:46:36');
+INSERT INTO `cp_log` VALUES ('954', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:46:50');
+INSERT INTO `cp_log` VALUES ('955', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:47:10');
+INSERT INTO `cp_log` VALUES ('956', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:48:42');
+INSERT INTO `cp_log` VALUES ('957', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:49:24');
+INSERT INTO `cp_log` VALUES ('958', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:50:00');
+INSERT INTO `cp_log` VALUES ('959', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:50:29');
+INSERT INTO `cp_log` VALUES ('960', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:50:52');
+INSERT INTO `cp_log` VALUES ('961', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:51:26');
+INSERT INTO `cp_log` VALUES ('962', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:51:46');
+INSERT INTO `cp_log` VALUES ('963', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:52:12');
+INSERT INTO `cp_log` VALUES ('964', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:52:55');
+INSERT INTO `cp_log` VALUES ('965', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:53:13');
+INSERT INTO `cp_log` VALUES ('966', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:53:58');
+INSERT INTO `cp_log` VALUES ('967', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:54:21');
+INSERT INTO `cp_log` VALUES ('968', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:55:16');
+INSERT INTO `cp_log` VALUES ('969', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:55:36');
+INSERT INTO `cp_log` VALUES ('970', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:57:01');
+INSERT INTO `cp_log` VALUES ('971', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 21:57:24');
+INSERT INTO `cp_log` VALUES ('972', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:07:40');
+INSERT INTO `cp_log` VALUES ('973', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:11:09');
+INSERT INTO `cp_log` VALUES ('974', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:11:20');
+INSERT INTO `cp_log` VALUES ('975', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:13:15');
+INSERT INTO `cp_log` VALUES ('976', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:13:23');
+INSERT INTO `cp_log` VALUES ('977', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:14:43');
+INSERT INTO `cp_log` VALUES ('978', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:14:58');
+INSERT INTO `cp_log` VALUES ('979', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:38:20');
+INSERT INTO `cp_log` VALUES ('980', '', '0', 'content', '', 'content', '?m=content&c=content&a=delete', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:38:53');
+INSERT INTO `cp_log` VALUES ('981', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:39:01');
+INSERT INTO `cp_log` VALUES ('982', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:39:24');
+INSERT INTO `cp_log` VALUES ('983', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-14 22:40:33');
+INSERT INTO `cp_log` VALUES ('984', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 10:50:23');
+INSERT INTO `cp_log` VALUES ('985', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 10:50:41');
+INSERT INTO `cp_log` VALUES ('986', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 10:51:31');
+INSERT INTO `cp_log` VALUES ('987', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 10:53:01');
+INSERT INTO `cp_log` VALUES ('988', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 10:53:13');
+INSERT INTO `cp_log` VALUES ('989', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 10:54:20');
+INSERT INTO `cp_log` VALUES ('990', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 10:54:26');
+INSERT INTO `cp_log` VALUES ('991', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 10:55:20');
+INSERT INTO `cp_log` VALUES ('992', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 10:55:33');
+INSERT INTO `cp_log` VALUES ('993', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 10:55:45');
+INSERT INTO `cp_log` VALUES ('994', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 11:10:58');
+INSERT INTO `cp_log` VALUES ('995', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 11:11:16');
+INSERT INTO `cp_log` VALUES ('996', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 11:11:51');
+INSERT INTO `cp_log` VALUES ('997', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 11:12:01');
+INSERT INTO `cp_log` VALUES ('998', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 11:12:21');
+INSERT INTO `cp_log` VALUES ('999', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '118.144.141.157', '2018-06-15 13:24:19');
+INSERT INTO `cp_log` VALUES ('1000', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '118.144.141.157', '2018-06-15 13:24:20');
+INSERT INTO `cp_log` VALUES ('1001', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '118.144.141.157', '2018-06-15 13:24:30');
+INSERT INTO `cp_log` VALUES ('1002', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:51:34');
+INSERT INTO `cp_log` VALUES ('1003', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=delete', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:51:56');
+INSERT INTO `cp_log` VALUES ('1004', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:52:03');
+INSERT INTO `cp_log` VALUES ('1005', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:52:26');
+INSERT INTO `cp_log` VALUES ('1006', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:53:01');
+INSERT INTO `cp_log` VALUES ('1007', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:53:15');
+INSERT INTO `cp_log` VALUES ('1008', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:53:18');
+INSERT INTO `cp_log` VALUES ('1009', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:53:18');
+INSERT INTO `cp_log` VALUES ('1010', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:53:50');
+INSERT INTO `cp_log` VALUES ('1011', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:54:11');
+INSERT INTO `cp_log` VALUES ('1012', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:54:16');
+INSERT INTO `cp_log` VALUES ('1013', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:54:46');
+INSERT INTO `cp_log` VALUES ('1014', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:57:14');
+INSERT INTO `cp_log` VALUES ('1015', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:57:33');
+INSERT INTO `cp_log` VALUES ('1016', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 13:57:39');
+INSERT INTO `cp_log` VALUES ('1017', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:22:08');
+INSERT INTO `cp_log` VALUES ('1018', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:22:25');
+INSERT INTO `cp_log` VALUES ('1019', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:22:29');
+INSERT INTO `cp_log` VALUES ('1020', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:24:01');
+INSERT INTO `cp_log` VALUES ('1021', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:24:05');
+INSERT INTO `cp_log` VALUES ('1022', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:25:47');
+INSERT INTO `cp_log` VALUES ('1023', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:25:51');
+INSERT INTO `cp_log` VALUES ('1024', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '103.56.17.135', '2018-06-15 14:50:30');
+INSERT INTO `cp_log` VALUES ('1025', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '103.56.17.135', '2018-06-15 14:50:32');
+INSERT INTO `cp_log` VALUES ('1026', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 14:51:47');
+INSERT INTO `cp_log` VALUES ('1027', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 14:51:47');
+INSERT INTO `cp_log` VALUES ('1028', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 14:52:02');
+INSERT INTO `cp_log` VALUES ('1029', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:52:26');
+INSERT INTO `cp_log` VALUES ('1030', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:52:42');
+INSERT INTO `cp_log` VALUES ('1031', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 14:52:46');
+INSERT INTO `cp_log` VALUES ('1032', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:01:22');
+INSERT INTO `cp_log` VALUES ('1033', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:01:26');
+INSERT INTO `cp_log` VALUES ('1034', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:02:12');
+INSERT INTO `cp_log` VALUES ('1035', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:02:17');
+INSERT INTO `cp_log` VALUES ('1036', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:02:38');
+INSERT INTO `cp_log` VALUES ('1037', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:02:42');
+INSERT INTO `cp_log` VALUES ('1038', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:03:11');
+INSERT INTO `cp_log` VALUES ('1039', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:03:15');
+INSERT INTO `cp_log` VALUES ('1040', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:05:13');
+INSERT INTO `cp_log` VALUES ('1041', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:05:17');
+INSERT INTO `cp_log` VALUES ('1042', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:05:50');
+INSERT INTO `cp_log` VALUES ('1043', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:05:50');
+INSERT INTO `cp_log` VALUES ('1044', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:05:55');
+INSERT INTO `cp_log` VALUES ('1045', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:06:04');
+INSERT INTO `cp_log` VALUES ('1046', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 15:06:09');
+INSERT INTO `cp_log` VALUES ('1047', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:03:34');
+INSERT INTO `cp_log` VALUES ('1048', '', '0', 'admin', '', 'category', '?m=admin&c=category&a=edit', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:03:41');
+INSERT INTO `cp_log` VALUES ('1049', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:03:47');
+INSERT INTO `cp_log` VALUES ('1050', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:03:50');
+INSERT INTO `cp_log` VALUES ('1051', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:03:53');
+INSERT INTO `cp_log` VALUES ('1052', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:03:56');
+INSERT INTO `cp_log` VALUES ('1053', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:03:59');
+INSERT INTO `cp_log` VALUES ('1054', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:02');
+INSERT INTO `cp_log` VALUES ('1055', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:05');
+INSERT INTO `cp_log` VALUES ('1056', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:08');
+INSERT INTO `cp_log` VALUES ('1057', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:11');
+INSERT INTO `cp_log` VALUES ('1058', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:14');
+INSERT INTO `cp_log` VALUES ('1059', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:17');
+INSERT INTO `cp_log` VALUES ('1060', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:20');
+INSERT INTO `cp_log` VALUES ('1061', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:23');
+INSERT INTO `cp_log` VALUES ('1062', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:26');
+INSERT INTO `cp_log` VALUES ('1063', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:29');
+INSERT INTO `cp_log` VALUES ('1064', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:32');
+INSERT INTO `cp_log` VALUES ('1065', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:35');
+INSERT INTO `cp_log` VALUES ('1066', '', '0', 'content', '', 'create_html', '?m=content&c=create_html&a=update_urls', '', '1', 'admin', '61.148.243.34', '2018-06-15 16:04:38');
+INSERT INTO `cp_log` VALUES ('1067', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 16:18:19');
+INSERT INTO `cp_log` VALUES ('1068', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 16:18:42');
+INSERT INTO `cp_log` VALUES ('1069', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 16:19:14');
+INSERT INTO `cp_log` VALUES ('1070', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 16:20:04');
+INSERT INTO `cp_log` VALUES ('1071', '', '0', 'content', '', 'content', '?m=content&c=content&a=delete', '', '1', 'admin', '114.243.112.4', '2018-06-15 16:20:39');
+INSERT INTO `cp_log` VALUES ('1072', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 16:34:41');
+INSERT INTO `cp_log` VALUES ('1073', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 16:40:35');
+INSERT INTO `cp_log` VALUES ('1074', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 16:50:15');
+INSERT INTO `cp_log` VALUES ('1075', '', '0', 'content', '', 'content', '?m=content&c=content&a=add', '', '1', 'admin', '114.243.112.4', '2018-06-15 16:50:47');
+INSERT INTO `cp_log` VALUES ('1076', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '114.243.112.4', '2018-06-15 17:06:30');
+INSERT INTO `cp_log` VALUES ('1077', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '114.243.112.4', '2018-06-15 17:06:50');
+INSERT INTO `cp_log` VALUES ('1078', '', '0', 'content', '', 'content', '?m=content&c=content&a=listorder', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:09:49');
+INSERT INTO `cp_log` VALUES ('1079', '', '0', 'content', '', 'content', '?m=content&c=content&a=listorder', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:09:50');
+INSERT INTO `cp_log` VALUES ('1080', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 17:13:58');
+INSERT INTO `cp_log` VALUES ('1081', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 17:14:12');
+INSERT INTO `cp_log` VALUES ('1082', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 17:14:13');
+INSERT INTO `cp_log` VALUES ('1083', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 17:14:24');
+INSERT INTO `cp_log` VALUES ('1084', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 17:18:56');
+INSERT INTO `cp_log` VALUES ('1085', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 17:38:54');
+INSERT INTO `cp_log` VALUES ('1086', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 17:39:17');
+INSERT INTO `cp_log` VALUES ('1087', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:40:00');
+INSERT INTO `cp_log` VALUES ('1088', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:40:36');
+INSERT INTO `cp_log` VALUES ('1089', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:41:44');
+INSERT INTO `cp_log` VALUES ('1090', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:41:59');
+INSERT INTO `cp_log` VALUES ('1091', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:51:26');
+INSERT INTO `cp_log` VALUES ('1092', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 17:51:53');
+INSERT INTO `cp_log` VALUES ('1093', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 18:17:50');
+INSERT INTO `cp_log` VALUES ('1094', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 18:17:59');
+INSERT INTO `cp_log` VALUES ('1095', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '114.243.112.4', '2018-06-15 18:57:01');
+INSERT INTO `cp_log` VALUES ('1096', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '114.243.112.4', '2018-06-15 18:57:04');
+INSERT INTO `cp_log` VALUES ('1097', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '114.243.112.4', '2018-06-15 18:57:21');
+INSERT INTO `cp_log` VALUES ('1098', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 18:58:37');
+INSERT INTO `cp_log` VALUES ('1099', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 18:59:30');
+INSERT INTO `cp_log` VALUES ('1100', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 19:12:41');
+INSERT INTO `cp_log` VALUES ('1101', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 19:13:28');
+INSERT INTO `cp_log` VALUES ('1102', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 19:19:59');
+INSERT INTO `cp_log` VALUES ('1103', '', '0', 'content', '', 'content', '?m=content&c=content&a=edit', '', '1', 'admin', '114.243.112.4', '2018-06-15 19:20:50');
+INSERT INTO `cp_log` VALUES ('1104', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', '', '114.243.112.4', '2018-06-15 19:22:17');
+INSERT INTO `cp_log` VALUES ('1105', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 21:30:15');
+INSERT INTO `cp_log` VALUES ('1106', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 21:30:15');
+INSERT INTO `cp_log` VALUES ('1107', '', '0', 'admin', '', 'index', '?m=admin&c=index&a=login', '', '0', 'admin', '61.148.243.34', '2018-06-15 21:30:31');
 
 -- ----------------------------
 -- Table structure for `cp_member`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_member`;
 CREATE TABLE `cp_member` (
-  `userid` mediumint(8) unsigned NOT NULL auto_increment,
+  `userid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `phpssouid` mediumint(8) unsigned NOT NULL,
-  `username` char(20) NOT NULL default '',
-  `password` char(32) NOT NULL default '',
+  `username` char(20) NOT NULL DEFAULT '',
+  `password` char(32) NOT NULL DEFAULT '',
   `encrypt` char(6) NOT NULL,
   `nickname` char(20) NOT NULL,
-  `regdate` int(10) unsigned NOT NULL default '0',
-  `lastdate` int(10) unsigned NOT NULL default '0',
-  `regip` char(15) NOT NULL default '',
-  `lastip` char(15) NOT NULL default '',
-  `loginnum` smallint(5) unsigned NOT NULL default '0',
-  `email` char(32) NOT NULL default '',
-  `groupid` tinyint(3) unsigned NOT NULL default '0',
-  `areaid` smallint(5) unsigned NOT NULL default '0',
-  `amount` decimal(8,2) unsigned NOT NULL default '0.00',
-  `point` smallint(5) unsigned NOT NULL default '0',
-  `modelid` smallint(5) unsigned NOT NULL default '0',
-  `message` tinyint(1) unsigned NOT NULL default '0',
-  `islock` tinyint(1) unsigned NOT NULL default '0',
-  `vip` tinyint(1) unsigned NOT NULL default '0',
-  `overduedate` int(10) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '1',
-  `connectid` char(40) NOT NULL default '',
-  `from` char(10) NOT NULL default '',
-  `mobile` char(11) NOT NULL default '',
-  PRIMARY KEY  (`userid`),
+  `regdate` int(10) unsigned NOT NULL DEFAULT '0',
+  `lastdate` int(10) unsigned NOT NULL DEFAULT '0',
+  `regip` char(15) NOT NULL DEFAULT '',
+  `lastip` char(15) NOT NULL DEFAULT '',
+  `loginnum` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `email` char(32) NOT NULL DEFAULT '',
+  `groupid` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `areaid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `amount` decimal(8,2) unsigned NOT NULL DEFAULT '0.00',
+  `point` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `modelid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `message` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `islock` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `vip` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `overduedate` int(10) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `connectid` char(40) NOT NULL DEFAULT '',
+  `from` char(10) NOT NULL DEFAULT '',
+  `mobile` char(11) NOT NULL DEFAULT '',
+  PRIMARY KEY (`userid`),
   UNIQUE KEY `username` (`username`),
   KEY `email` (`email`(20)),
   KEY `phpssouid` (`phpssouid`)
@@ -5189,8 +5429,8 @@ CREATE TABLE `cp_member` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_member_detail`;
 CREATE TABLE `cp_member_detail` (
-  `userid` mediumint(8) unsigned NOT NULL default '0',
-  `birthday` date default NULL,
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `birthday` date DEFAULT NULL,
   UNIQUE KEY `userid` (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5203,29 +5443,29 @@ CREATE TABLE `cp_member_detail` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_member_group`;
 CREATE TABLE `cp_member_group` (
-  `groupid` tinyint(3) unsigned NOT NULL auto_increment,
+  `groupid` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `name` char(15) NOT NULL,
-  `issystem` tinyint(1) unsigned NOT NULL default '0',
+  `issystem` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `starnum` tinyint(2) unsigned NOT NULL,
   `point` smallint(6) unsigned NOT NULL,
-  `allowmessage` smallint(5) unsigned NOT NULL default '0',
-  `allowvisit` tinyint(1) unsigned NOT NULL default '0',
-  `allowpost` tinyint(1) unsigned NOT NULL default '0',
+  `allowmessage` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `allowvisit` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allowpost` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `allowpostverify` tinyint(1) unsigned NOT NULL,
-  `allowsearch` tinyint(1) unsigned NOT NULL default '0',
-  `allowupgrade` tinyint(1) unsigned NOT NULL default '1',
+  `allowsearch` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allowupgrade` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `allowsendmessage` tinyint(1) unsigned NOT NULL,
-  `allowpostnum` smallint(5) unsigned NOT NULL default '0',
+  `allowpostnum` smallint(5) unsigned NOT NULL DEFAULT '0',
   `allowattachment` tinyint(1) NOT NULL,
-  `price_y` decimal(8,2) unsigned NOT NULL default '0.00',
-  `price_m` decimal(8,2) unsigned NOT NULL default '0.00',
-  `price_d` decimal(8,2) unsigned NOT NULL default '0.00',
+  `price_y` decimal(8,2) unsigned NOT NULL DEFAULT '0.00',
+  `price_m` decimal(8,2) unsigned NOT NULL DEFAULT '0.00',
+  `price_d` decimal(8,2) unsigned NOT NULL DEFAULT '0.00',
   `icon` char(30) NOT NULL,
   `usernamecolor` char(7) NOT NULL,
   `description` char(100) NOT NULL,
-  `sort` tinyint(3) unsigned NOT NULL default '0',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`groupid`),
+  `sort` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`groupid`),
   KEY `disabled` (`disabled`),
   KEY `listorder` (`sort`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
@@ -5246,18 +5486,18 @@ INSERT INTO `cp_member_group` VALUES ('7', '邮件认证', '1', '0', '0', '0', '
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_member_menu`;
 CREATE TABLE `cp_member_menu` (
-  `id` smallint(6) unsigned NOT NULL auto_increment,
-  `name` char(40) NOT NULL default '',
-  `parentid` smallint(6) NOT NULL default '0',
-  `m` char(20) NOT NULL default '',
-  `c` char(20) NOT NULL default '',
-  `a` char(20) NOT NULL default '',
-  `data` char(100) NOT NULL default '',
-  `listorder` smallint(6) unsigned NOT NULL default '0',
-  `display` enum('1','0') NOT NULL default '1',
-  `isurl` enum('1','0') NOT NULL default '0',
-  `url` char(255) NOT NULL default '',
-  PRIMARY KEY  (`id`),
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(40) NOT NULL DEFAULT '',
+  `parentid` smallint(6) NOT NULL DEFAULT '0',
+  `m` char(20) NOT NULL DEFAULT '',
+  `c` char(20) NOT NULL DEFAULT '',
+  `a` char(20) NOT NULL DEFAULT '',
+  `data` char(100) NOT NULL DEFAULT '',
+  `listorder` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `display` enum('1','0') NOT NULL DEFAULT '1',
+  `isurl` enum('1','0') NOT NULL DEFAULT '0',
+  `url` char(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
   KEY `listorder` (`listorder`),
   KEY `parentid` (`parentid`),
   KEY `module` (`m`,`c`,`a`)
@@ -5275,7 +5515,7 @@ INSERT INTO `cp_member_menu` VALUES ('3', 'favorite', '0', 'member', 'index', 'f
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_member_verify`;
 CREATE TABLE `cp_member_verify` (
-  `userid` mediumint(8) unsigned NOT NULL auto_increment,
+  `userid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `username` char(20) NOT NULL,
   `password` char(32) NOT NULL,
   `encrypt` char(6) NOT NULL,
@@ -5283,15 +5523,15 @@ CREATE TABLE `cp_member_verify` (
   `regdate` int(10) unsigned NOT NULL,
   `regip` char(15) NOT NULL,
   `email` char(32) NOT NULL,
-  `modelid` tinyint(3) unsigned NOT NULL default '0',
-  `point` smallint(5) unsigned NOT NULL default '0',
-  `amount` decimal(8,2) unsigned NOT NULL default '0.00',
-  `modelinfo` char(255) NOT NULL default '0',
-  `status` tinyint(1) unsigned NOT NULL default '0',
-  `siteid` tinyint(1) unsigned NOT NULL default '1',
-  `message` char(100) default NULL,
-  `mobile` char(11) NOT NULL default '',
-  PRIMARY KEY  (`userid`),
+  `modelid` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `point` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `amount` decimal(8,2) unsigned NOT NULL DEFAULT '0.00',
+  `modelinfo` char(255) NOT NULL DEFAULT '0',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `siteid` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `message` char(100) DEFAULT NULL,
+  `mobile` char(11) NOT NULL DEFAULT '',
+  PRIMARY KEY (`userid`),
   UNIQUE KEY `username` (`username`),
   KEY `email` (`email`(20))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -5305,7 +5545,7 @@ CREATE TABLE `cp_member_verify` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_member_vip`;
 CREATE TABLE `cp_member_vip` (
-  `userid` mediumint(8) unsigned NOT NULL default '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   UNIQUE KEY `userid` (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5318,21 +5558,21 @@ CREATE TABLE `cp_member_vip` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_menu`;
 CREATE TABLE `cp_menu` (
-  `id` smallint(6) unsigned NOT NULL auto_increment,
-  `name` char(40) NOT NULL default '',
-  `parentid` smallint(6) NOT NULL default '0',
-  `m` char(20) NOT NULL default '',
-  `c` char(20) NOT NULL default '',
-  `a` char(20) NOT NULL default '',
-  `data` char(100) NOT NULL default '',
-  `listorder` smallint(6) unsigned NOT NULL default '0',
-  `display` enum('1','0') NOT NULL default '1',
-  `project1` tinyint(1) unsigned NOT NULL default '1',
-  `project2` tinyint(1) unsigned NOT NULL default '1',
-  `project3` tinyint(1) unsigned NOT NULL default '1',
-  `project4` tinyint(1) unsigned NOT NULL default '1',
-  `project5` tinyint(1) unsigned NOT NULL default '1',
-  PRIMARY KEY  (`id`),
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(40) NOT NULL DEFAULT '',
+  `parentid` smallint(6) NOT NULL DEFAULT '0',
+  `m` char(20) NOT NULL DEFAULT '',
+  `c` char(20) NOT NULL DEFAULT '',
+  `a` char(20) NOT NULL DEFAULT '',
+  `data` char(100) NOT NULL DEFAULT '',
+  `listorder` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `display` enum('1','0') NOT NULL DEFAULT '1',
+  `project1` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `project2` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `project3` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `project4` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `project5` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
   KEY `listorder` (`listorder`),
   KEY `parentid` (`parentid`),
   KEY `module` (`m`,`c`,`a`)
@@ -5636,16 +5876,16 @@ INSERT INTO `cp_menu` VALUES ('1529', 'checkfile', '1528', 'upgrade', 'index', '
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_model`;
 CREATE TABLE `cp_model` (
-  `modelid` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `modelid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` char(30) NOT NULL,
   `description` char(100) NOT NULL,
   `tablename` char(20) NOT NULL,
   `setting` text NOT NULL,
-  `addtime` int(10) unsigned NOT NULL default '0',
-  `items` smallint(5) unsigned NOT NULL default '0',
-  `enablesearch` tinyint(1) unsigned NOT NULL default '1',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `items` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `enablesearch` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `default_style` char(30) NOT NULL,
   `category_template` char(30) NOT NULL,
   `list_template` char(30) NOT NULL,
@@ -5656,7 +5896,7 @@ CREATE TABLE `cp_model` (
   `member_list_template` varchar(30) NOT NULL,
   `sort` tinyint(3) NOT NULL,
   `type` tinyint(1) NOT NULL,
-  PRIMARY KEY  (`modelid`),
+  PRIMARY KEY (`modelid`),
   KEY `type` (`type`,`siteid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
@@ -5677,15 +5917,15 @@ INSERT INTO `cp_model` VALUES ('14', '1', '中奖', '', 'price', '', '0', '0', '
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_model_field`;
 CREATE TABLE `cp_model_field` (
-  `fieldid` mediumint(8) unsigned NOT NULL auto_increment,
-  `modelid` smallint(5) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `fieldid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `modelid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `field` varchar(20) NOT NULL,
   `name` varchar(30) NOT NULL,
   `tips` text NOT NULL,
   `css` varchar(30) NOT NULL,
-  `minlength` int(10) unsigned NOT NULL default '0',
-  `maxlength` int(10) unsigned NOT NULL default '0',
+  `minlength` int(10) unsigned NOT NULL DEFAULT '0',
+  `maxlength` int(10) unsigned NOT NULL DEFAULT '0',
   `pattern` varchar(255) NOT NULL,
   `errortips` varchar(255) NOT NULL,
   `formtype` varchar(20) NOT NULL,
@@ -5693,18 +5933,18 @@ CREATE TABLE `cp_model_field` (
   `formattribute` varchar(255) NOT NULL,
   `unsetgroupids` varchar(255) NOT NULL,
   `unsetroleids` varchar(255) NOT NULL,
-  `iscore` tinyint(1) unsigned NOT NULL default '0',
-  `issystem` tinyint(1) unsigned NOT NULL default '0',
-  `isunique` tinyint(1) unsigned NOT NULL default '0',
-  `isbase` tinyint(1) unsigned NOT NULL default '0',
-  `issearch` tinyint(1) unsigned NOT NULL default '0',
-  `isadd` tinyint(1) unsigned NOT NULL default '0',
-  `isfulltext` tinyint(1) unsigned NOT NULL default '0',
-  `isposition` tinyint(1) unsigned NOT NULL default '0',
-  `listorder` mediumint(8) unsigned NOT NULL default '0',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
-  `isomnipotent` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`fieldid`),
+  `iscore` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `issystem` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isunique` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isbase` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `issearch` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isfulltext` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isposition` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `listorder` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isomnipotent` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`fieldid`),
   KEY `modelid` (`modelid`,`disabled`),
   KEY `field` (`field`,`modelid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=178 DEFAULT CHARSET=utf8;
@@ -5866,15 +6106,15 @@ CREATE TABLE `cp_module` (
   `module` varchar(15) NOT NULL,
   `name` varchar(20) NOT NULL,
   `url` varchar(50) NOT NULL,
-  `iscore` tinyint(1) unsigned NOT NULL default '0',
-  `version` varchar(50) NOT NULL default '',
+  `iscore` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `version` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL,
   `setting` mediumtext NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
-  `installdate` date NOT NULL default '0000-00-00',
-  `updatedate` date NOT NULL default '0000-00-00',
-  PRIMARY KEY  (`module`)
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `installdate` date NOT NULL DEFAULT '0000-00-00',
+  `updatedate` date NOT NULL DEFAULT '0000-00-00',
+  PRIMARY KEY (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -5905,59 +6145,73 @@ INSERT INTO `cp_module` VALUES ('upgrade', '在线升级', '', '0', '1.0', '', '
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_news`;
 CREATE TABLE `cp_news` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typeid` smallint(5) unsigned NOT NULL,
-  `title` varchar(80) NOT NULL default '',
-  `style` char(24) NOT NULL default '',
-  `thumb` varchar(100) NOT NULL default '',
-  `keywords` char(40) NOT NULL default '',
+  `title` varchar(80) NOT NULL DEFAULT '',
+  `style` char(24) NOT NULL DEFAULT '',
+  `thumb` varchar(100) NOT NULL DEFAULT '',
+  `keywords` char(40) NOT NULL DEFAULT '',
   `description` mediumtext NOT NULL,
-  `posids` tinyint(1) unsigned NOT NULL default '0',
+  `posids` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(100) NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `status` tinyint(2) unsigned NOT NULL default '1',
-  `sysadd` tinyint(1) unsigned NOT NULL default '0',
-  `islink` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sysadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `status` (`status`,`listorder`,`id`),
   KEY `listorder` (`catid`,`status`,`listorder`,`id`),
   KEY `catid` (`catid`,`status`,`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_news
 -- ----------------------------
 INSERT INTO `cp_news` VALUES ('1', '11', '0', '首页顶部滚动内容', '', '', '', '首页顶部滚动内容', '0', '/index.php?m=content&c=index&a=show&catid=11&id=1', '0', '99', '1', '0', 'any', '1528338377', '1528982278');
-INSERT INTO `cp_news` VALUES ('2', '16', '0', '“倍投”出手！三人各擒百万奖', '', '/uploadfile/2018/0613/20180613072258249.jpg', '', '众所周知，买彩票倍投奖金高。近日江苏苏州266万、河北邯郸250万以及江苏宿迁150万元得主现身领奖。这三个大奖出自体彩大乐透或排列5。幸运   ', '0', 'http://www.5117188.com/html/2018/xinwen_0607/2.html', '0', '99', '1', '0', 'any', '1528342048', '1528888977');
+INSERT INTO `cp_news` VALUES ('2', '16', '0', '“倍投”出手！三人各擒百万奖', '', '/uploadfile/2018/0613/20180613072258249.jpg', '', '众所周知，买彩票倍投奖金高。近日江苏苏州266万、河北邯郸250万以及江苏宿迁150万元得主现身领奖。这三个大奖出自体彩大乐透或排列5。幸运   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=2', '0', '99', '1', '0', 'any', '1528342048', '1528888977');
 INSERT INTO `cp_news` VALUES ('3', '21', '0', '帮助中心', '', '', '', '帮助中心', '0', 'http://www.5117188.com/2018/help_0611/3.html', '0', '99', '1', '0', 'any', '1528717800', '1528718223');
 INSERT INTO `cp_news` VALUES ('12', '22', '0', '正式试运行！', '', '', '', '在大家都在为世界杯狂欢之际，皇家彩票平台也正式步入了试运营阶段，在些祝各位彩民朋友们手气佳佳发大财！', '0', '/index.php?m=content&c=index&a=show&catid=22&id=12', '0', '99', '1', '0', 'admin', '1528982446', '1528982584');
-INSERT INTO `cp_news` VALUES ('13', '16', '0', '世界杯今日开锣 竞彩之旅即刻启程', '', 'http://www.lottery.gov.cn/upload/20180614/20180614074503173.jpg', '', '北京时间6月14日23:00，2018世界杯揭幕战将在莫斯科卢日尼基体育场开战，东道主俄罗斯主场对阵沙特。未来一个月里，32支国家队在俄罗斯激情   ', '0', 'http://www.5117188.com/html/2018/xinwen_0614/13.html', '0', '99', '1', '0', 'admin', '1528982822', '1528982860');
+INSERT INTO `cp_news` VALUES ('13', '16', '0', '世界杯今日开锣 竞彩之旅即刻启程', '', 'http://www.lottery.gov.cn/upload/20180614/20180614074503173.jpg', '', '北京时间6月14日23:00，2018世界杯揭幕战将在莫斯科卢日尼基体育场开战，东道主俄罗斯主场对阵沙特。未来一个月里，32支国家队在俄罗斯激情   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=13', '0', '99', '1', '0', 'admin', '1528982822', '1528982860');
 INSERT INTO `cp_news` VALUES ('8', '24', '0', '底部友情提示', '', '', '', '底部友情提示', '0', '/index.php?m=content&c=index&a=show&catid=24&id=8', '0', '99', '1', '0', 'admin', '1528947260', '1528982387');
-INSERT INTO `cp_news` VALUES ('9', '28', '0', '玩法1', '', '/uploadfile/2018/0607/20180607111129229.png', '', '玩法1玩法1玩法1玩法1', '0', '/index.php?m=content&c=index&a=show&catid=28&id=9', '0', '99', '1', '0', 'admin', '1528955286', '1528955299');
-INSERT INTO `cp_news` VALUES ('10', '28', '0', '玩法12', '', '/uploadfile/2018/0607/20180607111136451.png', '', '玩法1', '0', '/index.php?m=content&c=index&a=show&catid=28&id=10', '0', '99', '1', '0', 'admin', '1528955302', '1528955309');
-INSERT INTO `cp_news` VALUES ('11', '28', '0', '玩法13', '', '/uploadfile/2018/0607/20180607111136451.png', '', '玩法1', '0', '/index.php?m=content&c=index&a=show&catid=28&id=11', '0', '99', '1', '0', 'admin', '1528955311', '1528955318');
-INSERT INTO `cp_news` VALUES ('14', '16', '0', '急寻：义乌双色球738万元大奖得主', '', '/uploadfile/2018/0614/20180614093035494.jpg', '', '4月17日晚，中国福利彩票双色球游戏进行第2018043期开奖，当期全国中出6注一等奖，单注奖金为738万多元，浙江义乌彩民喜中1注一等奖，出自   ', '0', 'http://www.5117188.com/html/2018/xinwen_0614/14.html', '0', '99', '1', '0', 'admin', '1528982982', '1528983034');
+INSERT INTO `cp_news` VALUES ('9', '28', '0', '北京11选5', '', '/uploadfile/2018/0615/20180615044028641.png', '', '', '0', '/index.php?m=content&c=index&a=show&catid=28&id=9', '0', '99', '1', '0', 'admin', '1528955286', '1529052035');
+INSERT INTO `cp_news` VALUES ('30', '16', '0', '体彩公益金护航竞技体育 助力全国体操赛', '', '/uploadfile/2018/0615/20180615045048829.jpg', '', '体彩公益金对于《奥运争光计划》的支持源于1995年，20多年来，为我国体育健儿改善了训练条件，帮助他们提高运动成绩，在国际赛事上为国争光   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=30', '0', '99', '1', '0', 'admin', '1529052615', '1529052647');
+INSERT INTO `cp_news` VALUES ('14', '16', '0', '急寻：义乌双色球738万元大奖得主', '', '/uploadfile/2018/0614/20180614093035494.jpg', '', '4月17日晚，中国福利彩票双色球游戏进行第2018043期开奖，当期全国中出6注一等奖，单注奖金为738万多元，浙江义乌彩民喜中1注一等奖，出自   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=14', '0', '99', '1', '0', 'admin', '1528982982', '1528983034');
+INSERT INTO `cp_news` VALUES ('15', '16', '0', '辽宁盘锦彩民从垃圾中找回中奖彩票', '', '/uploadfile/2018/0614/20180614094503414.png', '', '彩票是兑奖的重要凭证，辽宁盘锦曾有彩民因彩票丢失而发生750万元大奖弃领的事件。最近，这样的事情又差点重演。任先生（化名）是位老彩民   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=15', '0', '99', '1', '0', 'admin', '1528983875', '1528983901');
+INSERT INTO `cp_news` VALUES ('16', '16', '0', '1058万元大奖得主：洗衣服前一定要翻裤兜', '', '/uploadfile/2018/0614/20180614094558242.png', '', '6月3日晚，福彩双色球第18063期，全国开出27注一等奖，单注奖金529万元。武汉市硚口区中出一注一等奖、青山区中出两注一等奖。6月4日一大早   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=16', '0', '99', '1', '0', 'admin', '1528983920', '1528983956');
+INSERT INTO `cp_news` VALUES ('17', '16', '0', '这群江津孩子的六一礼物就是一场普通行走', '', 'http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295884_500x500.jpg', '', '向阳儿童发展中心创始人之一的李宝珍老师孩子们现场表演击鼓六一儿童节，一个让众多孩子收到各种祝福和礼物的日子，但有一群江津孩子的六一   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=17', '0', '99', '1', '0', 'admin', '1528983972', '1528983996');
+INSERT INTO `cp_news` VALUES ('18', '16', '0', '广州福彩今年征召100家投注站', '', '', '', '日前，广州市福彩中心发布公告：经广州市民政局和广东省福彩中心批准，向全社会公开征召100家投注站，代销电脑型（不含快乐十分玩法）和即   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=18', '0', '99', '1', '0', 'admin', '1528984010', '1528984030');
+INSERT INTO `cp_news` VALUES ('19', '16', '0', '世界杯足彩来了，猜不猜，怎么猜，全看你的了！', '', '', '', '　世界杯来了，怎么能不玩竞彩呢？　　根据竞彩游戏销售安排，本届世界杯赛的全部64场比赛均可进行胜平负（或让球胜平负）单场投注，也可进   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=19', '0', '99', '1', '0', 'admin', '1528984122', '1528984164');
+INSERT INTO `cp_news` VALUES ('20', '16', '0', '砍下916万大奖 这一回露脸的不是单式票', '', '', '', '6月2日，体彩大乐透第18063期开奖后，1注916万元头奖喜降京城。值得一提的是，这注大奖的诞生是拜一张双区胆拖复式票所赐。这也是北京地区   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=20', '0', '99', '1', '0', 'admin', '1528984200', '1528984229');
+INSERT INTO `cp_news` VALUES ('21', '16', '0', '京城彩站晒红单：北单9串1惊现1574倍回报', '', '/uploadfile/2018/0614/20180614095128803.jpg', '', '本期京城彩站晒红单栏目一共展示四张票，分别出自北单、竞彩和排列3（两张）。　　中奖25187元 回报1574倍。这是一张北单足球胜平负9串1高   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=21', '0', '99', '1', '0', 'admin', '1528984252', '1528984286');
+INSERT INTO `cp_news` VALUES ('22', '16', '0', '豪取1.25亿！三个大乐透大奖暗藏“关键词”', '', '/uploadfile/2018/0614/20180614095213990.jpg', '', '　他们擒获三个大奖，一共只花了57元，累计夺奖金额却高达1 25亿元！是的，这样的剧情就发生在北京，发生在不久前刚刚结束的体彩大乐透6亿   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=22', '0', '99', '1', '0', 'admin', '1528984306', '1528984332');
+INSERT INTO `cp_news` VALUES ('23', '16', '0', '头奖空开 7星彩奖池金额662万元', '', '', '', '2018年6月12日，体育彩票7星彩玩法第18067期开奖，本期7星彩头奖空开，当期开奖过后，7星彩奖池金额为662万元。据开奖公告显示，本期7星彩   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=23', '0', '99', '1', '0', 'admin', '1528984375', '1528984393');
+INSERT INTO `cp_news` VALUES ('24', '16', '0', '6-15周五足球重点赛事推荐', '', '', '', '周五002 世界杯 埃及VS乌拉圭 比赛时间：2018-06-15 20:00 投注提点：埃及近期6场比赛不胜，球队核心萨拉赫因伤出战成疑；乌拉圭热身   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=24', '0', '99', '1', '0', 'admin', '1528984438', '1528984461');
+INSERT INTO `cp_news` VALUES ('25', '16', '0', '奖池升至58.74亿 体彩大乐透开2注1000万', '', '', '', '6月13日，体彩大乐透第18068期前区开出号码08、12、16、26、33，后区开出号码05、06。河南购彩者包揽2注头奖本期全国共开出2注头奖，单注奖   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=25', '0', '99', '1', '0', 'admin', '1528984516', '1528984536');
+INSERT INTO `cp_news` VALUES ('26', '16', '0', '彩市新语：竞彩游戏即将接过世界杯第三棒', '', '', '', '世界杯四年一届。每隔四年，足球的天空都会掠过一道万众瞩目的彩虹。从2010年开始，这道彩虹中多了一抹叫作竞彩的亮色。　　如果把每届世界   ', '0', '/index.php?m=content&c=index&a=show&catid=16&id=26', '0', '99', '1', '0', 'admin', '1528984621', '1528984644');
+INSERT INTO `cp_news` VALUES ('27', '22', '0', '推荐注册有返利', '', '', '', '推荐注册会员后，推荐的会员的流水返推荐人0 2%的佣金。详情请联系客服。', '0', '/index.php?m=content&c=index&a=show&catid=22&id=27', '0', '99', '1', '0', 'admin', '1529031091', '1529031181');
+INSERT INTO `cp_news` VALUES ('28', '22', '0', '注册送好礼', '', '', '', '从今日起，凡注册成为会员就送18元礼金！了解详情请联系客服人员。', '0', '/index.php?m=content&c=index&a=show&catid=22&id=28', '0', '99', '1', '0', 'admin', '1529031193', '1529031260');
+INSERT INTO `cp_news` VALUES ('29', '22', '0', '签到得礼金', '', '', '', '注册会员后，每天签到都可得到相应的礼金！详情请咨询客服人员。', '0', '/index.php?m=content&c=index&a=show&catid=22&id=29', '0', '99', '1', '0', 'admin', '1529031266', '1529031320');
 
 -- ----------------------------
 -- Table structure for `cp_news_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_news_data`;
 CREATE TABLE `cp_news_data` (
-  `id` mediumint(8) unsigned default '0',
+  `id` mediumint(8) unsigned DEFAULT '0',
   `content` mediumtext NOT NULL,
   `groupids_view` varchar(100) NOT NULL,
   `paginationtype` tinyint(1) NOT NULL,
   `maxcharperpage` mediumint(6) NOT NULL,
   `template` varchar(30) NOT NULL,
-  `paytype` tinyint(1) unsigned NOT NULL default '0',
-  `relation` varchar(255) NOT NULL default '',
-  `voteid` mediumint(8) unsigned NOT NULL default '0',
-  `allow_comment` tinyint(1) unsigned NOT NULL default '1',
-  `copyfrom` varchar(100) NOT NULL default '',
+  `paytype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `relation` varchar(255) NOT NULL DEFAULT '',
+  `voteid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `allow_comment` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `copyfrom` varchar(100) NOT NULL DEFAULT '',
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5970,23 +6224,37 @@ INSERT INTO `cp_news_data` VALUES ('3', '<div class=\"help-wrap\">\r\n<h3 id=\"h
 INSERT INTO `cp_news_data` VALUES ('12', '在大家都在为世界杯狂欢之际，皇家彩票平台也正式步入了试运营阶段，在些祝各位彩民朋友们手气佳佳发大财！', '', '0', '0', '', '0', '', '0', '1', '');
 INSERT INTO `cp_news_data` VALUES ('13', '<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">北京时间6月14日23:00，2018世界杯揭幕战将在莫斯科卢日尼基体育场开战，东道主俄罗斯主场对阵沙特。未来一个月里，32支国家队在俄罗斯激情碰撞，剑指大力神杯。虽然赛场远在欧洲大陆，但是中国的球迷同样可以感受到来自世界杯的气息。在世界杯期间，中国体育彩票竞彩游戏将开售世界杯全部64场比赛，以及冠军、冠亚军球队竞猜，为广大球迷和购彩者搭建了一个参与世界杯，感受世界杯激情的平台。</span></div>\r\n<p style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); padding-bottom: 0px; font-style: normal; text-align: center; padding-top: 0px; padding-left: 10px; orphans: 2; widows: 2; margin: 0px; letter-spacing: normal; padding-right: 10px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"http://www.lottery.gov.cn/upload/20180614/20180614074503173.jpg\" style=\"border-top: 0px; height: 306px; border-right: 0px; width: 550px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></span></p>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　东道主揭幕战力争开门红</strong></span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　本届世界杯终于要拉开帷幕，&ldquo;竞彩之旅&rdquo;也正式启程。这届揭幕战被视为历届世界杯最弱的揭幕战，两队在最新公布的国际足联排名中位居本届世界杯的倒数两名，其中东道主俄罗斯更是32强中排名最低的。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　东道主俄罗斯世界杯前进行了两场热身赛，分别0比1输给奥地利、1比1战平土耳其，至此俄罗斯在热身赛中已经连续7场不胜，糟糕的战绩也让他们在新一期的国际足联排名中下降了4位。沙特阿拉伯世界杯前进行了三场热身赛全败，分别1比2意大利、0比3秘鲁、1比2德国队。俄罗斯近期热身赛连战不胜，相对低迷的状态加上缺少实力派球星，出线前景多少令人担忧，球队的底线是避免再现2010年世界杯东道主南非未能出线的尴尬，为此小组赛对手设计、赛程安排都下足了功夫。揭幕战对手沙特阿拉伯是32强中公认实力最弱的，作为欧洲球队，俄罗斯毕竟各方面都占据一定优势，加上东道主的便利，俄罗斯一定会力争开门红，相信这次比赛也能让更多购彩者取得开门红。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　64场比赛全程单场竞猜</strong></span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　根据竞彩游戏销售安排，本届世界杯全部64场比赛均可进行胜平负（或让球胜平负）单场竞猜，也可进行总进球数、半全场胜平负、比分等玩法的单场投注，其中世界杯前两轮小组赛的32场比赛6月7日便可以进行投注，第三轮小组赛将从6月21日起陆续开始陆续接收投注。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　传统足彩6月期间共有4期胜负游戏（第18075期-18078期）、9期6场半全场游戏（第18075期-18083期）和14期4场进球游戏（第18075期-18088期）奖期含有世界杯比赛，其中14场胜负游戏第18075期、第18076期和第18077期全部由世界杯小组赛组成，第18078期预计由世界杯与挪超混搭组成。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　世界杯期间竞彩足球游戏将大幅延长销售时间，保证购彩者有充足的购彩时间。根据初步安排，世界杯期间（2018年6月14日-7月15日），各比赛日竞彩游戏停售时间将延后至次日凌晨最后一场世界杯比赛开赛时间（次日凌晨02:00或03:00），若当日最后一场世界杯比赛开赛时间早于24:00，则停售时间为当日24:00。世界杯休赛日停售时间为当日24:00，遇周末不再延后停售竞彩足球、篮球各游戏。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　玩竞彩，感受世界杯</strong></span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　竞彩是一种以竞猜足球、篮球等赛事为主的体育彩票。2009年，竞彩率先把国际先进的固定奖金引入到足球和篮球游戏当中，既增加了游戏的吸引力，也更加符合体育竞赛和彩票竞猜的完美结合。自诞生以来，竞彩连续8年销量大幅增长，2017年销量突破800亿元，助力中国体育彩票年度总销量首次突破2000亿元大关，筹集体彩公益金500多亿元。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　竞彩的最大特点是趣味性强，玩法多样，技术性强，不论是新、老购彩者还是体育爱好者，都能从中找到属于自己乐趣。竞彩的竞猜对象以国际足球和篮球赛事为主，包括猜胜平负、猜比分、猜进球数等多种游戏方法，本届世界杯期间，还开售了冠军竞猜和冠亚军竞猜游戏，既挑战球迷的智慧，也让比赛更加悬念迭生。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　竞彩游戏在全国31个省区市的10万多家体育彩票竞彩网点销售，世界杯期间各地还会在部分酒吧、商业设施、社区等增加临时销售终端。参与竞彩游戏，带给球迷和购彩者的不仅是智力比拼的舞台，更是一种&ldquo;乐活&rdquo;的生活方式。这将让越来越多的购彩者和球迷在享受足球盛宴的同时，体验到花样翻新的竞彩乐趣。作为中国体育彩票的独有产品，竞彩在给购彩者带来竞猜趣味的同时，也履行着国家公益彩票的职能，将筹集更多的公益金用于全民健身等各类社会公益事业。</span></div>\r\n<p><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</span></p>\r\n<div class=\"main_content_edit\" style=\"font-size: 14px; height: 60px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: bold; color: rgb(48,48,48); padding-bottom: 10px; font-style: normal; text-align: right; orphans: 2; widows: 2; letter-spacing: normal; line-height: 60px; padding-right: 20px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">(编辑：郭晨曦)</span></div>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
 INSERT INTO `cp_news_data` VALUES ('8', '<p>2009-2018&copy; 皇家<span>彩票</span><br />\r\n<span class=\"c-grey\">皇家彩票郑重提示：彩票有风险，投注需谨慎。 不向未满18周岁的青少年出售彩。</span></p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
-INSERT INTO `cp_news_data` VALUES ('9', '玩法1', '', '0', '0', '', '0', '', '0', '1', '');
-INSERT INTO `cp_news_data` VALUES ('10', '玩法1', '', '0', '0', '', '0', '', '0', '1', '');
-INSERT INTO `cp_news_data` VALUES ('11', '玩法1', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('9', '<img src=\"/uploadfile/2018/0615/20180615043541650.png\" /><br />\r\n', '', '0', '0', '', '0', '', '0', '1', '');
 INSERT INTO `cp_news_data` VALUES ('14', '<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">4月17日晚，中国福利彩票双色球游戏进行第2018043期开奖，当期全国中出6注一等奖，单注奖金为738万多元，浙江义乌彩民喜中1注一等奖，出自义乌市大陈镇镇中南路39号第33175423彩票投注站，中奖彩票是一张10元机选票。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"/uploadfile/2018/0614/20180614093034991.jpg\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"急寻：738万大奖得主\" src=\"/uploadfile/2018/0614/20180614093035494.jpg\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"jpg\" title=\"急寻：738万大奖得主\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">中了双色球738万大奖，令人羡慕。然而，眼看着兑奖截止日越来越近，大奖得主却如此沉得住气，迟迟未现身，让大家担心。请义乌喜爱购买双色球的彩民，特别是在第33175423彩票投注站购买过2018043期双色球彩票的彩民们，赶紧拿出自己的彩票核对一下，这738万大奖是不是属于您的特别礼物？</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">特别提醒，6月19日是738万大奖的最后领奖期限，请中奖彩民赶紧到浙江省福彩中心（杭州市余杭区荆长路539号）领取，切莫让弃奖憾事发生。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('15', '<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">彩票是兑奖的重要凭证，辽宁盘锦曾有彩民因彩票丢失而发生750万元大奖弃领的事件。最近，这样的事情又差点重演。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">任先生（化名）是位老彩民，对各种彩票玩法都很熟悉，虽然没中过大奖，但是收获的小奖可不少。5月28日中午，任先生到位于盘锦市兴隆台区欧式小区步行街的盘锦福彩第193号投注站，分别投注了50倍的单选&ldquo;536&rdquo;、50倍的单选&ldquo;653&rdquo;和20倍的组六&ldquo;356&rdquo;。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"/uploadfile/2018/0614/20180614094502116.png\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"盘锦3D大奖彩票\" src=\"/uploadfile/2018/0614/20180614094503414.png\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"png\" title=\"盘锦3D大奖彩票\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">当天下午一点半左右，任先生又到位于盘锦市兴隆台区振兴公司花卉一条街的盘锦福彩第277号站打了一张彩票。当晚下班后，任先生路过中午买票的盘锦福彩第193号站，又买了一张彩票：对单选&ldquo;365&rdquo;、单选&ldquo;653&rdquo;和单选&ldquo;536&rdquo;分别投注了30倍。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"/uploadfile/2018/0614/20180614094508769.png\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"盘锦3D大奖彩票1\" src=\"/uploadfile/2018/0614/20180614094511710.png\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"png\" title=\"盘锦3D大奖彩票1\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"/uploadfile/2018/0614/20180614094512249.png\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"盘锦3D大奖彩票2\" src=\"/uploadfile/2018/0614/20180614094513455.png\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"png\" title=\"盘锦3D大奖彩票2\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">终于盼到了晚上开奖，当看到开奖号码是&ldquo;536&rdquo;的时候，任先生非常兴奋，但随后他发现中午打的那张240元的彩票不见了，而那张是中奖金额最多的，奖金5.5万元。他仔细回想，觉得彩票应该是落在投注站了，于是他马上联系了盘锦福彩第193号投注站的业主孙健，孙健立即告诉服务员不要将当天的垃圾和废票扔掉，并把所有的垃圾都收集在箱子里封存起来。第二天一大早，任先生到盘锦福彩第193号投注站，和站内的服务员一点一点地清点垃圾，终于找到了那张失而复得的彩票。任先生十分感谢盘锦福彩第193号投注站的业主和服务员。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">在此提醒广大彩民：请妥善保管好自己购买的彩票，中奖后请及时兑奖。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('16', '<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"/uploadfile/2018/0614/20180614094557497.png\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"1058万彩票\" src=\"/uploadfile/2018/0614/20180614094558242.png\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"png\" title=\"1058万彩票\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">6月3日晚，福彩双色球第18063期，全国开出27注一等奖，单注奖金529万元。武汉市硚口区中出一注一等奖、青山区中出两注一等奖。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">6月4日一大早，硚口区彩民便来到湖北省福彩中心兑领了奖金，而收获两注头奖的青山区彩民却迟迟不见踪影。直到6月11日中午，彩民小陆（化姓）才终于来到湖北省福彩中心兑奖室兑奖，并讲述了自己&ldquo;迟到&rdquo;的原因。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">彩票睡在裤兜里</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">小陆是一名95后，大学毕业后留在武汉工作，现在在青山区某公司做技术员。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">小陆每次买彩票后，都不及时核对，而是等彩票积累得比较多了，才去看看是否有奖。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">6月10日晚，小陆准备洗衣服，他先把裤兜里的好几张彩票拿出来放在一边，再把衣服塞进洗衣机。在洗衣机的嗡嗡声中，他拿出手机，一张一张核对彩票上的号码。&ldquo;当发现其中一张彩票与大奖号码一模一样时，我的心一下子扑通扑通跳个不停。&rdquo;小陆承认，自己的确是个马虎人。6月2日买完彩票后，他还到同一家投注站买了彩票，也知道该投注站中出了千万元大奖，但就是没想到中奖人可能是自己。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">就这样，他裤兜里装着价值千万元的彩票，一如既往地过着自己的日子。回想起大奖彩票放在裤兜里近10天，真是又喜悦又后怕。小陆幽默地总结说：&ldquo;洗衣服前，一定要翻一翻裤兜。&rdquo;</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">小额投注 一举三得</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">小陆是个福彩新兵，每次投入不多，总是机选，而且习惯于机选两注，分别两倍倍投，一共8元钱。小陆觉得，这样做不仅体现了&ldquo;要想发，不离8&rdquo;的好彩头，又有博取大奖的希望，还不影响生活，是一举三得。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">给父母买套房</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">对于奖金的使用，小陆说：&ldquo;我刚刚进入社会时间不长，就中了一千多万元的一等奖，这要感谢福彩给我的第一桶金。我还年轻，不能因为这笔意外之财就放松努力。回去后，该干嘛还干嘛，只当此事没发生过。如果以后有好项目，我也可能自己出来创业。&rdquo;直到兑奖的时候，他还没来得及把这件大事告诉父母亲，但小陆说，准备用奖金给父母亲买一套房。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('17', '<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295884.jpg\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"向阳儿童发展中心创始人之一的李宝珍老师\" src=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295884_500x500.jpg\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"jpg\" title=\"向阳儿童发展中心创始人之一的李宝珍老师\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">向阳儿童发展中心创始人之一的李宝珍老师</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295885.jpg\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"孩子们现场表演击鼓。\" src=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295885_500x500.jpg\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"jpg\" title=\"孩子们现场表演击鼓。\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">孩子们现场表演击鼓</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&ldquo;六一&rdquo;儿童节，一个让众多孩子收到各种祝福和礼物的日子，但有一群江津孩子的&ldquo;六一&rdquo;礼物很特别&mdash;&mdash;在家长和爱心人士的共同扶持下完成普通行走。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">这些孩子，全部是江津向阳儿童发展中心的特殊孩子，他们当中，有脑瘫患者、唐氏儿、自闭症孩子&hellip;&hellip;当天，这些特殊孩子从江津时代广场出发，完成了自己的第十三届&ldquo;快乐自由行健走比赛&rdquo;。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295886.jpg\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"整队出发\" src=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295886_500x500.jpg\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"jpg\" title=\"整队出发\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">整队出发</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">20年来，江津向阳儿童发展中心发展规模由小到大，已先后为包括脑瘫儿、唐氏儿、智力障碍、发育迟缓、自闭症等不同特殊孩子的数百户家庭提供服务。这些特殊孩子通过长期、系统的康复教育，不仅生活可以自理，还能学习文化知识，并掌握一定的绘画、舞蹈等技能。与同类机构有所不同，该中心对绝大多数特殊孩子进行的是免费康复教育。此举为众多特殊孩子家庭缓解了巨大的经济压力。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295887.jpg\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"爱心捐赠\" src=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295887_500x500.jpg\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"jpg\" title=\"爱心捐赠\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">爱心捐赠</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">为了让这123名特殊孩子感受到更多的来自社会大家庭的温暖，江津福彩还在此次活动中进行了捐赠慰问，以实际行动践行&ldquo;扶老、助残、救孤、济困&rdquo;的发行宗旨，通过关爱活动，帮助孩子们健康、快乐成长。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; max-width: 600px; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 0em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><a href=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295888.jpg\" style=\"box-sizing: border-box; font-size: 15px; text-decoration: none; max-width: 600px; background-color: transparent; text-indent: 0em\" target=\"_blank\"><img alt=\"特殊孩子同样拥有灿烂的笑容\" src=\"http://www.cwl.gov.cn/upload/resources/image/2018/06/08/295888_500x500.jpg\" style=\"box-sizing: border-box; max-width: 600px; border-top: medium none; height: auto; border-right: medium none; vertical-align: top; border-bottom: medium none; border-left: medium none\" suffix=\"jpg\" title=\"特殊孩子同样拥有灿烂的笑容\" /></a></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: center; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">特殊孩子同样拥有灿烂的笑容</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&ldquo;每个孩子的情况都有所不同，但他们同样能通过自己的努力拥有五彩缤纷的生活。&rdquo;与往年有所不同，参与孩子们到达终点后，将会在老师和工作人员指引下，脱下身上的白色T恤，用双手在上面绘出图画，用这一方式寄寓对未来的美好期望：用双手营造美好的未来。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('18', '<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">日前，广州市福彩中心发布公告：经广州市民政局和广东省福彩中心批准，向全社会公开征召100家投注站，代销电脑型（不含&ldquo;快乐十分&rdquo;玩法）和即开型福利彩票。有意申请办理投注站的朋友，即日起可递交申请材料。本次征召截至日期为2018年12月31日，额满即止。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">哪些人可以申请？</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">&mdash;&mdash;向非穗籍个人开放，遵循&ldquo;一人一站&rdquo;原则</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">据悉，本次征召投注站的申请人必须同时具备以下资格条件：一是持有有效的广州市常住户口或广州市居住证、年满18周岁且小于60周岁具有完全民事行为能力、有高中以上学历的个人，近五年内无刑事处罚记录和不良商业信用记录，非现有福彩投注站代销者或党政机关、事业单位公职人员；二是申请者必须直接参与投注站经营管理，必须配有销售福利彩票的专职人员，必须明确投注站的经营方式为专营福利彩票；三是有从事代销福利彩票业务相适应的资金（不少于5万元），在广州市内有满足福利彩票销售所需场所的所有权或使用权。需要特别注意的是，一个有效身份证只能提交一次申请（不含审核未通过者），同一申请人只能申请一个地址，投注站设立后一年后不得办理迁移。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">如何进行申请？</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">&mdash;&mdash;先审核后公示，公示结束即可设站</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">有意申请设站的朋友，可于工作日正常上班时间内前往广州市福彩中心电脑票销售部（西湖路99号17楼1706室）提交申请资料。申请人需提交有效身份证、户口本或居住证、学历证书等材料的原件和复印件，本人存折原件和复印件或银行出具的资金证明（可用资金量须在5万元以上），并提交中国福利彩票代销申请书、设立福利彩票投注站可行性分析报告，以及拟设投注站场所的铺位照片、详细地址和铺位所在百度地图上的标注图示等材料。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">广州市福彩中心提醒，申请人只有提交的材料齐备后才予以受理，获得受理流水号的先后即为审核办站地址优先次序的依据，受理情况每周汇总办理。广州市福彩中心将在受理之日起15个工作日内，对申请人提交的材料进行初审，并派专人对申请人申报站点地址进行实地考察，审核建筑规格、店铺面积、周边环境等是否达标，拟设投注站地址与其它福彩投注站距离是否达到500米以上等。申请地址与实际地址不一致或申请材料有不真实情况，视为无效申请，不通过审核。根据实地考察情况，确定入围资格名单，并在广州福彩网公示7天。公示期内如发现不符合设站条件的，取消设站资格。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">对经营场所有什么要求？</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">&mdash;&mdash;500米内无福彩站点，面积不少于15平米</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">据介绍，本次征召不指定区域，申请者可综合考虑地区经济状况、人口数量、市场发展程度、投注便利等因素，在广州市全市范围内自由选址，经营场所需同时具备以下条件：实际经营面积原则上不得小于15 平方米；选址500米范围内无其它福彩投注站（与其他先获得受理的申请人所提交的投注站地址同样适用500米距离限制）；不得使用临时搭建的房屋、铁皮屋及租赁拆迁屋等作为投注站专用场所；可安装中国电信福彩ADSL VPDN专线。值得一提的是，如果申请人所指定的经营场所符合《广州市福利彩票发行中心关于高标准福彩投注站增设&ldquo;快乐十分&rdquo;销售终端的通知》的，还可以申请增设&ldquo;快乐十分&rdquo;投注终端。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">本次征召活动相关公告已公布在&ldquo;广州福彩网&rdquo;（www.gzflcp.org.cn），有志于投身福利彩票公益事业的朋友，可上网查询或致电020-83366743咨询本次福彩投注站征召详情。</p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong style=\"box-sizing: border-box; font-size: 15px; font-weight: bold\">友情提醒：经营有风险，投资需谨慎</strong></p>\r\n<p style=\"box-sizing: border-box; font-size: 15px; word-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(51,51,51); padding-bottom: 12px; font-style: normal; text-align: justify; padding-top: 12px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px; letter-spacing: 2px; line-height: 30px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 2em; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">本次征召活动规定，投注站设立后一年内不得办理迁移，并在一年后纳入彩票销售区域淘汰制度管理。按广东省统一规定，广州市福彩中心将按9%向投注站计发电脑票代销费，按9%计发即开票代销费。在此，广州市福彩中心提醒有意申请办理投注站的朋友：申请前一定要充分调研拟设投注站场所的周边环境，做好投资可行性分析，认真评估经营风险，做到谨慎投资。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('19', '<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　世界杯来了，怎么能不玩竞彩呢？</strong></span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　根据竞彩游戏销售安排，本届世界杯赛的全部64场比赛均可进行胜平负（或让球胜平负）单场投注，也可进行总进球数、半全场胜平负、比分等玩法的单场投注。单场竞猜将显著增加购彩者中奖体验，尤其进入世界杯淘汰赛阶段，单场竞猜将让购彩者尽享&ldquo;一击制胜&rdquo;的竞猜乐趣。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　事实上，早在本届世界杯开幕前一周的6月7日，竞彩足球游戏就已经正式开售了俄罗斯世界杯小组赛前两轮共计32场比赛的投注，胜平负（或让球胜平负）、总进球数、半全场胜平负、比分等玩法均可接受单场投注。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　由于开售时间较早，京城购彩者有了更大的选择空间，可以选择最喜爱的球队进行投注，也可以选择最有把握的赛事参与竞猜。比如，钟情于阿根廷队的球迷可以把阿根廷队对阵冰岛队以及阿根廷队对阵克罗地亚队的前2场小组赛串在一起，进行竞彩2串1过关投注，胆大者可以单选阿根廷获胜，用两场胜利为这支南美劲旅订制一份竞彩专属的&ldquo;提前出线套餐&rdquo;。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　除小组赛前两轮32场比赛在6月7日就开始接受投注之外，对于世界杯小组赛第三轮对阵，竞彩游戏将于6月21日起开售。对于淘汰赛阶段的对阵，竞彩游戏将在小组赛全部结束、淘汰赛对阵揭晓之后的第一时间开售。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　玩北单！京城彩站尽享嘉年华</strong></span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　对于喜爱单场竞猜的京城彩友来说，欢度世界杯怎么能少了北单（北京单场）这道&ldquo;横菜&rdquo;？</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　在北京、天津、广东等三个联网销售地区，北单的拥趸阵容十分强大。由于最高串关场次可达15场，因此对于喜欢投注高串关的购彩者来说，玩北单无疑需要一颗大心脏，考验着&ldquo;勇敢的心&rdquo;。世界杯期间，北单足球胜平负、比分、总进球、半全场等游戏将开售全部64场对阵，在京城各家体彩店日常频频中出的&ldquo;高串关红单&rdquo;将重出江湖，挑逗人们的眼球。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　世界杯期间，以&ldquo;世界杯，该你上场&rdquo;为主题的体彩嘉年华系列活动还将在全国各地精彩上演，彩友们可以通过参与户外路演、花车巡游、足球宝贝走秀等方式投身嘉年华，与体彩一起助阵世界杯。据《中国体彩报》了解，北京地区很多体彩店都有计划在世界杯期间推出&ldquo;聚会+交流+购彩&rdquo;的一条龙服务举措，为京城彩友搭建世界杯&ldquo;京味嘉年华&rdquo;。</span></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><span style=\"font-size: 16px; font-family: 微软雅黑; white-space: normal; word-spacing: 0px; text-transform: none; float: none; font-weight: 400; color: rgb(203,1,0); font-style: normal; text-align: center; orphans: 2; widows: 2; display: inline !important; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　说时迟那时快，世界杯来了！对于皇城根下的购彩者来说，不论是玩足彩还是竞彩，不论是玩北单还是去彩站狂欢，都得记住那句话&mdash;&mdash;心动不如行动，麻利儿的您呐！（顾寒枫）</span></div>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('20', '<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">6月2日，体彩大乐透第18063期开奖后，1注916万元头奖喜降京城。值得一提的是，这注大奖的诞生是拜一张&ldquo;双区胆拖复式票&rdquo;所赐。这也是北京地区在经历了&ldquo;6亿元大派奖&rdquo;期间的连续三个&ldquo;单式票头奖&rdquo;之后，大乐透大奖首次迎来&ldquo;脱单&rdquo;之旅，而将2018年京城大乐透大奖的复式票与单式票的对决局势扳成了&ldquo;三比三平局&rdquo;。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　单式票暂时&ldquo;休养生息&rdquo;，胆拖票重出江湖。一时间，京城彩市再迎体彩大乐透的新话题：单式，复式，胆拖，您到底最爱哪一款？</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　&ldquo;双区胆拖&rdquo;发威</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　京城彩友夺奖916万</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　6月2日晚，体彩大乐透第18063期开奖，开奖号码为：前区05、14、15、32、34，后区03、10。当期大乐透全国销售2.45亿元，为社会筹集体彩公益金8842万元。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　据开奖公告显示，当期全国共计中出4注一等奖&mdash;&mdash;其中，2注为单注1466万元（含550万元追加奖金）的追加投注一等奖，全部出自四川；另外两注为单注916万元的基本投注头奖，分别出自北京和广东。北京中出的916万元头奖出自海淀区第50040体彩销售网点，中奖彩票为一张&ldquo;前区2胆11拖+后区1胆5拖&rdquo;的胆拖票，单票擒奖971万元。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　从国家体彩中心提供的当期大乐透开奖数据中不难看出，京城916万元大奖中奖者是在当期开奖的前一天在第50040体彩店进行投注的，具体投注时间为6月1日傍晚18点02分。从投注内容上看，这位购彩者选择了前区的15和34为胆码、03、05、08、13、14、21、23、27、28、31、32为拖码，后区03为胆码、01、02、08、09、10为拖码，单票投入1650元。开奖后，这张&ldquo;双区胆拖复式票&rdquo;一举命中一等奖1注、二等奖4注、三等奖24注、四等奖180注、五等奖392注、六等奖224注，可谓在各个奖项弹无虚发、皆有斩获，单票各奖级总揽971万余元奖金，单票中奖回报高达5887倍。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　&ldquo;单式&rdquo;三连发</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　 &ldquo;胆拖复式&rdquo;收复失地</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　需要注意的是，北京地区大奖得主命中916万元头奖的&ldquo;双区胆拖票&rdquo;，是一种在购彩者中通常被认为&ldquo;技术含量&rdquo;较高的投注方式。胆拖投注也是复式投注中的一种。在胆拖投注中，胆码是不容错的投注号码，而拖码是可容错的投注号码。由于胆拖投注的号码覆盖面广，因而一旦命中高奖级奖金，很可能会连带中出多个其它奖级的奖金。有趣的是，在第18063期916万元大奖爆出之前，北京地区中出的最近3个大乐透大奖并非出自此种投注方式，而是全部源于单式投注方式。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　5月12日晚，大乐透第18054期开奖后，北京市朝阳区第35217体彩店中出1注1244万元追加投注头奖，连同二等奖在内总揽奖1259万元。中奖票是一张单式4注追加投注单，单票投入仅有12元。5月15日，中奖者孙先生现身领走大奖。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　4月23日晚，大乐透第18046期开奖后，北京市朝阳区第35114体彩店中出1注1391万元大奖。中奖票是一张5注单式追加投注单，单票投入15元。5月7日，中奖者现身领走大奖。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　4月16日晚，大乐透第18043期开奖后，北京市门头沟区第39004体彩店中出9921万元巨奖。中奖者凭借合计投入30元的两张投注单独揽12注（其中6注采用追加投注）一等奖，总夺额9921万元。4月20日，一对退休夫妇现身北京市体彩中心领走了这个北京体彩史上一人独中的最高奖金。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　请注意，在经历了单式票&ldquo;大奖三连发&rdquo;之后，胆拖复式票终于发威&mdash;&mdash;在第18063期开奖后，胆拖投注票为京城彩友擒下1注916万元大奖，不但为购彩者中的&ldquo;胆拖复式派&rdquo;收复失地，而且也再次丰富了京城购彩者&ldquo;围捕&rdquo;大乐透大奖的&ldquo;预期选择&rdquo;。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　今年六个大奖</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　单式复式战成&ldquo;三比三&rdquo;</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　也许是巧合，在6月2日晚第18063期大乐透中出的4注一等奖中，胆拖投注占据了半壁江山，与单式票形成分庭抗礼之势。除北京中出的头奖出自胆拖票之外，当期广东中出的1注916万元头奖出自汕头市，中奖彩票也是一张胆拖复式票，为一张&ldquo;前区3胆6拖+后区2&rdquo;的前区胆拖投注单，单票擒奖919万元。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　此外，当期四川中出的2注单注1466万元的追加大奖则是出自一张投入仅有6元的2倍单式追加倍投票，全部落户于成都市同一体彩销售网点，单票擒奖高达2933万元。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　据统计，截至第18063期开奖，北京地区2018年已中出六个（累计17注）大乐透大奖，其中包括一个9921万元的近亿巨奖。在这六个大奖中，单式票与复式票战成&ldquo;三比三&rdquo;，难分高下。</div>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('21', '<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">本期&ldquo;京城彩站晒红单&rdquo;栏目一共展示四张票，分别出自北单、竞彩和排列3（两张）。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　中奖25187元/回报1574倍。这是一张北单足球胜平负9串1高串关&ldquo;红单&rdquo;，出自位于昌平区天通苑北一区2号楼110底商的I智慧竞彩店天通苑店，投入仅有16元，命中25187元。</div>\r\n<p style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); padding-bottom: 0px; font-style: normal; text-align: center; padding-top: 0px; padding-left: 10px; orphans: 2; widows: 2; margin: 0px; letter-spacing: normal; padding-right: 10px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"/uploadfile/2018/0614/20180614095128803.jpg\" style=\"border-top: 0px; height: 500px; border-right: 0px; width: 406px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></p>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　中奖2413元/回报12倍。这是一竞彩足球胜平负2串1倍投票，出自位于西城区交大南门附近的第50097体彩店，经99倍投注后花费198元，揽奖2413元。</div>\r\n<p style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); padding-bottom: 0px; font-style: normal; text-align: center; padding-top: 0px; padding-left: 10px; orphans: 2; widows: 2; margin: 0px; letter-spacing: normal; padding-right: 10px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"/uploadfile/2018/0614/20180614095129285.jpg\" style=\"border-top: 0px; height: 500px; border-right: 0px; width: 360px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></p>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　中奖1040元/回报4.3倍。这是一张排列3直选中奖票，出自位于丰台区晓月苑沸城7号楼的第37050体彩店。中奖者选择直选组合复式方式，花240元中奖1040元。</div>\r\n<p style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); padding-bottom: 0px; font-style: normal; text-align: center; padding-top: 0px; padding-left: 10px; orphans: 2; widows: 2; margin: 0px; letter-spacing: normal; padding-right: 10px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"/uploadfile/2018/0614/20180614095129517.jpg\" style=\"border-top: 0px; height: 281px; border-right: 0px; width: 400px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></p>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　中奖4160元/回报6.9倍。这是一张排列3直选中奖票，出自丰台区第37050体彩店。中奖者采用&ldquo;和值&rdquo;投注，选择和值&ldquo;13&rdquo;，倍投4倍，投入600元，命中4160元。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: center; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"/uploadfile/2018/0614/20180614095130960.jpg\" style=\"border-top: 0px; height: 281px; border-right: 0px; width: 400px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></div>\r\n<div class=\"main_content_edit\" style=\"font-size: 14px; height: 60px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: bold; color: rgb(48,48,48); padding-bottom: 10px; font-style: normal; text-align: right; orphans: 2; widows: 2; letter-spacing: normal; line-height: 60px; padding-right: 20px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">(编辑：郭晨曦)</div>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('22', '<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　他们擒获三个大奖，一共只花了57元，累计夺奖金额却高达1.25亿元！是的，这样的剧情就发生在北京，发生在不久前刚刚结束的体彩大乐透&ldquo;6亿大派奖&rdquo;活动期间。巧的是，派奖期间眷顾京城的三个大乐透大奖，无一例外全部出自单式票。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　三个大奖豪取1.25亿元，各有各的机缘。从这三个大奖的中出过程来看，它们也各有值得把玩的&ldquo;关键词&rdquo;。</div>\r\n<p style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); padding-bottom: 0px; font-style: normal; text-align: center; padding-top: 0px; padding-left: 10px; orphans: 2; widows: 2; margin: 0px; letter-spacing: normal; padding-right: 10px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"/uploadfile/2018/0614/20180614095213990.jpg\" style=\"border-top: 0px; height: 300px; border-right: 0px; width: 349px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></p>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　关键词：守号！凑整！等公交！</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　投入30元 &nbsp;退休夫妇豪取9921万</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　4月16日晚，体彩大乐透第18043期（&ldquo;6亿大派奖&rdquo;第3期）开奖后，北京市门头沟区第39004体彩店中出一个9921万元巨奖，中奖者凭借两张合计投入30元的小票独中12注（其中6注追加）一等奖，总夺额9921万元。4月20日，一对退休夫妇现身北京市体彩中心领走了这个北京体彩史上一人独中的最高奖金。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　据中奖老人介绍，4月15日上午，他与老伴去超市买食品，乘公交车来到双峪环岛准备换车时，老人到附近的39004体彩店买了两张相同号码的自选6倍单式大乐透票，一张追加投注花了18元，另一张没有追加花了12元&mdash;&mdash;就是这两张彩票合力击中了9921万元大奖。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　近亿元巨奖的来临，源自&ldquo;守号&rdquo;。中奖老人介绍，他平时都是自己选号，&ldquo;看着顺眼就选了，没有一定之规。&rdquo;他说：&ldquo;大乐透第18039期时我自选了这注号码，以后几期一直守号，中奖的这期是守号第5期了。&rdquo;当问及为什么有6注没有追加投注时，老人笑了笑：&ldquo;我也看到了这两天有彩友议论说这种买法比较特别。其实我就是为了凑整钱数，省得找零钱了，没有其他特别想法。&rdquo;</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　中奖老人介绍，他买体彩已经坚持了20年，&ldquo;我买彩票就是图个乐呵，中奖了当然高兴，没中也无所谓，下期接着买就是了。现在买彩票是我唯一爱好，早成为我的生活习惯了。&rdquo;沉吟片刻，他认真地说：&ldquo;体育彩票是国家彩票，是公益彩票，买彩票也是作公益吧。&rdquo;</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　关键词：5注！追加！老套路！</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　只投15元 &nbsp;&ldquo;鼠标垫&rdquo;彩友邂逅1391万</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　4月23日晚，体彩大乐透第18046期（派奖第6期）开奖之后，北京市朝阳区第35114体彩店中出1注1391万元大奖。两周之后的5月7日，大奖得主在朋友陪同下现身领奖。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　这位彩友的中奖彩票是一张5注单式票，5注号码均选择了追加投注，投入仅为15元，开奖后，票面上的第2注号码命中大乐透一等奖。他介绍，采用15元5注单式追加投注的方式购买大乐透，对自己来说已是轻车熟路，是个惯用的&ldquo;老套路&rdquo;。他说：&ldquo;一般我都是很随机地进行投注，机选5注进行追加，每期花15元，算是给生活注入一点点小小的希望。连买彩票的网点，我也是很随机的，遇到就买，遇不到也不强求。&rdquo;</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　在说到为何中奖后时隔两周才来领奖时，这位中奖者说：&ldquo;一开始我并不相信自己中奖，彩票压在鼠标垫下面，我对着电脑反复确认了好几次。&rdquo;他介绍，在家人和朋友&ldquo;劝说&rdquo;下，他终于叫上了一个好朋友，来到北京市体彩中心&ldquo;兑奖试一试&rdquo;。不试不知道，一试吓一跳，&ldquo;这1000多万元的奖金真是我的！&rdquo;他激动地说。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　值得一提的是，中出大奖的第35114体彩店开业还不到一年时间。该店业主吴征表示，大乐透派奖活动非常好，非常惠民，彩友都很乐意参与，&ldquo;这个1391万元大奖，就是因为正值派奖期间，幸运彩友多得了170万元派奖奖金。&rdquo;</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　关键词：聚餐！吉利！吃出来！</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　只花12元 &nbsp;&ldquo;生意人&rdquo;捧走1259万</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　5月12日晚，体彩大乐透第18054期（派奖第14期）开奖后，北京市朝阳区第35217体彩店中出1注1244万元追加投注头奖，连同二等奖在内总揽奖1259万元。三天后，5月15日，彩友孙先生现身领走大奖。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　从中奖票面显示，孙先生的这注大奖出自一张单式追加票，投入只有12元，票面上一共有4注号码，在命中1注一等奖的同时，票面上的第2注号码还命中1注二等奖，单票各奖级总揽奖1259万元。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　从某种意义上说，孙先生的这个大奖是&ldquo;吃出来&rdquo;的。此话怎讲？且听孙先生道来&mdash;&mdash;&ldquo;那天正好约了朋友一起聚餐，在餐厅附近见到了这家彩票店。&rdquo;孙先生说，&ldquo;店里购彩氛围很好，墙上贴着大乐透派奖海报和中奖喜报，我觉得很吉利，就打了几注大乐透，没想到真中奖了。&rdquo;&nbsp;</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　孙先生介绍，他来北京两年左右，一直在做小生意，以前在老家的时候经常买彩票，从大乐透上市后就钟情于它，&ldquo;几乎期期不落，投入不多，一期十几块钱。&rdquo;将大奖收入囊中之后，孙先生表示，在北京打拼的压力太大了，自己想从此告别在京城闯荡的生活，&ldquo;我打算不再当北漂了，回家跟老婆一起开个小店，踏踏实实过日子。&rdquo;（顾寒枫）</div>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('23', '<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">2018年6月12日，体育彩票7星彩玩法第18067期开奖，本期7星彩头奖空开，当期开奖过后，7星彩奖池金额为662万元。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">据开奖公告显示，本期7星彩开奖号码为&ldquo;7547356&rdquo;，全国共中出一等奖0注；共中出二等奖5注，单注奖金56281元；此外全国还中出三等奖123注，四等奖1432注。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">从当期7星彩开奖号码来看，本期号码主要集中在中间号段，当期最大码为&ldquo;7&rdquo;，最小码为&ldquo;3&rdquo;，和值为37，数值偏大。当期号码的奇偶比为5：2，奇数号占绝对优势。最近几期开奖奇数号状态走强，彩民朋友可继续关注。从号码冷热来看，当期中奖数字冷热兼备，出现在第6位的数字&ldquo;5&rdquo;在近20期开奖中出现过5次，是近期的活跃号码；而出现在第4位的数字&ldquo;7&rdquo;在近20期仅出现1次，成为本期最冷门号码。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">据开奖公告显示，7星彩第18067期的销售额为1001.4万元，当期头奖空开之后，7星彩奖池金额为662.8万元。希望彩民朋友们再接再厉，争取早日收获7星彩大奖。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('24', '<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">周五002 世界杯&nbsp; 埃及VS乌拉圭&nbsp;&nbsp;&nbsp; 比赛时间：2018-06-15 20:00 投注提点：埃及近期6场比赛不胜，球队核心萨拉赫因伤出战成疑；乌拉圭热身赛取得3连胜，状态尚佳，此役志在赢得开门红。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">周五003 世界杯&nbsp; 摩洛哥VS伊朗&nbsp;&nbsp;&nbsp; 比赛时间：2018-06-15 23:00 投注提点：摩洛哥在法国人雷纳尔的率领下，近10场比赛保持不败，球队防守实力强劲；伊朗队受政治因素影响热身备战，球员状态成疑。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">周五004 世界杯&nbsp; 葡萄牙VS西班牙&nbsp; 比赛时间：2018-06-16 2:00&nbsp; 投注提点：葡萄牙队热身赛状态良好，球队氛围融洽；西班牙队临时换帅，球队状态难以预料，首战面对葡萄牙难言乐观。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('25', '<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">6月13日，体彩大乐透第18068期前区开出号码08、12、16、26、33，后区开出号码05、06。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>河南购彩者包揽2注头奖</strong></p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">本期全国共开出2注头奖，单注奖金为1000万元，全部落于河南。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">数据显示，河南中出的2注头奖分落郑州和商丘。其中，郑州购彩者中出的是一张5注10元投入的单式票；商丘购彩者中出的是一张6+3复式票，投入36元，共中出一等奖1注、二等奖2注、三等奖5注、四等奖10注，单票擒奖1023万元。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">稍显遗憾的是，由于未采用追加投注，两位幸运购彩者，每人在头奖方面要少拿了600万元追加奖金，从而无缘单个1600万元封顶头奖。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">本期二三等奖的中奖数量较多。二等奖开出72注，每注奖金为10.53万元；其中32注采用追加投注，每注多得奖金6.32万元。追加后，二等奖单注总奖金为16.85万元。三等奖开出576注，每注奖金为5063元；其中270注采用追加投注，每注多得奖金3037元。追加后，三等奖单注总奖金为8100元。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>前区奖号分布范围广</strong></p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">奖号方面，前区08、12、16、26、33的分布范围较广，各个号段上均有号码开出。最小号码开出0号段上的08；1号段上开出12、16；其中12复制上期（第18067期）奖号；2号段上开出26；3号段上开出33；该号为隔期开出号码，同时是前区最大号码。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">后区开出05、06一对小号、连号组合。最近5期，后区奖号的大小号码数量比为4比6，小号略占优。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>58.74亿元滚存至&ldquo;世界杯&rdquo;期间</strong></p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">奖池方面，本期开奖结束后，58.74亿元滚存至6月16日（周六）晚开奖的第18069期，这一水位较上期继续上涨，再次刷新历史最高纪录。届时，世界杯狂欢已经开启，提醒购彩者观看精彩足球赛事的同时，别忘了买上几注大乐透。</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">&nbsp;</p>\r\n<p style=\"font-size: 14px; font-family: 宋体, sans-serif; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(102,102,102); padding-bottom: 0px; font-style: normal; padding-top: 0px; padding-left: 0px; orphans: 2; widows: 2; margin: 0px 0px 3px; letter-spacing: normal; line-height: 24px; padding-right: 0px; background-color: rgb(255,255,255); text-indent: 28px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">据统计，体彩大乐透近4期累计开出8注头奖，清一色为千万元大奖，包括1注1600万元和7注1000万元，奖金成色十足。</p>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('26', '<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">世界杯四年一届。每隔四年，足球的天空都会掠过一道万众瞩目的彩虹。从2010年开始，这道彩虹中多了一抹叫作&ldquo;竞彩&rdquo;的亮色。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　如果把每届世界杯当作接力赛中的一棒，那么到2018年，于2009年5月上市的体育彩票竞彩游戏刚好接过自己与世界杯比肩而跑的第三棒。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　第一棒，南非世界杯期间，竞彩游戏销量为13.5亿。这，大约相当于全中国每个人在世界杯期间买了一元的竞彩。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　这个数字在2014年的第二棒期间发生了巨大变化。2014年巴西世界杯期间，有三件事是不能忘记的。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　第一件，2014世界杯期间竞彩游戏销量高达129亿，几乎是四年前的十倍，单日销量峰值逾10亿，被媒体誉为&ldquo;创造了中国彩票史的奇迹&rdquo;。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　第二件，竞彩游戏在当年10月推出单场固定奖。此举被舆论公认为代表着竞彩游戏与国际的深度接轨。四年后的今天，&ldquo;单固&rdquo;的旋律历经光阴流转，正在被竞彩玩家传唱为耳熟能详、高潮迭起的一段经典名曲。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　第三件，竞彩游戏的整体返奖率从69%提升至73%，也发生在2014年，竞彩也因此成为中国彩市首个返奖率突破70%的游戏，至今稳坐中国彩票单品游戏返奖的头把交椅。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　销量高，返奖高，令竞彩成为彩市的&ldquo;双高游戏&rdquo;。而对于投注者来说，竞猜世界杯，&ldquo;猜得准&rdquo;才是王道。要说&ldquo;猜得准&rdquo;，有一位名叫&ldquo;保罗&rdquo;的已故&ldquo;名宿&rdquo;不得不提。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　保罗，一只章鱼，无脊椎软体动物。它生于英国，长于德国，出道于2008欧洲杯，火爆于2010世界杯。在那两届杯赛上，保罗一共预测14次，命中13次，成功率高达92%，被誉为&ldquo;预测帝&rdquo;。2010年10月，它在德国奥伯豪森水族馆去世时，不到三岁。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　水族馆里的&ldquo;预言帝&rdquo;能够准确预言92%的足球对阵，但对于中国体育彩票、特别是竞彩游戏在三届世界杯期间天翻地覆的表现，恐怕也很难洞见。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　6月14日，俄罗斯世界杯登场，竞彩游戏即将接过第三棒。未来一个月，竞彩及其竞猜者们又会划出怎样的彩虹，演绎何种传奇？</div>\r\n<br style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\" />\r\n<div class=\"main_content_edit\" style=\"font-size: 14px; height: 60px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: bold; color: rgb(48,48,48); padding-bottom: 10px; font-style: normal; text-align: right; orphans: 2; widows: 2; letter-spacing: normal; line-height: 60px; padding-right: 20px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">(编辑：郭晨曦)</div>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('27', '推荐注册会员后，推荐的会员的流水返推荐人0.2%的佣金。详情请联系客服。', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('28', '从今日起，凡注册成为会员就送18元礼金！了解详情请联系客服人员。', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('29', '注册会员后，每天签到都可得到相应的礼金！详情请咨询客服人员。', '', '0', '0', '', '0', '', '0', '1', '');
+INSERT INTO `cp_news_data` VALUES ('30', '<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">体彩公益金对于《奥运争光计划》的支持源于1995年，20多年来，为我国体育健儿改善了训练条件，帮助他们提高运动成绩，在国际赛事上为国争光。近日，体育彩票的身影又出现在全国体操锦标赛和羽毛球热身赛的场地上，为运动员呐喊助威。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　助力全国体操赛</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　5月7日至13日，由国家体育总局体操运动管理中心、中国体操协会主办，广东省体育局、肇庆市政府承办的2018年全国体操锦标赛暨亚运会选拔赛在肇庆新区体育中心举行。全国锦标赛是体操项目规模最大、水平最高的国内赛事，本次赛事共有21支队伍参赛，同时也是亚运会的选拔赛。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　体育馆入口和通道处，设置了体彩大乐透派奖活动宣传展板；在场馆通道，开展了顶呱刮即开票营销活动，引来不少行人驻足、购买。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　比赛场地上悬挂的&ldquo;中国体育彩票&rdquo;横幅，更是给现场和电视机前的观众留下了深刻印象。肇庆体彩还向观众派发了印有&ldquo;中国体育彩票&rdquo;字样的加油棒，让观众们为比赛选手加油助威。</div>\r\n<p style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); padding-bottom: 0px; font-style: normal; text-align: center; padding-top: 0px; padding-left: 10px; orphans: 2; widows: 2; margin: 0px; letter-spacing: normal; padding-right: 10px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"/uploadfile/2018/0615/20180615045048829.jpg\" style=\"border-top: 0px; height: 500px; border-right: 0px; width: 500px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></p>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　羽球国手为体彩&ldquo;代言&rdquo;</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　在近日结束的汤姆斯杯比赛中，中国羽毛球队捧杯。出征本次比赛之前，国家羽毛球队在湖北华中师范大学佑铭体育馆进行了一场热身赛，体育彩票出现在比赛场地，众多羽毛球国手为体彩&ldquo;代言&rdquo;</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　5月13日晚，国家羽毛球队出征汤姆斯杯、尤伯杯热身赛在华中师范大学佑铭体育馆举行。国家羽毛球队教练员、运动员共30余人到场，林丹、谌龙、张楠、李雪芮等明星球员为现场观众献上了一场精彩的&ldquo;羽球盛宴&rdquo;。现场30多块&ldquo;公益体彩 乐善人生&rdquo;中国体育彩票宣传展板，吸引了观众们的眼球。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　李雪芮是重庆体彩的形象大使，她曾多次参与体彩的助学活动，鼓励孩子们参加体育运动并为他们送去体育器材。她克服伤病、顽强拼搏、不言放弃，也是对体彩精神的最好诠释。</div>\r\n<p style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); padding-bottom: 0px; font-style: normal; text-align: center; padding-top: 0px; padding-left: 10px; orphans: 2; widows: 2; margin: 0px; letter-spacing: normal; padding-right: 10px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><img alt=\"\" data-bd-imgshare-binded=\"1\" src=\"/uploadfile/2018/0615/20180615045049473.jpg\" style=\"border-top: 0px; height: 333px; border-right: 0px; width: 500px; border-bottom: 0px; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; border-left: 0px; margin: 0px; padding-right: 0px\" /></p>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　链接</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\"><strong>　　支持《奥运争光计划》</strong></div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　《奥运争光计划》于1995年7月6日发布，体彩公益金是其主要的资金来源。在国家体育总局本级彩票公益金中，用于《奥运争光计划》和《全民健身计划》的比例为4比6。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　该计划是一项系统工程，是滚动式计划，根据需要不断添加新的内容。比如，今年3月，国家体育总局人力中心启动为国家队送课服务，即向国家队提供综合素质课程服务，以提升运动员整体素质和综合实力。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　3月7日，在江苏昆山，为国家女子水球队送上了时间管理、职业形象与礼仪、公共演讲与表达等课程，同时送上《国际奥委会运动员成长工具包》《运动员职业发展读本》等学习资料，助力国家女子水球队运动员的成长发展。目前，人力中心已收到18家单位的52支国家队提出的200余次送课需求。</div>\r\n<div style=\"font-size: 14px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: 400; color: rgb(48,48,48); font-style: normal; text-align: justify; orphans: 2; widows: 2; letter-spacing: normal; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">　　《奥运争光计划》的内容仍在不断丰富，这些都离不开体彩公益金的全力支持。</div>\r\n<div class=\"main_content_edit\" style=\"font-size: 14px; height: 60px; font-family: 宋体; white-space: normal; word-spacing: 0px; text-transform: none; font-weight: bold; color: rgb(48,48,48); padding-bottom: 10px; font-style: normal; text-align: right; orphans: 2; widows: 2; letter-spacing: normal; line-height: 60px; padding-right: 20px; background-color: rgb(255,255,255); text-indent: 0px; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial\">(编辑：严娇)</div>\r\n', '', '0', '0', '', '0', '', '0', '1', '');
 
 -- ----------------------------
 -- Table structure for `cp_page`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_page`;
 CREATE TABLE `cp_page` (
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `title` varchar(160) NOT NULL,
   `style` varchar(24) NOT NULL,
   `keywords` varchar(40) NOT NULL,
   `content` text NOT NULL,
   `template` varchar(30) NOT NULL,
-  `updatetime` int(10) unsigned NOT NULL default '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
   KEY `catid` (`catid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5995,33 +6263,34 @@ CREATE TABLE `cp_page` (
 -- ----------------------------
 INSERT INTO `cp_page` VALUES ('6', '安卓二维码', ';', '二维码 安卓', '<img alt=\"\" src=\"/uploadfile/2018/0606/20180606051905103.jpg\" style=\"width: 1920px; height: 1080px;\" />', '', '0');
 INSERT INTO `cp_page` VALUES ('29', '联系我们', ';', '联系我们', '微信：<br />\r\n&nbsp;QQ ：<br />\r\n', '', '0');
+INSERT INTO `cp_page` VALUES ('31', '开奖公告', ';', '开奖公告开奖公告', '<script type=\"text/javascript\">\r\n    function changeSrc(index) {\r\n        document.getElementById(\"myframe\").src = \"http://58.221.44.99:81/Member/Mesg/kaijiang.aspx?gameIndex=\"+index+\"&page=1\";\r\n    }\r\n</script>\r\n<link href=\"./assets/statics/css/home.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n<link href=\"./assets/statics/css/style.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n<link href=\"./assets/statics/css/draw.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n<div class=\"wrap-bg\">\r\n<div class=\"wrapper\">\r\n<div class=\"main\">\r\n<ul class=\"cz_nav\">\r\n<li class=\"on\" data-type=\"all\"><a>全部彩种</a></li>\r\n</ul>\r\n<div>\r\n<div class=\"cz_menu\" style=\"height:120px\">\r\n<div id=\"_games_1\" style=\"position:relative\">\r\n<p id=\"tabList\" name=\"list\"><a href=\"javascript:void(0);\" onclick=\"changeSrc(3)\"><span>重慶時時彩</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(2)\">| <span>廣東快樂十分</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(4)\">| <span>北京賽車</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(5)\">| <span>江蘇骰寶</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(6)\">| <span>北京快樂8</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(7)\">| <span>重慶幸運農場</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(8)\">| <span>幸運飛艇</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(9)\">| <span>廣東十一選五</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(10)\">| <span>廣西快樂十分</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(11)\">| <span>PC蛋蛋(北京28)</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(12)\"> <span>加拿大pc28</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(13)\">| <span>天津时时彩</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(14)\">| <span>新疆时时彩</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(15)\">| <span>极速时时彩</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(16)\">| <span>幸运时时彩</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(17)\">| <span>极速赛车</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(18)\">| <span>幸运赛车</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(19)\">| <span>幸运快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(20)\">| <span>安微快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(21)\">| <span>福建快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(22)\">| <span>吉林快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(23)\"> <span>上海快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(24)\">| <span>广西快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(25)\">| <span>河北快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(26)\">| <span>湖北快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(27)\">| <span>北京快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(28)\">| <span>内蒙古快三</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(29)\">| <span>极速六合彩</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(30)\">| <span>腾讯分分彩</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(31)\">| <span>上海十一选五</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(32)\">| <span>北京十一选五</span></a> <a href=\"javascript:void(0);\" onclick=\"changeSrc(1)\">| <span>香港六合彩</span></a></p>\r\n</div>\r\n<div class=\"clear\">&nbsp;</div>\r\n</div>\r\n<div id=\"_iframe_divs\">\r\n<div class=\"cz-box\" id=\"_games_2\" style=\"display:block\">\r\n<div class=\"kj_box\">\r\n<h1>最新彩票开奖结果</h1>\r\n<iframe frameborder=\"0\" height=\"2800\" id=\"myframe\" name=\"myframe\" scrolling=\"no\" src=\"http://58.221.44.99:81/Member/Mesg/kaijiang.aspx?gameIndex=3&amp;page=1\" width=\"1000\"></iframe>\r\n<table cellpadding=\"0\" cellspacing=\"0\" class=\"kj_tab\"></table>\r\n</div>\r\n</div>\r\n<div class=\"div_iframe\" name=\"iframe_div\">&nbsp;</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<br />\r\n', '', '0');
 
 -- ----------------------------
 -- Table structure for `cp_pay_account`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_pay_account`;
 CREATE TABLE `cp_pay_account` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `trade_sn` char(50) NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL default '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
   `contactname` char(50) NOT NULL,
   `email` char(40) NOT NULL,
   `telephone` char(20) NOT NULL,
-  `discount` float(8,2) NOT NULL default '0.00',
+  `discount` float(8,2) NOT NULL DEFAULT '0.00',
   `money` char(8) NOT NULL,
-  `quantity` int(8) unsigned NOT NULL default '1',
-  `addtime` int(10) NOT NULL default '0',
-  `paytime` int(10) NOT NULL default '0',
+  `quantity` int(8) unsigned NOT NULL DEFAULT '1',
+  `addtime` int(10) NOT NULL DEFAULT '0',
+  `paytime` int(10) NOT NULL DEFAULT '0',
   `usernote` char(255) NOT NULL,
   `pay_id` tinyint(3) NOT NULL,
-  `pay_type` enum('offline','recharge','selfincome','online') NOT NULL default 'recharge',
+  `pay_type` enum('offline','recharge','selfincome','online') NOT NULL DEFAULT 'recharge',
   `payment` char(90) NOT NULL,
-  `type` tinyint(3) NOT NULL default '1',
-  `ip` char(15) NOT NULL default '0.0.0.0',
-  `status` enum('succ','failed','error','progress','timeout','cancel','waitting','unpay') NOT NULL default 'unpay',
+  `type` tinyint(3) NOT NULL DEFAULT '1',
+  `ip` char(15) NOT NULL DEFAULT '0.0.0.0',
+  `status` enum('succ','failed','error','progress','timeout','cancel','waitting','unpay') NOT NULL DEFAULT 'unpay',
   `adminnote` char(20) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `userid` (`userid`),
   KEY `trade_sn` (`trade_sn`,`money`,`status`,`id`)
@@ -6036,22 +6305,22 @@ CREATE TABLE `cp_pay_account` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_pay_payment`;
 CREATE TABLE `cp_pay_payment` (
-  `pay_id` tinyint(3) unsigned NOT NULL auto_increment,
+  `pay_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(120) NOT NULL,
   `pay_name` varchar(120) NOT NULL,
   `pay_code` varchar(20) NOT NULL,
   `pay_desc` text NOT NULL,
-  `pay_method` tinyint(1) default NULL,
+  `pay_method` tinyint(1) DEFAULT NULL,
   `pay_fee` varchar(10) NOT NULL,
   `config` text NOT NULL,
-  `is_cod` tinyint(1) unsigned NOT NULL default '0',
-  `is_online` tinyint(1) unsigned NOT NULL default '0',
-  `pay_order` tinyint(3) unsigned NOT NULL default '0',
-  `enabled` tinyint(1) unsigned NOT NULL default '0',
+  `is_cod` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `is_online` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `pay_order` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `author` varchar(100) NOT NULL,
   `website` varchar(100) NOT NULL,
   `version` varchar(20) NOT NULL,
-  PRIMARY KEY  (`pay_id`),
+  PRIMARY KEY (`pay_id`),
   KEY `pay_code` (`pay_code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6064,17 +6333,17 @@ CREATE TABLE `cp_pay_payment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_pay_spend`;
 CREATE TABLE `cp_pay_spend` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `creat_at` int(10) unsigned NOT NULL default '0',
-  `userid` int(10) unsigned NOT NULL default '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `creat_at` int(10) unsigned NOT NULL DEFAULT '0',
+  `userid` int(10) unsigned NOT NULL DEFAULT '0',
   `username` varchar(20) NOT NULL,
-  `type` tinyint(1) unsigned NOT NULL default '0',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `logo` varchar(20) NOT NULL,
   `value` int(5) NOT NULL,
-  `op_userid` int(10) unsigned NOT NULL default '0',
+  `op_userid` int(10) unsigned NOT NULL DEFAULT '0',
   `op_username` char(20) NOT NULL,
   `msg` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `type` (`type`),
   KEY `creat_at` (`creat_at`),
   KEY `logo` (`logo`),
@@ -6090,28 +6359,28 @@ CREATE TABLE `cp_pay_spend` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_picture`;
 CREATE TABLE `cp_picture` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typeid` smallint(5) unsigned NOT NULL,
-  `title` char(80) NOT NULL default '',
-  `style` char(24) NOT NULL default '',
-  `thumb` char(100) NOT NULL default '',
-  `keywords` char(40) NOT NULL default '',
-  `posids` tinyint(1) unsigned NOT NULL default '0',
+  `title` char(80) NOT NULL DEFAULT '',
+  `style` char(24) NOT NULL DEFAULT '',
+  `thumb` char(100) NOT NULL DEFAULT '',
+  `keywords` char(40) NOT NULL DEFAULT '',
+  `posids` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(100) NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `status` tinyint(2) unsigned NOT NULL default '1',
-  `sysadd` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sysadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  `description` varchar(255) NOT NULL default '',
-  `img` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`id`),
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `description` varchar(255) NOT NULL DEFAULT '',
+  `img` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
   KEY `status` (`status`,`listorder`,`id`),
   KEY `listorder` (`catid`,`status`,`listorder`,`id`),
   KEY `catid` (`catid`,`status`,`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_picture
@@ -6119,20 +6388,19 @@ CREATE TABLE `cp_picture` (
 INSERT INTO `cp_picture` VALUES ('1', '7', '0', '安卓二维码', '', '2018/0606/20180606051905103.jpg', '', '0', '/index.php?m=content&c=index&a=show&catid=7&id=1', '0', '99', '1', 'any', '1528276835', '1528982252', '', '/uploadfile/2018/0614/20180614061058772.png');
 INSERT INTO `cp_picture` VALUES ('2', '7', '0', '苹果二维码', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=7&id=2', '0', '99', '1', 'any', '1528276898', '1528982236', '', '/uploadfile/2018/0614/20180614061058772.png');
 INSERT INTO `cp_picture` VALUES ('3', '19', '0', '首页LOGO', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=19&id=3', '0', '99', '1', 'any', '1528711040', '1528982331', '', '/uploadfile/2018/0614/20180614061551982.png');
-INSERT INTO `cp_picture` VALUES ('4', '20', '0', '首页背景图', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=20&id=4', '0', '99', '1', 'any', '1528713750', '1528713792', '', '/uploadfile/2018/0611/20180611064310508.jpg');
-INSERT INTO `cp_picture` VALUES ('5', '30', '0', '手机购彩左侧图', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=30&id=5', '0', '99', '1', 'admin', '1528960612', '1528960643', '', '/uploadfile/2018/0607/20180607111129229.png');
-INSERT INTO `cp_picture` VALUES ('6', '30', '0', '手机购彩右侧图', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=30&id=6', '0', '99', '1', 'admin', '1528960646', '1528960662', '', '/uploadfile/2018/0607/20180607111113714.png');
+INSERT INTO `cp_picture` VALUES ('4', '20', '0', '首页背景图', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=20&id=4', '0', '99', '1', 'any', '1528713750', '1529056313', '', '/uploadfile/2018/0615/20180615055147535.png');
+INSERT INTO `cp_picture` VALUES ('7', '30', '0', '手机购彩', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=30&id=7', '0', '99', '1', 'admin', '1528987141', '1529050804', '', '/uploadfile/2018/0615/20180615041956470.png');
 
 -- ----------------------------
 -- Table structure for `cp_picture_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_picture_data`;
 CREATE TABLE `cp_picture_data` (
-  `id` mediumint(8) unsigned default '0',
+  `id` mediumint(8) unsigned DEFAULT '0',
   `paginationtype` tinyint(1) NOT NULL,
   `maxcharperpage` mediumint(6) NOT NULL,
   `template` varchar(30) NOT NULL,
-  `paytype` tinyint(1) unsigned NOT NULL default '0',
+  `paytype` tinyint(1) unsigned NOT NULL DEFAULT '0',
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6143,24 +6411,23 @@ INSERT INTO `cp_picture_data` VALUES ('1', '0', '0', '', '0');
 INSERT INTO `cp_picture_data` VALUES ('2', '0', '0', '', '0');
 INSERT INTO `cp_picture_data` VALUES ('3', '0', '0', '', '0');
 INSERT INTO `cp_picture_data` VALUES ('4', '0', '0', '', '0');
-INSERT INTO `cp_picture_data` VALUES ('5', '0', '0', '', '0');
-INSERT INTO `cp_picture_data` VALUES ('6', '0', '0', '', '0');
+INSERT INTO `cp_picture_data` VALUES ('7', '0', '0', '', '0');
 
 -- ----------------------------
 -- Table structure for `cp_position`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_position`;
 CREATE TABLE `cp_position` (
-  `posid` smallint(5) unsigned NOT NULL auto_increment,
-  `modelid` smallint(5) unsigned default '0',
-  `catid` smallint(5) unsigned default '0',
-  `name` char(30) NOT NULL default '',
-  `maxnum` smallint(5) NOT NULL default '20',
-  `extention` char(100) default NULL,
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  `thumb` varchar(150) NOT NULL default '',
-  PRIMARY KEY  (`posid`)
+  `posid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `modelid` smallint(5) unsigned DEFAULT '0',
+  `catid` smallint(5) unsigned DEFAULT '0',
+  `name` char(30) NOT NULL DEFAULT '',
+  `maxnum` smallint(5) NOT NULL DEFAULT '20',
+  `extention` char(100) DEFAULT NULL,
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `thumb` varchar(150) NOT NULL DEFAULT '',
+  PRIMARY KEY (`posid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -6184,18 +6451,18 @@ INSERT INTO `cp_position` VALUES ('17', '0', '0', '视频栏目精彩推荐', '2
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_position_data`;
 CREATE TABLE `cp_position_data` (
-  `id` mediumint(8) unsigned NOT NULL default '0',
-  `catid` smallint(5) unsigned NOT NULL default '0',
-  `posid` smallint(5) unsigned NOT NULL default '0',
-  `module` char(20) default NULL,
-  `modelid` smallint(6) unsigned default '0',
-  `thumb` tinyint(1) NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `posid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `module` char(20) DEFAULT NULL,
+  `modelid` smallint(6) unsigned DEFAULT '0',
+  `thumb` tinyint(1) NOT NULL DEFAULT '0',
   `data` mediumtext,
-  `siteid` smallint(5) unsigned NOT NULL default '1',
-  `listorder` mediumint(8) default '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '1',
+  `listorder` mediumint(8) DEFAULT '0',
   `expiration` int(10) NOT NULL,
-  `extention` char(30) default NULL,
-  `synedit` tinyint(1) default '0',
+  `extention` char(30) DEFAULT NULL,
+  `synedit` tinyint(1) DEFAULT '0',
   KEY `posid` (`posid`),
   KEY `listorder` (`listorder`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -6209,20 +6476,20 @@ CREATE TABLE `cp_position_data` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_poster`;
 CREATE TABLE `cp_poster` (
-  `id` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` varchar(40) NOT NULL,
-  `spaceid` smallint(5) unsigned NOT NULL default '0',
+  `spaceid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `type` varchar(10) NOT NULL,
   `setting` text NOT NULL,
-  `startdate` int(10) unsigned NOT NULL default '0',
-  `enddate` int(10) unsigned NOT NULL default '0',
-  `addtime` int(10) unsigned NOT NULL default '0',
-  `hits` mediumint(8) unsigned NOT NULL default '0',
-  `clicks` smallint(5) unsigned NOT NULL default '0',
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `startdate` int(10) unsigned NOT NULL DEFAULT '0',
+  `enddate` int(10) unsigned NOT NULL DEFAULT '0',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `hits` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `clicks` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `spaceid` (`spaceid`,`siteid`,`disabled`,`listorder`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
@@ -6245,17 +6512,17 @@ INSERT INTO `cp_poster` VALUES ('10', '1', 'phpcms', '10', 'images', 'array (\n 
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_poster_201806`;
 CREATE TABLE `cp_poster_201806` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `pid` smallint(5) unsigned NOT NULL default '0',
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  `spaceid` smallint(5) unsigned NOT NULL default '0',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `spaceid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
   `area` char(40) NOT NULL,
   `ip` char(15) NOT NULL,
   `referer` char(120) NOT NULL,
-  `clicktime` int(10) unsigned NOT NULL default '0',
-  `type` tinyint(1) unsigned NOT NULL default '1',
-  PRIMARY KEY  (`id`),
+  `clicktime` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
   KEY `pid` (`pid`,`type`,`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6268,18 +6535,18 @@ CREATE TABLE `cp_poster_201806` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_poster_space`;
 CREATE TABLE `cp_poster_space` (
-  `spaceid` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `spaceid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` char(50) NOT NULL,
   `type` char(30) NOT NULL,
   `path` char(40) NOT NULL,
-  `width` smallint(4) unsigned NOT NULL default '0',
-  `height` smallint(4) unsigned NOT NULL default '0',
+  `width` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `height` smallint(4) unsigned NOT NULL DEFAULT '0',
   `setting` char(100) NOT NULL,
   `description` char(100) NOT NULL,
-  `items` tinyint(3) unsigned NOT NULL default '0',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`spaceid`),
+  `items` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`spaceid`),
   KEY `disabled` (`disabled`,`siteid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
@@ -6302,28 +6569,28 @@ INSERT INTO `cp_poster_space` VALUES ('10', '1', '首页关注下方广告', 'ba
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_price`;
 CREATE TABLE `cp_price` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typeid` smallint(5) unsigned NOT NULL,
-  `title` varchar(80) NOT NULL default '',
-  `style` char(24) NOT NULL default '',
-  `thumb` char(100) NOT NULL default '',
-  `keywords` char(40) NOT NULL default '',
-  `description` char(255) NOT NULL default '',
-  `posids` tinyint(1) unsigned NOT NULL default '0',
+  `title` varchar(80) NOT NULL DEFAULT '',
+  `style` char(24) NOT NULL DEFAULT '',
+  `thumb` char(100) NOT NULL DEFAULT '',
+  `keywords` char(40) NOT NULL DEFAULT '',
+  `description` char(255) NOT NULL DEFAULT '',
+  `posids` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(100) NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `status` tinyint(2) unsigned NOT NULL default '1',
-  `sysadd` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sysadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  `price` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `price` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `status` (`status`,`listorder`,`id`),
   KEY `listorder` (`catid`,`status`,`listorder`,`id`),
   KEY `catid` (`catid`,`status`,`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_price
@@ -6333,19 +6600,27 @@ INSERT INTO `cp_price` VALUES ('2', '25', '0', '爱上彩票', '', '', '', '', '
 INSERT INTO `cp_price` VALUES ('3', '25', '0', '快三之王', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=3', '0', '99', '1', 'admin', '1528954435', '1528982660', '980');
 INSERT INTO `cp_price` VALUES ('4', '25', '0', '擒百万', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=4', '0', '99', '1', 'admin', '1528982667', '1528982692', '1070');
 INSERT INTO `cp_price` VALUES ('5', '25', '0', '天天开锣', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=5', '0', '99', '1', 'admin', '1528982697', '1528982730', '98');
+INSERT INTO `cp_price` VALUES ('6', '25', '0', '六合王', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=6', '0', '99', '1', 'admin', '1528983445', '1528983485', '4880');
+INSERT INTO `cp_price` VALUES ('7', '25', '0', '白小姐', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=7', '0', '99', '1', 'admin', '1528983494', '1528983514', '2440');
+INSERT INTO `cp_price` VALUES ('8', '25', '0', '彩神到', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=8', '0', '99', '1', 'admin', '1528983605', '1528983643', '960');
+INSERT INTO `cp_price` VALUES ('9', '25', '0', '吃鸡', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=9', '0', '99', '1', 'admin', '1528983657', '1528983698', '3840');
+INSERT INTO `cp_price` VALUES ('10', '25', '0', '好彩头', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=10', '0', '99', '1', 'admin', '1528983707', '1528983728', '1080');
+INSERT INTO `cp_price` VALUES ('11', '25', '0', '同花顺', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=11', '0', '99', '1', 'admin', '1528983744', '1528983767', '2680');
+INSERT INTO `cp_price` VALUES ('12', '25', '0', '招弟', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=12', '0', '99', '1', 'admin', '1528983776', '1528983800', '9600');
+INSERT INTO `cp_price` VALUES ('13', '25', '0', '大圣', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=25&id=13', '0', '99', '1', 'admin', '1528983809', '1528983839', '10400');
 
 -- ----------------------------
 -- Table structure for `cp_price_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_price_data`;
 CREATE TABLE `cp_price_data` (
-  `id` mediumint(8) unsigned default '0',
+  `id` mediumint(8) unsigned DEFAULT '0',
   `content` text NOT NULL,
   `paginationtype` tinyint(1) NOT NULL,
   `maxcharperpage` mediumint(6) NOT NULL,
   `template` varchar(30) NOT NULL,
-  `paytype` tinyint(1) unsigned NOT NULL default '0',
-  `relation` varchar(255) NOT NULL default '',
+  `paytype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `relation` varchar(255) NOT NULL DEFAULT '',
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6357,22 +6632,30 @@ INSERT INTO `cp_price_data` VALUES ('2', '', '0', '0', '', '0', '');
 INSERT INTO `cp_price_data` VALUES ('3', '', '0', '0', '', '0', '');
 INSERT INTO `cp_price_data` VALUES ('4', '', '0', '0', '', '0', '');
 INSERT INTO `cp_price_data` VALUES ('5', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('6', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('7', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('8', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('9', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('10', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('11', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('12', '', '0', '0', '', '0', '');
+INSERT INTO `cp_price_data` VALUES ('13', '', '0', '0', '', '0', '');
 
 -- ----------------------------
 -- Table structure for `cp_queue`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_queue`;
 CREATE TABLE `cp_queue` (
-  `id` int(10) NOT NULL auto_increment,
-  `type` char(5) default NULL,
-  `siteid` smallint(5) unsigned default '0',
-  `path` varchar(100) default NULL,
-  `status1` tinyint(1) default '0',
-  `status2` tinyint(1) default '0',
-  `status3` tinyint(1) default '0',
-  `status4` tinyint(1) default '0',
-  `times` int(10) unsigned default '0',
-  PRIMARY KEY  (`id`),
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `type` char(5) DEFAULT NULL,
+  `siteid` smallint(5) unsigned DEFAULT '0',
+  `path` varchar(100) DEFAULT NULL,
+  `status1` tinyint(1) DEFAULT '0',
+  `status2` tinyint(1) DEFAULT '0',
+  `status3` tinyint(1) DEFAULT '0',
+  `status4` tinyint(1) DEFAULT '0',
+  `times` int(10) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `siteid` (`siteid`),
   KEY `times` (`times`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -6386,16 +6669,16 @@ CREATE TABLE `cp_queue` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_release_point`;
 CREATE TABLE `cp_release_point` (
-  `id` mediumint(8) NOT NULL auto_increment,
-  `name` varchar(30) default NULL,
-  `host` varchar(100) default NULL,
-  `username` varchar(50) default NULL,
-  `password` varchar(50) default NULL,
-  `port` varchar(10) default '21',
-  `pasv` tinyint(1) default '0',
-  `ssl` tinyint(1) default '0',
-  `path` varchar(50) default NULL,
-  PRIMARY KEY  (`id`)
+  `id` mediumint(8) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) DEFAULT NULL,
+  `host` varchar(100) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `port` varchar(10) DEFAULT '21',
+  `pasv` tinyint(1) DEFAULT '0',
+  `ssl` tinyint(1) DEFAULT '0',
+  `path` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -6407,23 +6690,23 @@ CREATE TABLE `cp_release_point` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_round`;
 CREATE TABLE `cp_round` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typeid` smallint(5) unsigned NOT NULL,
-  `title` char(80) NOT NULL default '',
-  `style` char(24) NOT NULL default '',
-  `thumb` char(100) NOT NULL default '',
-  `keywords` char(40) NOT NULL default '',
-  `description` char(255) NOT NULL default '',
-  `posids` tinyint(1) unsigned NOT NULL default '0',
+  `title` char(80) NOT NULL DEFAULT '',
+  `style` char(24) NOT NULL DEFAULT '',
+  `thumb` char(100) NOT NULL DEFAULT '',
+  `keywords` char(40) NOT NULL DEFAULT '',
+  `description` char(255) NOT NULL DEFAULT '',
+  `posids` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(100) NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `status` tinyint(2) unsigned NOT NULL default '1',
-  `sysadd` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sysadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `status` (`status`,`listorder`,`id`),
   KEY `listorder` (`catid`,`status`,`listorder`,`id`),
   KEY `catid` (`catid`,`status`,`id`)
@@ -6433,19 +6716,19 @@ CREATE TABLE `cp_round` (
 -- Records of cp_round
 -- ----------------------------
 INSERT INTO `cp_round` VALUES ('1', '15', '0', '首页楼内博图', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=15&id=1', '0', '99', '1', 'any', '1528341022', '1528982310');
-INSERT INTO `cp_round` VALUES ('2', '23', '0', '底部认证图片', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=23&id=2', '0', '99', '1', 'admin', '1528946278', '1528946509');
+INSERT INTO `cp_round` VALUES ('2', '23', '0', '底部认证图片', '', '', '', '', '0', '/index.php?m=content&c=index&a=show&catid=23&id=2', '0', '99', '1', 'admin', '1528946278', '1529061650');
 
 -- ----------------------------
 -- Table structure for `cp_round_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_round_data`;
 CREATE TABLE `cp_round_data` (
-  `id` mediumint(8) unsigned default '0',
+  `id` mediumint(8) unsigned DEFAULT '0',
   `content` text NOT NULL,
   `paginationtype` tinyint(1) NOT NULL,
   `maxcharperpage` mediumint(6) NOT NULL,
   `template` varchar(30) NOT NULL,
-  `paytype` tinyint(1) unsigned NOT NULL default '0',
+  `paytype` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `images` mediumtext NOT NULL,
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -6454,24 +6737,24 @@ CREATE TABLE `cp_round_data` (
 -- Records of cp_round_data
 -- ----------------------------
 INSERT INTO `cp_round_data` VALUES ('1', '', '0', '0', '', '0', '{\"0\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614073854886.png\",\"alt\":\"2\"},\"1\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614073908598.png\",\"alt\":\"3\"},\"2\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614073918770.png\",\"alt\":\"4\"}}');
-INSERT INTO `cp_round_data` VALUES ('2', '', '0', '0', '', '0', '{\"0\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614111930888.jpg\",\"alt\":\"1528946351(1)\"},\"1\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614112011945.jpg\",\"alt\":\"1528946393(1)\"},\"2\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614112047371.jpg\",\"alt\":\"1528946431(1)\"},\"3\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614112123386.jpg\",\"alt\":\"1528946468(1)\"},\"4\":{\"url\":\"\\/uploadfile\\/2018\\/0614\\/20180614112145613.jpg\",\"alt\":\"1528946494(1)\"}}');
+INSERT INTO `cp_round_data` VALUES ('2', '', '0', '0', '', '0', '{\"0\":{\"url\":\"\\/uploadfile\\/2018\\/0615\\/20180615072033106.png\",\"alt\":\"\\u8ba4\\u8bc11\"},\"1\":{\"url\":\"\\/uploadfile\\/2018\\/0615\\/20180615072037329.png\",\"alt\":\"\\u8ba4\\u8bc12\"},\"2\":{\"url\":\"\\/uploadfile\\/2018\\/0615\\/20180615072039457.png\",\"alt\":\"\\u8ba4\\u8bc13\"},\"3\":{\"url\":\"\\/uploadfile\\/2018\\/0615\\/20180615072042951.png\",\"alt\":\"\\u8ba4\\u8bc14\"},\"4\":{\"url\":\"\\/uploadfile\\/2018\\/0615\\/20180615072044197.png\",\"alt\":\"\\u8ba4\\u8bc15\"}}');
 
 -- ----------------------------
 -- Table structure for `cp_search`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_search`;
 CREATE TABLE `cp_search` (
-  `searchid` int(10) unsigned NOT NULL auto_increment,
-  `typeid` smallint(5) unsigned NOT NULL default '0',
-  `id` mediumint(8) unsigned NOT NULL default '0',
+  `searchid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `typeid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `adddate` int(10) unsigned NOT NULL,
   `data` text NOT NULL,
-  `siteid` smallint(5) unsigned NOT NULL default '1',
-  PRIMARY KEY  (`searchid`),
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`searchid`),
   KEY `typeid` (`typeid`,`id`),
   KEY `siteid` (`siteid`),
   FULLTEXT KEY `data` (`data`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_search
@@ -6481,8 +6764,8 @@ INSERT INTO `cp_search` VALUES ('2', '3', '2', '1528276898', '苹果二维码  �
 INSERT INTO `cp_search` VALUES ('3', '1', '1', '1528338377', '首页顶部滚动内容  首页 内容 彩票 滚动 顶部 服务 时时 赔率 最高 高级 业界 完善 欢迎 皇家 下载 提升 个人资料', '1');
 INSERT INTO `cp_search` VALUES ('4', '53', '1', '1528341022', '首页楼内博图  首页', '1');
 INSERT INTO `cp_search` VALUES ('5', '1', '2', '1528342048', '“倍投”出手！三人各擒百万奖  宋体 排列 万元 体彩 奖金 号码 先生 大奖 得主 江苏 时间 宿迁 一个 彩票 开奖 这次 中奖 苏州 一般 现身 投入 收获 中心 幸运 一等奖 争取 投票 凭借 不少 终于 比较 网点 众所周知 三个 如果 为什么 达到 以及 出自 开出 近日 解释 至于 就是 记录 有些 不过 高兴 总是 天才 心情 或者 感觉 笑容 十几 一次 最近 固定 因为 准确 只有 除了 自选 经历 来看 整理 选择 非常 原因 多万元 信任 我们 遗憾 采用 其中 单个 出手 涵盖 所有 几乎 虽然 一番 方式 使得 采用了 百万 超过 来到 这样 亿元 技能 委托 领取 受到 业主 喜爱 忠实 介绍 奖项 努力 透露 平常 多年 万余 最终 还要 以后 以上 反而 没想到 历史', '1');
-INSERT INTO `cp_search` VALUES ('6', '54', '1', '1528706015', '欢迎您  发射 会员 全部 欢迎', '1');
-INSERT INTO `cp_search` VALUES ('7', '54', '2', '1528708294', '安德森  ', '1');
+INSERT INTO `cp_search` VALUES ('6', '54', '1', '1528706015', '推荐会员得佣金  会员 推荐 佣金 所有 注册 流水', '1');
+INSERT INTO `cp_search` VALUES ('7', '54', '2', '1528708294', '银行存款充值有优惠  充值 优惠 银行卡 会员 享有 选择 所有 存款 银行', '1');
 INSERT INTO `cp_search` VALUES ('8', '3', '3', '1528711040', '首页LOGO  首页', '1');
 INSERT INTO `cp_search` VALUES ('9', '3', '4', '1528713750', '首页背景图  背景 首页', '1');
 INSERT INTO `cp_search` VALUES ('10', '1', '3', '1528717800', '帮助中心  用户 彩票 自动 如何 安全 开通 中心 信息 充值 记录 本站 注册 密码 网站 成功 登录 账户 页面 中奖 网上 点击 支付 服务 方式 银行卡 银行 选择 使用 需要 首页 查看 查询 返还 数据 交易 系统 可以 进行 提供 右侧 资金 申请 金额 快捷 奖金 即可 进入 自己 现场 填写 提交 次数 及时 平台 限制 方便 左侧 购买 才能 设置 规定 正常 行为 时间 公开 合法 体彩 福彩 一切 哪些 为了 确认 详情 公司 的银行 根据 达到 帮助 所有 小时 大银行 用户注册 第三方 包括 网上支付 相关 多种 保障 收取 任何 会员 在线 怎么办 利益 成为 保证 多样化 以及 时时 独立 隔离 安装 大型 备份 做到 常见问题 资料 现象 联系 人员 上述 发生 错误 姓名 不符 一旦 网站首页 通知 防火墙 地域 开奖 人工 大奖 优势 便捷 轻松 全方位 达成 合作伙伴 关系 比如 多家 有效 发行的 工信部 备案 真实 百度 搜狐 事务 工作 永不 处理 投诉 搜狗 腾讯 正规 原则 业务 真实性 负责 自愿 约定 确保 绝对 对于 国家 禁止 授权 控制 严格 积极 响应 国家政策 级别 一致 通过 分钟 实时 发送 输入 电子邮箱 支持 全国所有 费用 忘记 相应 大小 一个 建议 是否 功能 然后 官方网站 网点 前往 修改 立即 顶部 拥有 条件 免费 办理 发现 异常 经过 一定 阅读 同意 针对 做出 如下 审核 格式 没有 到达 符合 营业 情况 大于 网络服务 保护 承担 有没有 全部 收费 设定 产生 注意 利用 信用卡 套现 协议 少数 防止 返回 事项 指定', '1');
@@ -6492,15 +6775,37 @@ INSERT INTO `cp_search` VALUES ('16', '1', '8', '1528947260', '底部友情提�
 INSERT INTO `cp_search` VALUES ('17', '55', '1', '1528954411', '我来了  ', '1');
 INSERT INTO `cp_search` VALUES ('18', '55', '2', '1528954424', '爱上彩票  彩票 爱上', '1');
 INSERT INTO `cp_search` VALUES ('19', '55', '3', '1528954435', '快三之王  ', '1');
-INSERT INTO `cp_search` VALUES ('20', '1', '9', '1528955286', '玩法1  ', '1');
-INSERT INTO `cp_search` VALUES ('21', '1', '10', '1528955302', '玩法12  ', '1');
-INSERT INTO `cp_search` VALUES ('22', '1', '11', '1528955311', '玩法13  ', '1');
-INSERT INTO `cp_search` VALUES ('23', '3', '5', '1528960612', '手机购彩左侧图  左侧 手机', '1');
-INSERT INTO `cp_search` VALUES ('24', '3', '6', '1528960646', '手机购彩右侧图  右侧 手机', '1');
+INSERT INTO `cp_search` VALUES ('20', '1', '9', '1528955286', '北京11选5  北京', '1');
+INSERT INTO `cp_search` VALUES ('55', '1', '30', '1529052615', '体彩公益金护航竞技体育 助力全国体操赛  宋体 体彩 国家 计划 体育 体操 公益 球队 奥运 运动员 观众 体育彩票 比赛 羽毛 中心 赛事 支持 全国 总局 肇庆 现场 锦标赛 运动 国家队 他们 人力 不断 女子 师范大学 同时 加油 通道 活动 宣传 多年来 综合 内容 服务 素质 课程 改善了 我国 源于 对于 代言 本次 形象 成绩 国际 现在 羽毛球 近日 条件 地上 成长 帮助 提高 举行 训练 诠释 链接 日发布 主要 最好 放弃 精神 资金 来源 系统工程 滚动 根据 需要 该计划 比例 彩票 用于 添加 工具 提出 需求 丰富 单位 收到 发展 目前 这些 全力 编辑 职业发展 整体 实力 江苏 提升 提供 今年 启动 昆山 表达 国际奥委会 演讲 公共 职业 礼仪 比如 选手 参赛 入口 设置 队伍 共有 水平 最高 国内 开展 购买 不少 营销活动 最大 规模 日至 管理 协会 主办 年全国 新区 项目 承办 市政府 广东省 更是 人生 吸引 精彩 明星 球员 眼球 大使 参加 体育运动 器材 孩子 鼓励 参与 助学 余人 印象 深刻 电视机 留下 结束 众多 日晚 教练 场地 进行 之前 克服', '1');
+INSERT INTO `cp_search` VALUES ('51', '3', '7', '1528987141', '手机购彩  手机', '1');
+INSERT INTO `cp_search` VALUES ('52', '1', '27', '1529031091', '推荐注册有返利  推荐 佣金 详情 联系 注册会员 会员 流水 注册', '1');
 INSERT INTO `cp_search` VALUES ('26', '55', '4', '1528982667', '擒百万  百万', '1');
 INSERT INTO `cp_search` VALUES ('27', '55', '5', '1528982697', '天天开锣  天天', '1');
 INSERT INTO `cp_search` VALUES ('28', '1', '13', '1528982822', '世界杯今日开锣 竞彩之旅即刻启程  世界杯 游戏 宋体 比赛 罗斯 竞猜 时间 期间 球迷 体育彩票 足球 进行 篮球 销售 公益 球队 国际 排名 全部 其中 销量 进球 亿元 安排 当日 开门红 一个 激情 对手 主场 筹集 作为 突破 莫斯科 实力 分别 未来 更是 国家队 连续 不胜 一定 加上 乐趣 出线 北京 为主 大幅 组成 胜负 赛事 最后 更加 体育 全场 根据 比分 陆续 彩票 之旅 更多 阿拉 同时 感受 参与 力争 可以 冠军 完美 以来 年度 体验 花样 独有 诞生 增长 结合 产品 先进 固定 趣味 率先 用于 职能 编辑 履行 奖金 带来 竞赛 各类 符合 吸引力 引入 当中 增加了 社会 越来越 全国 多家 网点 多种 方法 挑战 智慧 不仅 商业 设施 社区 增加 酒吧 带给 各地 终端 部分 包括 国家 多样 技术性 不论 特点 最大 体彩 临时 生活方式 舞台 还是 比拼 属于 自己 对象 找到 智力 爱好者 从中 享受 前景 终于 拉开 正式 视为 地利 战平 已经 最低 最新 公布 位居 赛场 虽然 大陆 但是 大力 碰撞 今日 中国的 同样 平台 搭建 广大 受到 来自 气息 以及 全程 取得 第三轮 日起 开始 这次 相信 方面 占据 优势 便利 接收 传统 保证 充足 初步 周末 延长 预计 足彩 月期 共有 含有 毕竟 公认 相对 低迷 状态 缺少 连战 近期 他们 新一 下降了 球星 多少 为此 设计 赛程 功夫 尴尬 未能 底线 避免 再现 不再', '1');
 INSERT INTO `cp_search` VALUES ('29', '1', '14', '1528982982', '急寻：义乌双色球738万元大奖得主  大奖 双色球 义乌 彩票 得主 一等奖 特别 中奖 购买 进行 开奖 多元 奖金 游戏 出自 全国 日晚 福利彩票 喜爱 拿出 担心 如此 看着 越来越 自己 现身 大家 礼物 中心 福彩 杭州市 领取 发生 浙江省 期限 属于 是不是 然而 提醒 最后 万元 南路 令人', '1');
+INSERT INTO `cp_search` VALUES ('30', '55', '6', '1528983445', '六合王  ', '1');
+INSERT INTO `cp_search` VALUES ('31', '55', '7', '1528983494', '白小姐  小姐', '1');
+INSERT INTO `cp_search` VALUES ('32', '55', '8', '1528983605', '彩神到  ', '1');
+INSERT INTO `cp_search` VALUES ('33', '55', '9', '1528983657', '吃鸡  ', '1');
+INSERT INTO `cp_search` VALUES ('34', '55', '10', '1528983707', '好彩头  ', '1');
+INSERT INTO `cp_search` VALUES ('35', '55', '11', '1528983744', '同花顺  同花顺', '1');
+INSERT INTO `cp_search` VALUES ('36', '55', '12', '1528983776', '招弟  ', '1');
+INSERT INTO `cp_search` VALUES ('37', '55', '13', '1528983809', '大圣  ', '1');
+INSERT INTO `cp_search` VALUES ('38', '1', '15', '1528983875', '辽宁盘锦彩民从垃圾中找回中奖彩票  盘锦 彩票 大奖 先生 福彩 垃圾 辽宁 万元 中奖 事件 最近 发生 重要 凭证 丢失 事情 终于 开奖 中午 业主 当天 服务员 这样 位于 分别 于是 马上 联系 告诉 立即 应该 购买的 金额 不见 奖金 自己 及时 仔细 觉得 所有 和服 服务 提醒 感谢 十分 一大 广大 发现 收集 找到 起来 保管 第二 不要 找回 各种 一点 下午 熟悉 虽然 小区 日中 不少 但是 收获 左右 振兴 晚上 看到 号码 兴奋 非常 时候 花卉 公司 随后', '1');
+INSERT INTO `cp_search` VALUES ('39', '1', '16', '1528983920', '1058万元大奖得主：洗衣服前一定要翻裤兜  彩票 一等奖 福彩 万元 大奖 奖金 自己 山区 衣服 日晚 双色球 全国 出来 放在 准备 每次 一定 洗衣机 直到 湖北省 中心 来到 一举 开出 武汉市 可能 这样 一大 号码 母亲 不仅 价值 中奖 没想到 元钱 觉得 而且 投入 陆幽 体现 总结 真是 总是 日子 想起 分别 买套房 发生 如果 努力 意外 放松 以后 项目 大事 告诉 这件 来得 创业 时候 因为 就是 对于 使用 父母 生活 希望 影响 刚刚 进入 第一 年轻 不能 感谢 多万元 社会 时间 日中 终于 不见 收获 迟到 手机 发现 拿出 一边 有奖 好几 其中 一样 一家 的确 承认 一下子 不停 是否 看看 留在 工作 毕业 大学 得主 原因 现在 某公司 积累 比较 而是 及时 知道', '1');
+INSERT INTO `cp_search` VALUES ('40', '1', '17', '1528983972', '这群江津孩子的六一礼物就是一场普通行走  孩子 特殊 中心 发展 儿童 老师 现场 表演 拥有 之一 同样 创始人 爱心 礼物 出发 六一 通过 有所不同 这些 众多 灿烂 笑容 生活 美好 他们 教育 快乐 康复 活动 进行 家庭 自己 完成 普通 各种 日子 收到 一个 祝福 行动 实际 发行 关爱 健康 帮助 慰问 宗旨 福彩 受到 为了 更多 来自 成长 温暖 社会 此次 上面 白色 身上 指引 方式 未来的 未来 营造 期望 就是 工作人员 情况 每个 压力 的努力 到达 参与 缤纷 巨大 先后 包括 规模 年来 智力 障碍 提供 不同 发育 比赛 患者 人士 当中 共同 扶持 当天 时代广场 自由行 特别 第十三届 家长 服务 同类 机构 技能 舞蹈 绘画 大多数 全部 缓解了 免费 一定 掌握 不仅 系统 长期 可以 知识 文化 学习 经济', '1');
+INSERT INTO `cp_search` VALUES ('41', '1', '18', '1528984010', '广州福彩今年征召100家投注站  福彩 申请 广州市 中心 福利彩票 地址 提交 申请人 本次 经营 场所 材料 办理 受理 销售 广州 公示 审核 必须 不得 电脑 朋友 快乐 十分 投资 有效 情况 条件 广东省 资格 以上 面积 设立 进行 有意 公告 提醒 资金 年后 身份证 终端 活动 公开 不少 万元 只能 发布 全社会 批准 范围 周边 考察 环境 是否 距离 其它 实际 站点 符合 日前 可行性 获得 指定 区域 迁移 一个 个人 学历 具备 户口 规定 小于 以下 谨慎 周岁 的申请 日起 可以 同时 人员 综合 考虑 市场 一定 便利 因素 全市 自由 程度 发展 经济状况 人口 数量 介绍 地区 取消 真实 视为无效 分析 做好 一致 认真 做到 经营风险 评估 通过审核 根据 调研 充分 所有 要求 发现 确定 名单 平米 其他 风险 发行 关于 友情 如果 达到 专线 详情 咨询 公布 相关 上网 标准 查询 通知 一年内 中国电信 使用 临时 搭建 房屋 限制 适用 平方米 将按 同样 租赁 拆迁 彩票 纳入 专用 安装 淘汰 制度 作为 统一 管理 原则上 予以 经营管理 专职 明确 方式 参与 直接 现有 事业单位 专营 从事 需要 特别 注意 一次 使用权 所有权 业务 适应 满足 信用记录 商业 原则 据悉 持有 遵循 开放 截至 日期 哪些 具有 刑事 处罚 记录 不良 年内 高中 完全 民事 行为 能力 通过 同一 今年 流水 先后 优先 地图 只有 依据 申报 建筑 规格 每周 汇总 工作 日内 百度 所在 时间 前往 销售部 资料 上班 正常 如何 结束 即可 工作日 证书 本人 分析报告 以及 照片 详细 可用 银行 出具 证明', '1');
+INSERT INTO `cp_search` VALUES ('42', '1', '19', '1528984122', '世界杯足彩来了，猜不猜，怎么猜，全看你的了！  世界杯 宋体 游戏 体彩 竞猜 对于 进行 比赛 可以 怎么 全部 阿根 嘉年华 北京 期间 来说 选择 淘汰 进球 比分 全场 销售 安排 接受 小组 一起 参与 喜爱 世界 由于 不论 还是 阶段 根据 地区 足彩 足球 人们 因此 眼球 活动 系列 主题 喜欢 需要 心脏 全国 考验 勇敢 日常 无疑 频频 江湖 行动 服务 举措 一条龙 交流 聚会 搭建 那时 心动 记住 狂欢 推出 计划 户外 可以通过 上演 精彩 不如 了解 方式 各地 比如 空间 球队 时间 共计 罗斯 赛事 过关 以及 球迷 正式 已经 中奖 体验 增加 显著 尤其 进入 开幕 事实上 乐趣 获胜 第一 一时 之后 揭晓 结束 广东 三个 强大 十分 阵容 联网 日起 将于 南美 胜利 提前 出线 第三轮 之外 开始 套餐 最高', '1');
+INSERT INTO `cp_search` VALUES ('43', '1', '20', '1528984200', '砍下916万大奖 这一回露脸的不是单式票  万元 大奖 宋体 体彩 开奖 北京 中奖 出自 奖金 地区 一等奖 日晚 投入 北京市 号码 全部 方式 现身 销售 其中 高达 注意 全国 选择 广东 网点 中心 四川 彩票 亿元 经历 诞生 之后 先生 在内 不是 凭借 夫妇 这个 退休 采用 单独 源于 而是 多个 可能 中高 一旦 其它 有趣 并非 此种 最近 之前 最高 终于 落户 成都市 投票 此外 同一 统计 一个 其中包括 累计 截至 汕头 丰富 预期 再次 而且 不但 今年 也许 形成 之外 占据 因而 国家 迎来 之旅 对决 提供 数据 进行 具体 看出 不难 分别 话题 到底 最爱 共计 江湖 另外 基本 暂时 养生 时间 社会 得主 需要 筹集 通常 认为 不容 由于 含量 技术 回报 万余 三个 连续 这位 上看 内容 一举 期间 各个 奖项 可谓 公益 显示', '1');
+INSERT INTO `cp_search` VALUES ('44', '1', '21', '1528984252', '京城彩站晒红单：北单9串1惊现1574倍回报  宋体 中奖 回报 出自 这是 排列 足球 体彩 位于 投入 选择 号楼 展示 栏目 本期 分别 编辑 方式 采用 智慧 投票 城区 组合 花费 附近', '1');
+INSERT INTO `cp_search` VALUES ('45', '1', '22', '1528984306', '豪取1.25亿！三个大乐透大奖暗藏“关键词”  宋体 大奖 体彩 中奖 彩票 万元 先生 三个 介绍 号码 就是 北京市 关键词 投入 北京 老人 开奖 自己 发生 朋友 亿元 没有 奖金 一等奖 日晚 这个 期间 生活 现身 之后 一起 来到 中心 生意 这位 不到 随机 表示 公益 进行 非常 一直 自选 特别 吉利 出来 附近 一个 剧情 这样 高达 刚刚 结束 累计 金额 他们 出自 退休 夫妇 活动 多万元 幸运 时间 因为 激动 开业 参与 业主 真是 人和 为何 开始 相信 日子 希望 网点 遇到 下面 电脑 终于 在家 好几 反复 确认 知道 不再 一期 几乎 氛围 这家 十几 餐厅 上市 没想到 以前 左右 觉得 海报 经常 时候 正好 那天 天后 告别 从中 打算 在内 回家 显示 只有 意义 收入 压力 某种 共有 从此 同时 老婆 其中 最高 日上午 超市 凭借 公交 食品 公交车 来临 源自 平时 相同 准备 过程 来看 它们 值得 全部 看着 国家 得主 体育彩票 认真 成为 习惯 选择 中大 一般 算是 注入 来说 采用 的方式 购买 爱好 唯一 这种 比较 其实 为了 议论 看到 一定 以后 为什么 其他 想法 接着 现在 无所谓 高兴 已经 坚持 当然', '1');
+INSERT INTO `cp_search` VALUES ('46', '1', '23', '1528984375', '头奖空开 7星彩奖池金额662万元  开奖 号码 宋体 本期 万元 金额 数字 显示 体育彩票 现在 出现 来看 过后 朋友 全国 活跃 近期 中奖 争取 收获 大奖 希望 销售额 关注 之后 成为 状态 此外 主要 集中 奖金 一等奖 中间 最大 最近 走强 优势 绝对 最小 数值 继续', '1');
+INSERT INTO `cp_search` VALUES ('47', '1', '24', '1528984438', '6-15周五足球重点赛事推荐  比赛 周五 球队 宋体 时间 状态 世界杯 葡萄 近期 热身 核心 不胜 氛围 影响 良好 备战 球员 临时 因素 面对 难以 乐观 取得 赢得 重点 赛事 推荐 开门红 足球 防守 实力 强劲 保持 政治', '1');
+INSERT INTO `cp_search` VALUES ('48', '1', '25', '1528984516', '奖池升至58.74亿 体彩大乐透开2注1000万  宋体 开出 万元 奖金 号码 体彩 本期 其中 采用 方面 分布 数量 范围 开奖 世界杯 亿元 全国 同时 投入 刷新 再次 历史 最高 纪录 继续上涨 期间 数据 结束 周六 届时 狂欢 累计 统计 大奖 包括 十足 赛事 足球 开启 已经 提醒 观看 精彩 显示 遗憾 中奖 单个 每人 幸运 由于 从而 无缘 升至 一等奖 大小 最近 组合 最大 最小 各个 复制 全部 两位', '1');
+INSERT INTO `cp_search` VALUES ('49', '1', '26', '1528984621', '彩市新语：竞彩游戏即将接过世界杯第三棒  宋体 世界杯 游戏 期间 彩虹 销量 第三 足球 第一 体育彩票 预测 高达 发生 第二 彩票 竞猜 一道 如果 年开始 目的 成为 天空 即将 对于 预言 去世 成功率 国奥 不到 要说 不得不 能够 来说 动物 生于 火爆 编辑 传奇 何种 恐怕 罗斯 表现 特别 登场 未来 怎样 演绎 及其 一个 准确 推出 不能 忘记 变化 巨大 数字 几乎 年前 奇迹 当年 创造 媒体 这个 个人 那么 当作 世界 上市 相当于 大约 自己 固定 经典 高潮迭起 玩家 正在 整体 突破 因此 升至 流转 代表 国际 认为 舆论 深度 接轨 历经 今天 年后 至今', '1');
+INSERT INTO `cp_search` VALUES ('50', '54', '3', '1528985603', '签到送彩金  会员 相应 每天 所有', '1');
+INSERT INTO `cp_search` VALUES ('53', '1', '28', '1529031193', '注册送好礼  注册 联系 人员 详情 了解 今日起 成为 会员', '1');
+INSERT INTO `cp_search` VALUES ('54', '1', '29', '1529031266', '签到得礼金  咨询 人员 详情 相应 每天 得到 注册会员', '1');
 
 -- ----------------------------
 -- Table structure for `cp_search_keyword`
@@ -6526,66 +6831,63 @@ CREATE TABLE `cp_search_keyword` (
 DROP TABLE IF EXISTS `cp_session`;
 CREATE TABLE `cp_session` (
   `sessionid` char(32) NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL default '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `ip` char(15) NOT NULL,
-  `lastvisit` int(10) unsigned NOT NULL default '0',
-  `roleid` tinyint(3) unsigned default '0',
-  `groupid` tinyint(3) unsigned NOT NULL default '0',
+  `lastvisit` int(10) unsigned NOT NULL DEFAULT '0',
+  `roleid` tinyint(3) unsigned DEFAULT '0',
+  `groupid` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `m` char(20) NOT NULL,
   `c` char(20) NOT NULL,
   `a` char(20) NOT NULL,
   `data` char(255) NOT NULL,
-  PRIMARY KEY  (`sessionid`),
+  PRIMARY KEY (`sessionid`),
   KEY `lastvisit` (`lastvisit`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_session
 -- ----------------------------
-INSERT INTO `cp_session` VALUES ('una8jl2scu86k01bcrhnaojsn2', '1', '114.243.112.4', '1528983125', '1', '0', 'admin', 'index', 'public_session_life', 'code|s:0:\"\";userid|s:1:\"1\";roleid|s:1:\"1\";pc_hash|s:6:\"cDDC2V\";lock_screen|i:0;');
-INSERT INTO `cp_session` VALUES ('7nalml95455aihsiirfbadnjl5', '1', '124.64.16.133', '1528983149', '1', '0', 'admin', 'index', 'public_session_life', 'code|s:0:\"\";userid|s:1:\"1\";roleid|s:1:\"1\";pc_hash|s:6:\"IHbVvX\";lock_screen|i:0;');
-INSERT INTO `cp_session` VALUES ('8cfg95foha4qc9b7gda4olb6o1', '1', '127.0.0.1', '1528983148', '1', '0', 'admin', 'index', 'public_session_life', 'code|s:0:\"\";userid|s:1:\"1\";roleid|s:1:\"1\";pc_hash|s:6:\"bWGGGm\";lock_screen|i:0;');
 
 -- ----------------------------
 -- Table structure for `cp_site`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_site`;
 CREATE TABLE `cp_site` (
-  `siteid` smallint(5) unsigned NOT NULL auto_increment,
-  `name` char(30) default '',
-  `dirname` char(255) default '',
-  `domain` char(255) default '',
-  `site_title` char(255) default '',
-  `keywords` char(255) default '',
-  `description` char(255) default '',
+  `siteid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(30) DEFAULT '',
+  `dirname` char(255) DEFAULT '',
+  `domain` char(255) DEFAULT '',
+  `site_title` char(255) DEFAULT '',
+  `keywords` char(255) DEFAULT '',
+  `description` char(255) DEFAULT '',
   `release_point` text,
-  `default_style` char(50) default NULL,
+  `default_style` char(50) DEFAULT NULL,
   `template` text,
   `setting` mediumtext,
-  `uuid` char(40) default '',
-  PRIMARY KEY  (`siteid`)
+  `uuid` char(40) DEFAULT '',
+  PRIMARY KEY (`siteid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cp_site
 -- ----------------------------
-INSERT INTO `cp_site` VALUES ('1', '皇家娱乐', '', 'http://www.5117188.com/', '', '', '', '', 'cp', 'cp', '{\"upload_maxsize\":\"20480\",\"upload_allowext\":\"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf\",\"watermark_enable\":\"0\",\"watermark_minwidth\":\"300\",\"watermark_minheight\":\"300\",\"watermark_img\":\"statics\\/images\\/water\\/\\/mark.png\",\"watermark_pct\":\"85\",\"watermark_quality\":\"80\",\"watermark_pos\":\"9\"}', 'c5ac8b3f-695d-11e8-b5ae-deb0d92f5d47');
+INSERT INTO `cp_site` VALUES ('1', '皇家娱乐', '', '/', '', '', '', '', 'cp', 'cp', '{\"upload_maxsize\":\"20480\",\"upload_allowext\":\"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf\",\"watermark_enable\":\"0\",\"watermark_minwidth\":\"300\",\"watermark_minheight\":\"300\",\"watermark_img\":\"statics\\/images\\/water\\/\\/mark.png\",\"watermark_pct\":\"85\",\"watermark_quality\":\"80\",\"watermark_pos\":\"9\"}', 'c5ac8b3f-695d-11e8-b5ae-deb0d92f5d47');
 
 -- ----------------------------
 -- Table structure for `cp_special`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_special`;
 CREATE TABLE `cp_special` (
-  `id` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  `aid` int(10) unsigned NOT NULL default '0',
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `aid` int(10) unsigned NOT NULL DEFAULT '0',
   `title` char(60) NOT NULL,
   `typeids` char(100) NOT NULL,
   `thumb` char(100) NOT NULL,
   `banner` char(100) NOT NULL,
   `description` char(255) NOT NULL,
   `url` char(100) NOT NULL,
-  `ishtml` tinyint(1) unsigned NOT NULL default '0',
+  `ishtml` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `ispage` tinyint(1) unsigned NOT NULL,
   `filename` char(40) NOT NULL,
   `pics` char(100) NOT NULL,
@@ -6596,13 +6898,13 @@ CREATE TABLE `cp_special` (
   `show_template` char(60) NOT NULL,
   `css` text NOT NULL,
   `username` char(40) NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL default '0',
-  `createtime` int(10) unsigned NOT NULL default '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `createtime` int(10) unsigned NOT NULL DEFAULT '0',
   `listorder` smallint(5) unsigned NOT NULL,
-  `elite` tinyint(1) unsigned NOT NULL default '0',
-  `disabled` tinyint(1) unsigned NOT NULL default '0',
-  `isvideo` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `elite` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isvideo` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   KEY `disabled` (`disabled`,`siteid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6611,15 +6913,48 @@ CREATE TABLE `cp_special` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `cp_special_content`
+-- ----------------------------
+DROP TABLE IF EXISTS `cp_special_content`;
+CREATE TABLE `cp_special_content` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `specialid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `title` char(80) NOT NULL,
+  `style` char(24) NOT NULL,
+  `typeid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `thumb` char(100) NOT NULL,
+  `keywords` char(40) NOT NULL,
+  `description` char(255) NOT NULL,
+  `url` char(100) NOT NULL,
+  `curl` char(15) NOT NULL,
+  `listorder` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `username` char(20) NOT NULL,
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `searchid` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isdata` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `videoid` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `specialid` (`specialid`,`typeid`,`isdata`),
+  KEY `typeid` (`typeid`,`isdata`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cp_special_content
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `cp_special_c_data`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_special_c_data`;
 CREATE TABLE `cp_special_c_data` (
-  `id` mediumint(8) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `author` varchar(40) NOT NULL,
   `content` text NOT NULL,
-  `paginationtype` tinyint(1) unsigned NOT NULL default '0',
-  `maxcharperpage` mediumint(6) unsigned NOT NULL default '0',
+  `paginationtype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `maxcharperpage` mediumint(6) unsigned NOT NULL DEFAULT '0',
   `style` char(20) NOT NULL,
   `show_template` varchar(30) NOT NULL,
   UNIQUE KEY `id` (`id`)
@@ -6630,46 +6965,13 @@ CREATE TABLE `cp_special_c_data` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cp_special_content`
--- ----------------------------
-DROP TABLE IF EXISTS `cp_special_content`;
-CREATE TABLE `cp_special_content` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `specialid` smallint(5) unsigned NOT NULL default '0',
-  `title` char(80) NOT NULL,
-  `style` char(24) NOT NULL,
-  `typeid` smallint(5) unsigned NOT NULL default '0',
-  `thumb` char(100) NOT NULL,
-  `keywords` char(40) NOT NULL,
-  `description` char(255) NOT NULL,
-  `url` char(100) NOT NULL,
-  `curl` char(15) NOT NULL,
-  `listorder` mediumint(8) unsigned NOT NULL default '0',
-  `userid` mediumint(8) unsigned NOT NULL default '0',
-  `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  `searchid` mediumint(8) unsigned NOT NULL default '0',
-  `islink` tinyint(1) unsigned NOT NULL default '0',
-  `isdata` tinyint(1) unsigned NOT NULL default '0',
-  `videoid` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`id`),
-  KEY `specialid` (`specialid`,`typeid`,`isdata`),
-  KEY `typeid` (`typeid`,`isdata`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of cp_special_content
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `cp_sphinx_counter`
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_sphinx_counter`;
 CREATE TABLE `cp_sphinx_counter` (
   `counter_id` int(11) unsigned NOT NULL,
   `max_doc_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY  (`counter_id`)
+  PRIMARY KEY (`counter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -6681,14 +6983,14 @@ CREATE TABLE `cp_sphinx_counter` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_sso_admin`;
 CREATE TABLE `cp_sso_admin` (
-  `id` smallint(6) NOT NULL auto_increment,
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `username` char(20) NOT NULL,
   `password` char(32) NOT NULL,
-  `encrypt` char(6) default NULL,
-  `issuper` tinyint(1) default '0',
-  `lastlogin` int(10) default NULL,
-  `ip` char(15) default NULL,
-  PRIMARY KEY  (`id`),
+  `encrypt` char(6) DEFAULT NULL,
+  `issuper` tinyint(1) DEFAULT '0',
+  `lastlogin` int(10) DEFAULT NULL,
+  `ip` char(15) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -6702,16 +7004,16 @@ INSERT INTO `cp_sso_admin` VALUES ('1', 'any', '3595f6bef1c2a35ee2eb7be067364c5d
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_sso_applications`;
 CREATE TABLE `cp_sso_applications` (
-  `appid` smallint(6) unsigned NOT NULL auto_increment,
-  `type` char(16) NOT NULL default '',
-  `name` char(20) NOT NULL default '',
-  `url` char(255) NOT NULL default '',
-  `authkey` char(255) NOT NULL default '',
-  `ip` char(15) NOT NULL default '',
-  `apifilename` char(30) NOT NULL default 'phpsso.php',
-  `charset` char(8) NOT NULL default '',
-  `synlogin` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`appid`),
+  `appid` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
+  `type` char(16) NOT NULL DEFAULT '',
+  `name` char(20) NOT NULL DEFAULT '',
+  `url` char(255) NOT NULL DEFAULT '',
+  `authkey` char(255) NOT NULL DEFAULT '',
+  `ip` char(15) NOT NULL DEFAULT '',
+  `apifilename` char(30) NOT NULL DEFAULT 'phpsso.php',
+  `charset` char(8) NOT NULL DEFAULT '',
+  `synlogin` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`appid`),
   KEY `synlogin` (`synlogin`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -6725,20 +7027,20 @@ INSERT INTO `cp_sso_applications` VALUES ('1', 'phpcms_v9', 'phpcms v9', 'http:/
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_sso_members`;
 CREATE TABLE `cp_sso_members` (
-  `uid` int(10) unsigned NOT NULL auto_increment,
-  `username` char(20) NOT NULL default '',
-  `password` char(32) NOT NULL default '',
-  `random` char(8) NOT NULL default '',
-  `email` char(32) NOT NULL default '',
-  `regip` char(15) NOT NULL default '',
-  `regdate` int(10) unsigned NOT NULL default '0',
-  `lastip` char(15) NOT NULL default '0',
-  `lastdate` int(10) unsigned NOT NULL default '0',
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` char(20) NOT NULL DEFAULT '',
+  `password` char(32) NOT NULL DEFAULT '',
+  `random` char(8) NOT NULL DEFAULT '',
+  `email` char(32) NOT NULL DEFAULT '',
+  `regip` char(15) NOT NULL DEFAULT '',
+  `regdate` int(10) unsigned NOT NULL DEFAULT '0',
+  `lastip` char(15) NOT NULL DEFAULT '0',
+  `lastdate` int(10) unsigned NOT NULL DEFAULT '0',
   `appname` char(15) NOT NULL,
-  `type` enum('app','connect') default NULL,
-  `avatar` tinyint(1) NOT NULL default '0',
-  `ucuserid` mediumint(8) unsigned default '0',
-  PRIMARY KEY  (`uid`),
+  `type` enum('app','connect') DEFAULT NULL,
+  `avatar` tinyint(1) NOT NULL DEFAULT '0',
+  `ucuserid` mediumint(8) unsigned DEFAULT '0',
+  PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`),
   KEY `email` (`email`),
   KEY `ucuserid` (`ucuserid`)
@@ -6753,14 +7055,14 @@ CREATE TABLE `cp_sso_members` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_sso_messagequeue`;
 CREATE TABLE `cp_sso_messagequeue` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `operation` char(32) NOT NULL,
-  `succeed` tinyint(1) NOT NULL default '0',
-  `totalnum` smallint(6) unsigned NOT NULL default '0',
+  `succeed` tinyint(1) NOT NULL DEFAULT '0',
+  `totalnum` smallint(6) unsigned NOT NULL DEFAULT '0',
   `noticedata` mediumtext NOT NULL,
-  `dateline` int(10) unsigned NOT NULL default '0',
+  `dateline` int(10) unsigned NOT NULL DEFAULT '0',
   `appstatus` mediumtext,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `dateline` (`dateline`),
   KEY `succeed` (`succeed`,`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -6775,16 +7077,16 @@ CREATE TABLE `cp_sso_messagequeue` (
 DROP TABLE IF EXISTS `cp_sso_session`;
 CREATE TABLE `cp_sso_session` (
   `sessionid` char(32) NOT NULL,
-  `userid` mediumint(8) unsigned NOT NULL default '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `ip` char(15) NOT NULL,
-  `lastvisit` int(10) unsigned NOT NULL default '0',
-  `roleid` tinyint(3) unsigned default '0',
-  `groupid` tinyint(3) unsigned NOT NULL default '0',
+  `lastvisit` int(10) unsigned NOT NULL DEFAULT '0',
+  `roleid` tinyint(3) unsigned DEFAULT '0',
+  `groupid` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `m` char(20) NOT NULL,
   `c` char(20) NOT NULL,
   `a` char(20) NOT NULL,
   `data` char(255) NOT NULL,
-  PRIMARY KEY  (`sessionid`),
+  PRIMARY KEY (`sessionid`),
   KEY `lastvisit` (`lastvisit`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
@@ -6797,9 +7099,9 @@ CREATE TABLE `cp_sso_session` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_sso_settings`;
 CREATE TABLE `cp_sso_settings` (
-  `name` varchar(32) NOT NULL default '',
+  `name` varchar(32) NOT NULL DEFAULT '',
   `data` text NOT NULL,
-  PRIMARY KEY  (`name`)
+  PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -6816,13 +7118,13 @@ INSERT INTO `cp_sso_settings` VALUES ('ucenter', '');
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_template_bak`;
 CREATE TABLE `cp_template_bak` (
-  `id` int(10) NOT NULL auto_increment,
-  `creat_at` int(10) unsigned default '0',
-  `fileid` char(50) default NULL,
-  `userid` mediumint(8) default NULL,
-  `username` char(20) default NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `creat_at` int(10) unsigned DEFAULT '0',
+  `fileid` char(50) DEFAULT NULL,
+  `userid` mediumint(8) DEFAULT NULL,
+  `username` char(20) DEFAULT NULL,
   `template` text,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `fileid` (`fileid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6837,10 +7139,10 @@ DROP TABLE IF EXISTS `cp_times`;
 CREATE TABLE `cp_times` (
   `username` char(40) NOT NULL,
   `ip` char(15) NOT NULL,
-  `logintime` int(10) unsigned NOT NULL default '0',
-  `isadmin` tinyint(1) NOT NULL default '0',
-  `times` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`username`,`isadmin`)
+  `logintime` int(10) unsigned NOT NULL DEFAULT '0',
+  `isadmin` tinyint(1) NOT NULL DEFAULT '0',
+  `times` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`username`,`isadmin`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -6852,18 +7154,18 @@ CREATE TABLE `cp_times` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_type`;
 CREATE TABLE `cp_type` (
-  `typeid` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
+  `typeid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `module` char(15) NOT NULL,
-  `modelid` smallint(5) unsigned NOT NULL default '0',
+  `modelid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` char(30) NOT NULL,
-  `parentid` smallint(5) unsigned NOT NULL default '0',
+  `parentid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typedir` char(20) NOT NULL,
   `url` char(100) NOT NULL,
   `template` char(30) NOT NULL,
-  `listorder` smallint(5) unsigned NOT NULL default '0',
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL,
-  PRIMARY KEY  (`typeid`),
+  PRIMARY KEY (`typeid`),
   KEY `module` (`module`,`parentid`,`siteid`,`listorder`)
 ) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
@@ -6883,13 +7185,13 @@ INSERT INTO `cp_type` VALUES ('55', '1', 'search', '14', '中奖', '0', '', '', 
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_urlrule`;
 CREATE TABLE `cp_urlrule` (
-  `urlruleid` smallint(5) unsigned NOT NULL auto_increment,
+  `urlruleid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `module` varchar(15) NOT NULL,
   `file` varchar(20) NOT NULL,
-  `ishtml` tinyint(1) unsigned NOT NULL default '0',
+  `ishtml` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `urlrule` varchar(255) NOT NULL,
   `example` varchar(255) NOT NULL,
-  PRIMARY KEY  (`urlruleid`)
+  PRIMARY KEY (`urlruleid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -6909,26 +7211,26 @@ INSERT INTO `cp_urlrule` VALUES ('30', 'content', 'category', '0', 'list-{$catid
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_video`;
 CREATE TABLE `cp_video` (
-  `id` mediumint(8) unsigned NOT NULL auto_increment,
-  `catid` smallint(5) unsigned NOT NULL default '0',
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `typeid` smallint(5) unsigned NOT NULL,
-  `title` char(80) NOT NULL default '',
-  `style` char(24) NOT NULL default '',
-  `thumb` char(100) NOT NULL default '',
-  `keywords` char(40) NOT NULL default '',
-  `description` char(255) NOT NULL default '',
-  `posids` tinyint(1) unsigned NOT NULL default '0',
+  `title` char(80) NOT NULL DEFAULT '',
+  `style` char(24) NOT NULL DEFAULT '',
+  `thumb` char(100) NOT NULL DEFAULT '',
+  `keywords` char(40) NOT NULL DEFAULT '',
+  `description` char(255) NOT NULL DEFAULT '',
+  `posids` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `url` char(100) NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL default '0',
-  `status` tinyint(2) unsigned NOT NULL default '1',
-  `sysadd` tinyint(1) unsigned NOT NULL default '0',
-  `islink` tinyint(1) unsigned NOT NULL default '0',
+  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1',
+  `sysadd` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `islink` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `username` char(20) NOT NULL,
-  `inputtime` int(10) unsigned NOT NULL default '0',
-  `updatetime` int(10) unsigned NOT NULL default '0',
-  `vision` varchar(255) NOT NULL default '',
-  `video_category` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`id`),
+  `inputtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0',
+  `vision` varchar(255) NOT NULL DEFAULT '',
+  `video_category` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
   KEY `status` (`status`,`listorder`,`id`),
   KEY `listorder` (`catid`,`status`,`listorder`,`id`),
   KEY `catid` (`catid`,`status`,`id`)
@@ -6943,10 +7245,10 @@ CREATE TABLE `cp_video` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_video_content`;
 CREATE TABLE `cp_video_content` (
-  `contentid` int(10) unsigned NOT NULL default '0',
-  `modelid` smallint(5) unsigned NOT NULL default '0',
-  `videoid` int(10) unsigned NOT NULL default '0',
-  `listorder` smallint(5) unsigned NOT NULL default '0',
+  `contentid` int(10) unsigned NOT NULL DEFAULT '0',
+  `modelid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `videoid` int(10) unsigned NOT NULL DEFAULT '0',
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
   KEY `videoid` (`videoid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6959,17 +7261,17 @@ CREATE TABLE `cp_video_content` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_video_data`;
 CREATE TABLE `cp_video_data` (
-  `id` mediumint(8) unsigned default '0',
+  `id` mediumint(8) unsigned DEFAULT '0',
   `content` text NOT NULL,
-  `readpoint` smallint(5) unsigned NOT NULL default '0',
+  `readpoint` smallint(5) unsigned NOT NULL DEFAULT '0',
   `groupids_view` varchar(100) NOT NULL,
   `paginationtype` tinyint(1) NOT NULL,
   `maxcharperpage` mediumint(6) NOT NULL,
   `template` varchar(30) NOT NULL,
-  `paytype` tinyint(1) unsigned NOT NULL default '0',
-  `allow_comment` tinyint(1) unsigned NOT NULL default '1',
-  `relation` varchar(255) NOT NULL default '',
-  `video` tinyint(3) unsigned NOT NULL default '0',
+  `paytype` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allow_comment` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `relation` varchar(255) NOT NULL DEFAULT '',
+  `video` tinyint(3) unsigned NOT NULL DEFAULT '0',
   KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6982,21 +7284,21 @@ CREATE TABLE `cp_video_data` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_video_store`;
 CREATE TABLE `cp_video_store` (
-  `videoid` int(10) unsigned NOT NULL auto_increment,
+  `videoid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` char(60) NOT NULL,
   `vid` char(40) NOT NULL,
   `keywords` char(40) NOT NULL,
   `description` char(255) NOT NULL,
-  `status` tinyint(3) NOT NULL default '0',
-  `listorder` smallint(5) unsigned NOT NULL default '0',
-  `addtime` int(10) unsigned NOT NULL default '0',
-  `userid` mediumint(8) unsigned NOT NULL default '0',
+  `status` tinyint(3) NOT NULL DEFAULT '0',
+  `listorder` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `userid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `picpath` char(120) NOT NULL,
   `size` char(20) NOT NULL,
-  `timelen` mediumint(9) NOT NULL default '0',
-  `userupload` tinyint(1) NOT NULL default '0',
-  `channelid` tinyint(3) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`videoid`),
+  `timelen` mediumint(9) NOT NULL DEFAULT '0',
+  `userupload` tinyint(1) NOT NULL DEFAULT '0',
+  `channelid` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`videoid`),
   KEY `videoid` (`videoid`,`status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -7009,14 +7311,14 @@ CREATE TABLE `cp_video_store` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cp_workflow`;
 CREATE TABLE `cp_workflow` (
-  `workflowid` smallint(5) unsigned NOT NULL auto_increment,
-  `siteid` smallint(5) unsigned NOT NULL default '0',
-  `steps` tinyint(1) unsigned NOT NULL default '1',
+  `workflowid` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `steps` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `workname` varchar(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `setting` text NOT NULL,
-  `flag` tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`workflowid`)
+  `flag` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`workflowid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
