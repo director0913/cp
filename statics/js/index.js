@@ -1,7 +1,7 @@
 $(function() {
         //轮播
         $("#slideBox").slide({ mainCell: ".bd ul", effect: "fold", autoPlay: true, autoPage: true, titCell: ".hd ul" });
-        jQuery(".picMarquee-top").slide({mainCell:".bd .tbody",autoPlay:true,effect:"topMarquee",vis:10,interTime:50,trigger:"click"});
+        jQuery(".picMarquee-top").slide({mainCell:".bd .tbody",autoPlay:true,effect:"topMarquee",vis:11,interTime:50,trigger:"click"});
        //二维码下载
         $('.down-apple').click(function() {
             $('#img-apple').show();

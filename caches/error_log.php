@@ -5012,3 +5012,31 @@
 <?php exit;?>06-15 09:24:28 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
 <?php exit;?>06-15 09:24:28 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
 <?php exit;?>06-15 09:24:28 | 2 | db_mysqli::error(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 390
+<?php exit;?>06-15 13:43:43 | 2 | extract() expects parameter 1 to be array, null given | phpcms\modules\content\classes\html.class.php | 182
+<?php exit;?>06-15 14:58:09 | 2 | mysqli::mysqli(): (HY000/2002): ��һ���޷����ӵ���糢���һ���׽��ֲ����
+ | phpcms\libs\classes\db_mysqli.class.php | 55
+<?php exit;?>06-15 14:58:09 | 2 | db_mysqli::error(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 390
+<?php exit;?>06-15 14:58:09 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
+<?php exit;?>06-15 14:58:09 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
+<?php exit;?>06-15 14:58:09 | 2 | db_mysqli::error(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 390
+<?php exit;?>06-15 14:58:09 | 2 | mysqli::close(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 409
+<?php exit;?>06-15 14:58:09 | 2 | mysqli::mysqli(): (HY000/2002): ��һ���޷����ӵ���糢���һ���׽��ֲ����
+ | phpcms\libs\classes\db_mysqli.class.php | 55
+<?php exit;?>06-15 15:11:29 | 2 | mysqli::mysqli(): (HY000/2002): ��һ���޷����ӵ���糢���һ���׽��ֲ����
+ | phpcms\libs\classes\db_mysqli.class.php | 55
+<?php exit;?>06-15 15:11:29 | 2 | db_mysqli::error(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 390
+<?php exit;?>06-15 15:11:29 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
+<?php exit;?>06-15 15:11:29 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
+<?php exit;?>06-15 15:11:29 | 2 | db_mysqli::error(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 390
+<?php exit;?>06-15 15:11:29 | 2 | mysqli::close(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 409
+<?php exit;?>06-15 15:11:29 | 2 | mysqli::mysqli(): (HY000/2002): ��һ���޷����ӵ���糢���һ���׽��ֲ����
+ | phpcms\libs\classes\db_mysqli.class.php | 55
+<?php exit;?>06-15 15:24:49 | 2 | mysqli::mysqli(): (HY000/2002): ��һ���޷����ӵ���糢���һ���׽��ֲ����
+ | phpcms\libs\classes\db_mysqli.class.php | 55
+<?php exit;?>06-15 15:24:49 | 2 | db_mysqli::error(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 390
+<?php exit;?>06-15 15:24:49 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
+<?php exit;?>06-15 15:24:49 | 2 | db_mysqli::errno(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 397
+<?php exit;?>06-15 15:24:49 | 2 | db_mysqli::error(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 390
+<?php exit;?>06-15 15:24:49 | 2 | mysqli::close(): Couldn't fetch mysqli | phpcms\libs\classes\db_mysqli.class.php | 409
+<?php exit;?>06-15 15:24:49 | 2 | mysqli::mysqli(): (HY000/2002): ��һ���޷����ӵ���糢���һ���׽��ֲ����
+ | phpcms\libs\classes\db_mysqli.class.php | 55

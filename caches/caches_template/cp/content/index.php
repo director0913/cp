@@ -1,5 +1,5 @@
 <?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><?php include template("content","header"); ?>
-<div class="wrap-bg">
+<div class="wrap-bg" style="padding-bottom:20px;">
     <img width="1920" height="585" src="<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=9dc51ceeb87944f28ee7667f541c72bf&sql=SELECT+%2A+FROM+cp_picture+WHERE+catid%3D%2720%27&return=data\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * FROM cp_picture WHERE catid='20' LIMIT 20");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data = $a;unset($a);?>
                                 <?php $n=1;if(is_array($data)) foreach($data AS $val) { ?>
                                     <?php echo $val['img'];?>
@@ -60,24 +60,23 @@
         <div class="part-2-cont-right part-right">
             <div class="lottery-news-box">
                 <div class="news-title clearfix">
-                    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=8fba6f8907ab96a73cdeb05d1a61fb96&sql=SELECT+%2A+FROM+cp_news+where+catid%3D%2716%27+and+status%3D%2799%27&return=data\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * FROM cp_news where catid='16' and status='99' LIMIT 20");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data = $a;unset($a);?>
-                        <?php $n=1;if(is_array($data)) foreach($data AS $val) { ?>
-                            <?php if($n==1){?>
-                            <li>
-                               <a target="_self" href="<?php echo $val['url'];?>" id="newsTitle_1"><?php echo $val['title'];?></a>
+                            <li style="margin-bottom: 5px;">
+                               <a  href="javascript:;" id="newsTitle_1" style="display: inline-block;width: 395px;text-align: center;">新闻资讯</a>
+                               <a  href="<?php echo $CATEGORYS['16']['url'];?>" id="" style="display: inline-block;float: right;font-size: 14px;">更多</a>
                             </li>
-                            <?php }?>
-                        <?php $n++;}unset($n); ?>
-                    <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
-                </div>
+                           
+                </div> 
+                
+                  
+                
                 <div class="news-bar">
                     <div class="news-bar-content" id="news-bar-content1">
                         <ul class="news-bar-list news-bar-left clearfix">
-                            <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=4bbeeef241c358c59fb155f556e45a1b&sql=SELECT+%2A+FROM+cp_news+where+catid%3D%2716%27+and+status%3D%2799%27&num=12&return=data\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * FROM cp_news where catid='16' and status='99' LIMIT 12");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data = $a;unset($a);?>
+                            <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=122f741450fb68397e3ffcf962c9e870&action=lists&catid=16&order=listorder+DESC&num=14\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'16','order'=>'listorder DESC','limit'=>'14',));}?>
                                 <?php $n=1;if(is_array($data)) foreach($data AS $val) { ?>
                                     <li>
                                         <a href="javascript:;" class="c-grey">新闻</a><span class="pad c-grey">|</span>
-                                        <a href="<?php echo $val['url'];?>"><?php echo $val['title'];?></a>
+                                        <a href="<?php echo $val['url'];?>"><?php echo str_cut($val['title'], 75);?></a>
                                     </li>
                                 <?php $n++;}unset($n); ?>
                             <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
@@ -212,9 +211,10 @@
                                 <ul class="help-tab clearfix" id="help-tab">
                                     <li class="on"><a class="web-notice">网站公告</a></li>
                                 </ul>
-                                <div id="help-cnt">
-                                    <ul class="user-help-box help-ul">
-                                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=c4d1e07e100495b8e8d982025c85ddee&sql=SELECT+%2A+FROM+cp_news+WHERE+catid%3D%2722%27&num=3&return=data\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * FROM cp_news WHERE catid='22' LIMIT 3");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data = $a;unset($a);?>
+                                <div id="help-cnt" style="height:250px" >
+                                    <ul class="user-help-box help-ul" >
+                                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=0d60accd9798412423585361366e472c&action=lists&catid=22&num=10&order=listorder+DESC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'22','order'=>'listorder DESC','limit'=>'10',));}?> 
+                                       
                                             <?php $n=1;if(is_array($data)) foreach($data AS $val) { ?>
                                                 <li><a href="<?php echo $val['url'];?>"><?php echo $val['title'];?></a></li>
                                             <?php $n++;}unset($n); ?>

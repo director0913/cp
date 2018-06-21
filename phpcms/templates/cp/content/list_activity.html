@@ -3,7 +3,7 @@
 <div class="wrap-bg">
     <div class="wrapper">
           <div class="activities">
-                <h1 class="activetitle"><img src="{IMG_PATH}/activity-tit.png"></h1>
+                <h1 class="activetitle"><img width="315px" height="40px" src="{if $catid=='28'}{IMG_PATH}/wanfa.png{else}{IMG_PATH}/activity-tit.png{/if}"></h1>
                 {pc:content  action="lists" catid="$catid" order="listorder ASC"  moreinfo="1"}
                     {loop $data $val}
                         <div class="active-listbox ">

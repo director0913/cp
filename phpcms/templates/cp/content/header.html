@@ -16,7 +16,65 @@
 <script type="text/javascript" src="{JS_PATH}index.js"></script>
 <script type="text/javascript" src="{JS_PATH}user.js"></script>
 <script type="text/javascript" src="{JS_PATH}home_menu.js"></script>
+<script type="text/javascript">
 
+    function btncheck() {
+        location.href = "http://ag.tt17168.com:81/Member/Reg/Default.aspx";
+    }
+    function forgetPassword() {
+        alert("请联系在线客服找回密码");
+    }
+
+
+    function btncheck() {
+        location.href = "http://ag.tt17168.com:81/Member/Reg/Default.aspx";
+    }
+    function finalcheck() {
+        if ($.trim($("#loginName").val()) == "") {
+            alert('请填写“用戶名”！');
+            return false;
+        }
+        if ($.trim($("#loginPwd").val()) == "") {
+            alert('请填写“密码”！');
+            return false;
+        }
+       
+         
+        var loginName = $("#loginName").val();
+        var loginPwd = $("#loginPwd").val();
+         
+           
+       /* $.post("http://ag.tt17168.com:81/Member/Login/Default.aspx", { loginName: loginName, loginPwd: loginPwd, verifycode: "1111" }, function (m) {
+            if (m == "1" || m.length > 160) {
+                location.href = "http://ag.tt17168.com:81/Member/LoginValidate.aspx";
+            } else if (m == "0") {
+                //需要修改密碼
+            } else {
+                alert(m);
+            }
+        });*/
+        return true;
+        return false;
+    }
+    $(function () {
+        $("#form_login input").keydown(function (e) {
+            var curKey = e.which;
+            if (curKey == 13) {
+                $("#Submit").click();
+                return false;
+            }
+        });
+    });
+
+        function tryrun() {
+
+            alert("游客盘口只供试玩，与正式盘口无关！");
+            window.location.href="http://ag.tt17168.com:81/Default.aspx?user=userdl";
+            // alert_href('游客盘口只供试玩，与正式盘口无关！', '/Default.aspx?user=userdl');
+      
+        }
+  
+</script>
 <!--[if lte IE 8]>
 <style>
 .ie-alert-bg,.ie-alert-wrap { display:block!important;}
@@ -41,8 +99,7 @@
                 <div id="spread_url_1" style="display: none;">
                     <a href="javascript:;">推荐好友获收益<img style="margin-left: 2px;margin-bottom: 10px;" src="picture/hot_new.gif"></a><span> | </span>
                 </div>
-                <a href="{$CATEGORYS[28][url]}" style="color:red;font-weight:bold;">玩法</a><span> | </span>
-                <a href="index.php?m=content&c=index&a=show&catid=21&id=3#help-1">帮助中心</a><span> | </span>
+                <a href="index.php?m=content&c=index&a=show&catid=21&id=3#help-1">帮助中心</a>
                 <a id="agent_reg_url" href="{$CATEGORYS[27][url]}" title="加入代理"><span> | </span>加入代理</a>
                 <a id="play_free" href="{$CATEGORYS[26][url]}"><span> | </span>免费试玩</a>
             </div>
@@ -59,7 +116,7 @@
                                 {/loop}
                             {/pc}" alt=""></a>
             </h1>
-            <form action="http://ag.tt17168.com:81/Member/Login/?e=636644081872736343" method="post">
+            <form name="form_login" method="post" action="http://ag.tt17168.com:81/Member/Login/Default.aspx" id="form_login">
                 <div id="header_user_login" class="wrap-login">
                     <div class="logxinxi" id="logxinxi">
                         <div class="top_login">
@@ -71,9 +128,7 @@
                                 <div class="top-login-bg">
                                     <i class="icon-lock-icon"></i>
                                     <input class="top_loginip" id="loginPwd" name="loginPwd" type="password" placeholder="请输入密码" style="width: 70px;">
-                                    <span style="position: relative;">
-                                    <a href="javascript:;" style="float:left;color:blue;margin-top: 8px;">忘记密码</a>
-                                    </span>
+                                    <input  type="hidden" id="verifycode" name="verifycode"  value="8888">
                                 </div>
 <!--                                 <div class="need_captcha">
                                     <div class="top_click" name="div_top_click">
@@ -108,7 +163,7 @@
                     <a href="javascript:;">充值</a>&nbsp;|&nbsp;
                     <a href="javascript:;">提现</a>&nbsp;|&nbsp;
                     <a href="javascript:;">交易记录</a>&nbsp;|&nbsp;
-                    <a href="javascript:;">个人消息<b id="un_read_msg_count" style="color:red;display:none;"></b></a>&nbsp;|&nbsp;
+                    <a href="javascript:;">个人消息<b id="un_read_msg_count" style="color:red;display:none;"></b></a>&nbsp;|&nbsp;  
                     <a href="javascript:;">退出</a>&nbsp;
                     </span>
                 </div>
@@ -141,7 +196,7 @@
                     </li>
                     <li class="mainGame">
                     <a href="javascript:;" class="mainA">
-                    <i class="icon nav40-9"><img src="{IMG_PATH}54.png"></i>
+                    <i class="icon nav40-9"><img src="{IMG_PATH}8.png"></i>
                     <span class="color333">香港六合彩</span>
                     </a>
                     <a href="javascript:;" class="status-desc"></a>
@@ -157,7 +212,7 @@
 
 
                     <li class="allGames clearfix" data-type="3">
-                    <h3><i class="icon-billiard-ball"></i><span>全部</span></h3>
+                    <h3> <i class="icon nav40-9"><img src="{IMG_PATH}8.png"></i><span>全部</span></h3>
                     <ul class="clearfix game-list">
                         <li><a href="javascript:;">极速时时彩</a></li>
                         <li><a href="javascript:;">三分时时彩</a></li>

@@ -1,5 +1,5 @@
 {template "content","header"}
-<div class="wrap-bg">
+<div class="wrap-bg" style="padding-bottom:20px;">
     <img width="1920" height="585" src="{pc:get sql="SELECT * FROM cp_picture WHERE catid='20'"  return="data"}
                                 {loop $data $val}
                                     {$val[img]}
@@ -60,24 +60,23 @@
         <div class="part-2-cont-right part-right">
             <div class="lottery-news-box">
                 <div class="news-title clearfix">
-                    {pc:get sql="SELECT * FROM cp_news where catid='16' and status='99'"  return="data"}
-                        {loop $data $val}
-                            <?php if($n==1){?>
-                            <li>
-                               <a target="_self" href="{$val['url']}" id="newsTitle_1">{$val['title']}</a>
+                            <li style="margin-bottom: 5px;">
+                               <a  href="javascript:;" id="newsTitle_1" style="display: inline-block;width: 395px;text-align: center;">新闻资讯</a>
+                               <a  href="{$CATEGORYS[16][url]}" id="" style="display: inline-block;float: right;font-size: 14px;">更多</a>
                             </li>
-                            <?php }?>
-                        {/loop}
-                    {/pc}
-                </div>
+                           
+                </div> 
+                
+                  
+                
                 <div class="news-bar">
                     <div class="news-bar-content" id="news-bar-content1">
                         <ul class="news-bar-list news-bar-left clearfix">
-                            {pc:get sql="SELECT * FROM cp_news where catid='16' and status='99'" num="12" return="data"}
+                            {pc:content  action="lists" catid="16" order="listorder DESC" num="14"   }
                                 {loop $data $val}
                                     <li>
                                         <a href="javascript:;" class="c-grey">新闻</a><span class="pad c-grey">|</span>
-                                        <a href="{$val['url']}">{$val['title']}</a>
+                                        <a href="{$val['url']}">{str_cut($val['title'], 75)}</a>
                                     </li>
                                 {/loop}
                             {/pc}
@@ -212,9 +211,10 @@
                                 <ul class="help-tab clearfix" id="help-tab">
                                     <li class="on"><a class="web-notice">网站公告</a></li>
                                 </ul>
-                                <div id="help-cnt">
-                                    <ul class="user-help-box help-ul">
-                                        {pc:get sql="SELECT * FROM cp_news WHERE catid='22'" num="3" return="data"}
+                                <div id="help-cnt" style="height:250px" >
+                                    <ul class="user-help-box help-ul" >
+                                        {pc:content action="lists" catid="22" num="10" order="listorder DESC"} 
+                                       
                                             {loop $data $val}
                                                 <li><a href="{$val[url]}">{$val[title]}</a></li>
                                             {/loop}

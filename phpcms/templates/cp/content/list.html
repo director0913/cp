@@ -1,0 +1,37 @@
+{template "content","header"}
+<!--main-->
+<style type="text/css">
+   .news_first {
+    float: left;
+    margin: 20px 0px 0px 20px;
+    width: 965px;
+    margin-bottom: 20px;
+}
+ .newslist li a {width: 363px;font-size: 16px;color: #000000;float:left} 
+ .newslist li a:hover{color: #ff0000;}
+ .newslist li{ height: 32px;line-height: 32px;border-bottom: 1px dashed #dadada;font-size: 16px;}
+ .newslist{ width:1000px;min-height: 300px   } 
+ .newslist{margin-top: 15px;}
+ .newslist .rt{float: right;}
+ .text-c{text-align: center;margin: 15px 0;}
+ .text-c a, .text-c span{font-size: 16px;margin:0 3px;}
+ .text-c span{color: #ff0000;}
+ .newsbox{width: 1000px;margin: 0 auto;}
+</style>
+
+<div class="newsbox">
+    
+        <div class="crumbs" style="margin-top: 15px;font-size: 16px;"><h3><a href="/">首页</a><span> > </span>{catpos($catid)} 列表</h3></div>
+        {pc:content action="lists" catid="$catid" num="10" order="listorder DESC" page="$page"}   
+           <ul class="newslist">
+            {loop $data $r}         
+                <li ><a href="{$r[url]}">{$r[title]}</a>
+                    <span class="rt" >{date('Y-m-d',$r[inputtime])}</span>
+                </li>
+             {/loop}
+            </ul>
+        {/pc}
+             <div id="pages" class="text-c">{$pages}</div>
+    
+</div>
+{template "content","footer"}
